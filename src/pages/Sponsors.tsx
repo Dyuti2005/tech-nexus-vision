@@ -3,44 +3,6 @@ import { Heart, Award, Handshake, Mail } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-const sponsorTiers = [
-  {
-    name: "Platinum Partner",
-    price: "Custom",
-    benefits: [
-      "Logo on all event materials",
-      "Speaking slot at flagship events",
-      "Booth at in-person events",
-      "Social media promotion",
-      "Newsletter feature",
-      "Access to talent pool",
-    ],
-    color: "from-slate-400 to-slate-600",
-  },
-  {
-    name: "Gold Partner",
-    price: "Custom",
-    benefits: [
-      "Logo on event materials",
-      "Workshop hosting opportunity",
-      "Social media promotion",
-      "Newsletter mention",
-      "Networking access",
-    ],
-    color: "from-yellow-400 to-yellow-600",
-  },
-  {
-    name: "Community Partner",
-    price: "Free",
-    benefits: [
-      "Cross-promotion",
-      "Event collaboration",
-      "Community access",
-      "Joint initiatives",
-    ],
-    color: "from-primary to-secondary",
-  },
-];
 
 const currentSponsors = [
   { name: "Microsoft", tier: "Technology Partner" },
@@ -139,47 +101,6 @@ const Sponsors = () => {
         </div>
       </section>
 
-      {/* Sponsorship Tiers */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-black mb-4">
-              Partnership <span className="gradient-text-reverse">Tiers</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {sponsorTiers.map((tier, index) => (
-              <motion.div
-                key={tier.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="glass-card p-8 rounded-3xl h-full flex flex-col"
-              >
-                <div className={`w-full h-2 rounded-full bg-gradient-to-r ${tier.color} mb-6`} />
-                <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
-                <p className="text-2xl font-black gradient-text mb-6">{tier.price}</p>
-                
-                <ul className="space-y-3 flex-grow">
-                  {tier.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Current Sponsors */}
       <section className="py-24">
