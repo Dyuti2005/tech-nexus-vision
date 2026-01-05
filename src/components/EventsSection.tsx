@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, ArrowRight, CheckCircle } from "lucide-react";
+import { Calendar, MapPin, Users, ArrowRight, CheckCircle, GraduationCap, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import event1 from "@/assets/gallery/event-1.jpeg";
 import event2 from "@/assets/gallery/event-2.jpeg";
 import event3 from "@/assets/gallery/event-3.jpeg";
@@ -28,7 +29,7 @@ const galleryImages = [event1, event2, event3, event4];
 
 const EventsSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="events" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -46,6 +47,49 @@ const EventsSection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             From intimate workshops to large-scale conferences, we bring the tech community together
           </p>
+        </motion.div>
+
+        {/* Skill-Up India Featured Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto mb-12"
+        >
+          <div className="relative glass-card-emerald p-8 md:p-10 rounded-3xl glow-border-emerald overflow-hidden">
+            {/* Emerald glow effect */}
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/15 rounded-full blur-2xl" />
+            
+            <div className="relative flex flex-col md:flex-row md:items-center gap-6">
+              <div className="flex-shrink-0">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/30">
+                  <GraduationCap className="w-10 h-10 text-primary-foreground" />
+                </div>
+              </div>
+              
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">Core Program</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                  Skill-Up India: AI & Cloud Certification Drive
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  A community-led initiative to master AZ-900 (Azure Fundamentals) and AI-900 (AI Fundamentals) certifications. Join hundreds of learners on the path to Microsoft certification excellence.
+                </p>
+                
+                <Link
+                  to="/skill-up"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25"
+                >
+                  <span>Explore Program</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Previous Events */}
