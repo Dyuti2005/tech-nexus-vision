@@ -4,8 +4,8 @@ import CountdownTimer from "./CountdownTimer";
 import Logo from "./Logo";
 
 const HeroSection = () => {
-  // Agentic AI Connect - Bengaluru: January 10, 2025
-  const eventDate = new Date("2025-01-10T09:00:00");
+  // Agentic AI Connect - Bengaluru: January 10, 2025 at 10:00 AM IST
+  const eventDate = new Date("2025-01-10T10:00:00");
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
