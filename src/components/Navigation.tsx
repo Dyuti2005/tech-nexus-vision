@@ -6,7 +6,6 @@ import techNexusLogo from "@/assets/technexus-logo.png";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Skill-Up India", href: "/skill-up" },
   { name: "Events", href: "/#events", isAnchor: true },
   { name: "About", href: "/about" },
   { name: "Sponsors", href: "/sponsors" },
