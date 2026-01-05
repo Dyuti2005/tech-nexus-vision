@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import Logo from "./Logo";
+import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import techNexusLogo from "@/assets/technexus-logo.png";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Skill-Up India", href: "/skill-up" },
-  { name: "Events", href: "/events" },
+  { name: "Events", href: "/#events", isAnchor: true },
   { name: "About", href: "/about" },
   { name: "Sponsors", href: "/sponsors" },
 ];
@@ -16,6 +16,21 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (link: typeof navLinks[0], e: React.MouseEvent) => {
+    if (link.isAnchor) {
+      e.preventDefault();
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          document.getElementById("events")?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        document.getElementById("events")?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,8 +57,12 @@ const Navigation = () => {
         }`}
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link to="/">
-            <Logo size="md" />
+          <Link to="/" className="flex items-center">
+            <img 
+              src={techNexusLogo} 
+              alt="TechNexus Community" 
+              className="h-10 md:h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,9 +70,10 @@ const Navigation = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.href}
+                to={link.isAnchor ? "/" : link.href}
+                onClick={(e) => handleNavClick(link, e)}
                 className={`relative text-sm font-medium transition-colors animated-underline ${
-                  location.pathname === link.href
+                  location.pathname === link.href || (link.isAnchor && location.pathname === "/" && location.hash === "#events")
                     ? "text-primary"
                     : "text-foreground/80 hover:text-foreground"
                 }`}
@@ -113,7 +133,7 @@ const Navigation = () => {
             >
               <div className="flex flex-col h-full p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <Logo size="sm" />
+                  <img src={techNexusLogo} alt="TechNexus Community" className="h-8 w-auto" />
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 rounded-lg hover:bg-muted transition-colors"
@@ -131,7 +151,8 @@ const Navigation = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <Link
-                        to={link.href}
+                        to={link.isAnchor ? "/" : link.href}
+                        onClick={(e) => handleNavClick(link, e)}
                         className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors ${
                           location.pathname === link.href
                             ? "bg-primary/10 text-primary"
