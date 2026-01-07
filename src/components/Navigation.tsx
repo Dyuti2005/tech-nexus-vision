@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import techNexusLogo from "@/assets/technexus-logo.png";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Events", href: "/#events", isAnchor: true },
+  { name: "Events", href: "/events" },
   { name: "About", href: "/about" },
   { name: "Sponsors", href: "/sponsors" },
 ];
@@ -15,21 +15,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const handleNavClick = (link: typeof navLinks[0], e: React.MouseEvent) => {
-    if (link.isAnchor) {
-      e.preventDefault();
-      if (location.pathname !== "/") {
-        navigate("/");
-        setTimeout(() => {
-          document.getElementById("events")?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      } else {
-        document.getElementById("events")?.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,10 +55,9 @@ const Navigation = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.isAnchor ? "/" : link.href}
-                onClick={(e) => handleNavClick(link, e)}
+                to={link.href}
                 className={`relative text-sm font-medium transition-colors animated-underline ${
-                  location.pathname === link.href || (link.isAnchor && location.pathname === "/" && location.hash === "#events")
+                  location.pathname === link.href
                     ? "text-primary"
                     : "text-foreground/80 hover:text-foreground"
                 }`}
@@ -150,8 +135,7 @@ const Navigation = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <Link
-                        to={link.isAnchor ? "/" : link.href}
-                        onClick={(e) => handleNavClick(link, e)}
+                        to={link.href}
                         className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors ${
                           location.pathname === link.href
                             ? "bg-primary/10 text-primary"
