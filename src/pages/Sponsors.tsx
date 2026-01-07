@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 
 const currentSponsors = [
-  { name: "Microsoft", tier: "Technology Partner" },
+  { name: "Microsoft", tier: "Technology Sponsor" },
 ];
 
 const Sponsors = () => {
@@ -26,7 +26,7 @@ const Sponsors = () => {
               Partners
             </span>
             <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
-              Partner with <span className="gradient-text">TechNexus</span>
+              Sponsor <span className="gradient-text">TechNexus</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               Join us in empowering India's next generation of tech professionals. 
@@ -46,7 +46,7 @@ const Sponsors = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-black mb-4">
-              Why <span className="gradient-text">Partner</span> With Us?
+              Why <span className="gradient-text">Sponsor</span> Us?
             </h2>
           </motion.div>
 
@@ -112,7 +112,7 @@ const Sponsors = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-black mb-4">
-              Our <span className="gradient-text">Partners</span>
+              Our <span className="gradient-text">Sponsors</span>
             </h2>
           </motion.div>
 
@@ -142,9 +142,9 @@ const Sponsors = () => {
             viewport={{ once: true }}
             className="glass-card-cyan p-8 md:p-12 rounded-3xl max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl font-bold mb-4">Become a Partner</h2>
+            <h2 className="text-3xl font-bold mb-4">Become a Sponsor</h2>
             <p className="text-muted-foreground mb-8">
-              Interested in partnering with TechNexus Community? We'd love to hear from you.
+              Interested in sponsoring TechNexus Community? We'd love to hear from you.
             </p>
             <a
               href="mailto:sponsors@technexuscommunity.com"
