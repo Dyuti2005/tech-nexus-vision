@@ -46,7 +46,6 @@ const values = [
 const chapters = [
   { city: "Bengaluru", members: "2000+", color: "primary" },
   { city: "Chennai", members: "1800+", color: "secondary" },
-  { city: "Hyderabad", members: "1200+", color: "primary" },
 ];
 
 const About = () => {
@@ -227,7 +226,7 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div className="flex justify-center gap-12 max-w-3xl mx-auto">
             {chapters.map((chapter, index) => (
               <motion.div
                 key={chapter.city}
@@ -235,7 +234,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`glass-card-${chapter.color === 'primary' ? 'emerald' : 'cyan'} p-6 rounded-2xl text-center`}
+                className={`glass-card-${chapter.color === 'primary' ? 'emerald' : 'cyan'} p-8 rounded-2xl text-center min-w-[200px]`}
               >
                 <MapPin className={`w-8 h-8 text-${chapter.color} mx-auto mb-4`} />
                 <h3 className="text-xl font-bold mb-2">{chapter.city}</h3>
