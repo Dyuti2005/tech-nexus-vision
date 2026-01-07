@@ -23,7 +23,7 @@ const Sponsors = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold uppercase tracking-wider mb-4">
-              Sponsors
+              Partners
             </span>
             <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
               Partner with <span className="gradient-text">TechNexus</span>
