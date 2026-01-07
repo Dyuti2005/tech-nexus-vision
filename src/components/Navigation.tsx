@@ -43,11 +43,13 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img 
-              src={techNexusLogo} 
-              alt="TechNexus Community" 
-              className="h-10 md:h-12 w-auto object-contain"
-            />
+            <div className="h-10 md:h-12 overflow-hidden">
+              <img 
+                src={techNexusLogo} 
+                alt="TechNexus Community" 
+                className="h-12 md:h-14 w-auto object-cover object-top"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
