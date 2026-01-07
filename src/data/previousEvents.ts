@@ -349,6 +349,30 @@ export const previousEvents: PreviousEvent[] = [
     image: event1,
   },
   {
+    id: "microsoft-ai-community-day-bengaluru-feb-2025",
+    title: "Microsoft AI Community Day",
+    date: new Date("2025-02-22"),
+    dateStr: "February 22, 2025",
+    location: "Bengaluru",
+    venue: "Microsoft Luxor North Tower",
+    attendees: "200+",
+    description: "A community-driven event exploring Azure and Microsoft AI innovations. Sessions covered Dataverse integration with Microsoft Fabric, building smart Angular apps with Azure AI Vision, and AI-driven Copilot Agents.",
+    highlights: [
+      "Azure and Microsoft AI Innovations",
+      "Integrating Dataverse with Microsoft Fabric",
+      "Smart Angular Apps with Azure AI Vision",
+      "OCR Capabilities with Azure AI Vision",
+      "Building AI-driven Copilot Agents with Copilot Studio"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "Keynote: Azure and Microsoft AI Innovations", time: "9:30 - 10:00 AM" },
+      { name: "Nandan Hegde", topic: "Exploring Diverse Methods to Integrate Dataverse Data with MSFT Fabric", time: "10:00 - 10:45 AM" },
+      { name: "Ankit Sharma", topic: "Create Smart Angular Apps Using Azure AI Vision", time: "10:45 - 11:30 AM" },
+      { name: "Swati Ramanuj", topic: "Introduction to AI-driven Copilot Agents", time: "11:45 - 12:30 PM" }
+    ],
+    image: event3,
+  },
+  {
     id: "global-genai-bootcamp-bengaluru-jul-2025",
     title: "Global GenAI Bootcamp - Bengaluru",
     date: new Date("2025-07-05"),
