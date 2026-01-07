@@ -123,10 +123,18 @@ const Sponsors = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="glass-card-emerald p-8 rounded-3xl text-center"
+                className="glass-card-emerald px-16 py-10 rounded-3xl text-center"
               >
-                <div className="text-3xl font-black gradient-text mb-2">{sponsor.name}</div>
-                <p className="text-sm text-muted-foreground">{sponsor.tier}</p>
+                <div className="flex items-center justify-center gap-4 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" className="w-10 h-10">
+                    <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
+                    <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
+                    <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
+                    <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+                  </svg>
+                  <span className="text-4xl font-black gradient-text">{sponsor.name}</span>
+                </div>
+                <p className="text-base text-muted-foreground">{sponsor.tier}</p>
               </motion.div>
             ))}
           </div>
