@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
 import { Linkedin, Twitter, Youtube, MessageCircle, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import Logo from "./Logo";
+import footerLogo from "@/assets/technexus-footer-logo.png";
 
 const footerLinks = {
   community: [
@@ -38,7 +37,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Logo size="lg" className="mb-6" />
+            <img src={footerLogo} alt="TechNexus Community" className="h-10 mb-6" />
             <p className="text-muted-foreground mb-6 leading-relaxed">
               India's premier Microsoft AI & Cloud technology community. Learn, connect, and grow with 5000+ tech professionals.
             </p>
