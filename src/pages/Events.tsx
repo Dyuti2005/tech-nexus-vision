@@ -1,12 +1,9 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, Clock, ArrowRight, MessageCircle } from "lucide-react";
+import { Calendar, MapPin, Clock, MessageCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
-import event1 from "@/assets/gallery/event-1.jpeg";
-import event2 from "@/assets/gallery/event-2.jpeg";
-import event3 from "@/assets/gallery/event-3.jpeg";
-import event4 from "@/assets/gallery/event-4.jpeg";
+import PreviousEventsSection from "@/components/PreviousEventsSection";
 
 const upcomingEvent = {
   title: "Agentic AI Connect - Bengaluru",
@@ -16,41 +13,6 @@ const upcomingEvent = {
   description: "Join us for an immersive experience exploring Agentic AI systems, autonomous agents, and the future of AI-powered automation. Network with industry experts and Microsoft MVPs.",
   topics: ["Agentic AI Patterns", "Autonomous Agents", "LLM Orchestration", "Real-world Use Cases"],
 };
-
-const pastEvents = [
-  {
-    title: "Agentic AI Connect - Chennai",
-    date: "December 20, 2024",
-    location: "Chennai",
-    attendees: "200+",
-    description: "Our flagship Agentic AI event exploring autonomous AI systems and their real-world applications.",
-    image: event1,
-  },
-  {
-    title: "Microsoft AI and Chai",
-    date: "November 2024",
-    location: "Multiple Cities",
-    attendees: "150+",
-    description: "Deep dive into Azure OpenAI and RAG (Retrieval Augmented Generation) patterns.",
-    image: event2,
-  },
-  {
-    title: "Azure Cloud Workshop",
-    date: "October 2024",
-    location: "Bengaluru",
-    attendees: "120+",
-    description: "Hands-on workshop covering Azure fundamentals and cloud architecture best practices.",
-    image: event3,
-  },
-  {
-    title: "AI Hackathon",
-    date: "September 2024",
-    location: "Hyderabad",
-    attendees: "80+",
-    description: "24-hour hackathon focused on building AI-powered solutions using Azure services.",
-    image: event4,
-  },
-];
 
 const Events = () => {
   return (
@@ -134,68 +96,8 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Past Events */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-black mb-4">
-              Past <span className="gradient-text">Events</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Relive the moments from our previous community gatherings
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {pastEvents.map((event, index) => (
-              <motion.div
-                key={event.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="glass-card rounded-3xl overflow-hidden h-full">
-                  <div className="aspect-video relative overflow-hidden">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-xl font-bold text-primary-foreground mb-1">{event.title}</h3>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-muted-foreground mb-4 line-clamp-2">{event.description}</p>
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        <span>{event.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin className="w-4 h-4 text-secondary" />
-                        <span>{event.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4 text-primary" />
-                        <span>{event.attendees}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Previous Events Section */}
+      <PreviousEventsSection />
 
       <Footer />
     </main>
