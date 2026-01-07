@@ -7,7 +7,6 @@ const footerLinks = {
   community: [
     { name: "About Us", href: "/about" },
     { name: "Our Events", href: "/events" },
-    { name: "Skill-Up India", href: "/skill-up" },
     { name: "Sponsors", href: "/sponsors" },
   ],
   resources: [
