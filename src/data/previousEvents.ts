@@ -5,6 +5,11 @@ import event4 from "@/assets/gallery/event-4.jpeg";
 import sprintChennai1 from "@/assets/events/sprint-imagine-cup-chennai-1.png";
 import sprintChennai2 from "@/assets/events/sprint-imagine-cup-chennai-2.png";
 import sprintChennai3 from "@/assets/events/sprint-imagine-cup-chennai-3.png";
+import vscodeDevDays1 from "@/assets/events/vscode-dev-days-1.png";
+import vscodeDevDays2 from "@/assets/events/vscode-dev-days-2.png";
+import vscodeDevDays3 from "@/assets/events/vscode-dev-days-3.png";
+import vscodeDevDays4 from "@/assets/events/vscode-dev-days-4.png";
+import vscodeDevDays5 from "@/assets/events/vscode-dev-days-5.png";
 
 export interface PreviousEvent {
   id: string;
@@ -140,7 +145,8 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Sagnik Banerjee", topic: "Leveraging GitHub Copilot for AI Engineering", time: "11:00 - 11:45 AM" },
       { name: "Prateek Singh", topic: "Integrating MCP (Model Context Protocol) with GitHub Copilot", time: "12:00 - 1:00 PM" }
     ],
-    image: event3,
+    image: vscodeDevDays1,
+    gallery: [vscodeDevDays1, vscodeDevDays2, vscodeDevDays3, vscodeDevDays4, vscodeDevDays5],
   },
   {
     id: "sprint-imagine-cup-2025",
