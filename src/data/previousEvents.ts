@@ -230,6 +230,31 @@ export const previousEvents: PreviousEvent[] = [
     image: event2,
   },
   {
+    id: "global-ai-tour-season-of-agents-bengaluru-may-2025",
+    title: "Microsoft's Global AI Tour: Season of Agents – Bengaluru",
+    date: new Date("2025-05-17"),
+    dateStr: "May 17, 2025",
+    location: "Bengaluru",
+    venue: "Microsoft Ferns, Bangalore",
+    attendees: "200+",
+    description: "An exciting stop on Microsoft's Global AI Tour exploring AI agents in action. Attendees learned about LLMs, natural language processing, multi-agent orchestration with Semantic Kernel, and architecting agent memory on Azure.",
+    highlights: [
+      "AI Agents in Action",
+      "LLMs & Natural Language Processing",
+      "Cross-Platform Multi-Agent Orchestration with Semantic Kernel",
+      "Neon Serverless Postgres - Azure Native Integration",
+      "Architecting Agent Memory and Context on Azure"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "Keynote: Bot Minds & Bold Moves: AI Agents in Action", time: "9:30 - 10:00 AM" },
+      { name: "Abhilekh Verma", topic: "LLMs & Natural Language Processing – Unlocking the Future of AI Communication", time: "10:00 - 10:30 AM" },
+      { name: "Prasanna Nagarajan", topic: "Cross-Platform Multi-Agent Orchestration with Semantic Kernel", time: "10:30 - 11:00 AM" },
+      { name: "Priyanshi Verma", topic: "Neon Serverless Postgres - An Azure Native Integration", time: "11:20 - 11:50 AM" },
+      { name: "Prateek Singh", topic: "The Data Behind the Decision: Architecting Agent Memory and Context on Azure", time: "11:50 - 1:20 PM" }
+    ],
+    image: event1,
+  },
+  {
     id: "global-genai-bootcamp-bengaluru-jul-2025",
     title: "Global GenAI Bootcamp - Bengaluru",
     date: new Date("2025-07-05"),
