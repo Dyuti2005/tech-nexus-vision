@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Clock, ExternalLink, Users } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -15,6 +16,9 @@ const upcomingEvent = {
 };
 
 const Events = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleEventClick = (eventId: string) => {
     window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
   };
