@@ -277,6 +277,29 @@ export const previousEvents: PreviousEvent[] = [
     image: event3,
   },
   {
+    id: "microsoft-developer-day-chennai-apr-2025",
+    title: "Microsoft Developer Day - Chennai",
+    date: new Date("2025-04-26"),
+    dateStr: "April 26, 2025",
+    location: "Chennai",
+    venue: "Microsoft Corporation India Pvt. Ltd.",
+    attendees: "180+",
+    description: "A developer-focused event exploring AI and Fabric integration, responsible AI practices on Azure, Microsoft Semantic Kernel, and real-time anomaly detection with streaming data.",
+    highlights: [
+      "AI Meets Fabric: Architecting Intelligence at Lakehouse Scale",
+      "Implementing Responsible AI on Azure",
+      "Empower Apps with Smart Copilot using Semantic Kernel",
+      "Real-Time Anomaly Detection with AI"
+    ],
+    speakers: [
+      { name: "Vinodh Kumar", topic: "Keynote + AI Meets Fabric: Architecting Intelligence at Lakehouse Scale", time: "9:30 - 10:30 AM" },
+      { name: "Muralidharan Deenathayalan", topic: "Implementing Responsible AI on Azure: Governance, Compliance, and Guardrails", time: "10:30 - 11:15 AM" },
+      { name: "Vinoth Rajendran", topic: "Empower Your Apps with a Smart Copilot Using Microsoft Semantic Kernel", time: "11:30 - 12:15 PM" },
+      { name: "Harun Rasheed Basheer", topic: "Real-Time Anomaly Detection with AI on Streaming Data", time: "12:15 - 1:00 PM" }
+    ],
+    image: event2,
+  },
+  {
     id: "global-genai-bootcamp-bengaluru-jul-2025",
     title: "Global GenAI Bootcamp - Bengaluru",
     date: new Date("2025-07-05"),
