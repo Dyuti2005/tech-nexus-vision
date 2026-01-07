@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin, ExternalLink } from "lucide-react";
-import Logo from "./Logo";
+import watermarkLogo from "@/assets/technexus-watermark.png";
 
 const HeroSection = () => {
   return (
@@ -10,7 +10,7 @@ const HeroSection = () => {
       
       {/* Logo Watermark */}
       <div className="logo-watermark">
-        <Logo size="watermark" showText={false} />
+        <img src={watermarkLogo} alt="" className="w-full h-full object-contain opacity-10" />
       </div>
 
       {/* Animated Background Elements */}
