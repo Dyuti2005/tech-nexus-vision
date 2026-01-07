@@ -43,6 +43,55 @@ export const previousEvents: PreviousEvent[] = [
     image: event1,
   },
   {
+    id: "ai-in-cloud-nov-2025",
+    title: "AI in the Cloud: Harnessing Containers & Data at Scale",
+    date: new Date("2025-11-08"),
+    dateStr: "November 8, 2025",
+    location: "Bengaluru",
+    venue: "Cloudera, Bengaluru",
+    attendees: "150+",
+    description: "An exclusive event powered by TechNexus Community, in collaboration with Docker, Cloudera, and Microsoft. Deep dive into containerization, AI agents, and scaling AI workloads in the cloud.",
+    highlights: [
+      "Powering AI Agents with Docker Offload",
+      "Cloudera on Cloud solutions",
+      "Building multi-model frameworks",
+      "AI SRE - Your 3 AM Production Assistant",
+      "Building smarter AI systems with Microsoft Autogen"
+    ],
+    speakers: [
+      { name: "Ajeet Singh Raina", topic: "From Local Dev to Cloud Scale: Powering AI Agents with Docker Offload", time: "11:00 - 11:30 AM" },
+      { name: "Cloudera Team", topic: "Cloudera on Cloud", time: "11:30 - 12:00 PM" },
+      { name: "Microsoft Team", topic: "Building the multi model framework: From Models to Applications", time: "12:00 - 12:30 PM" },
+      { name: "Akshat Sandhaliya", topic: "How to Build your own AI SRE (Your 3 AM Production Assistant)", time: "12:30 - 1:00 PM" },
+      { name: "Raveendiran RR", topic: "Building smarter AI systems with Microsoft Autogen", time: "1:30 - 2:00 PM" }
+    ],
+    image: event2,
+  },
+  {
+    id: "sprint-imagine-cup-chennai-oct-2025",
+    title: "Sprint to Imagine Cup: AI Innovation Day - Chennai",
+    date: new Date("2025-10-18"),
+    dateStr: "October 18, 2025",
+    location: "Chennai",
+    venue: "Microsoft Office, Chennai",
+    attendees: "180+",
+    description: "An AI Innovation Day focused on Imagine Cup preparation, featuring sessions on Microsoft Fabric, AI Agents with MCP, Model Context Protocol, and Quantum Computing. Students and developers explored cutting-edge AI innovations.",
+    highlights: [
+      "AI in Microsoft Fabric: Unstructured Analytics without ETL",
+      "Building Next Gen AI Agents with MCP",
+      "Model Context Protocol for Coherent Conversations",
+      "GitHub Copilot and MCP integration",
+      "Quantum Computing demystified"
+    ],
+    speakers: [
+      { name: "Vinodh Kumar", topic: "AI in Microsoft Fabric: Simplifying Unstructured Analytics without ETL", time: "10:00 - 10:45 AM" },
+      { name: "Janarthanan Selvaraj", topic: "From Smart to Genius: Building Next Gen AI Agents with MCP", time: "10:45 - 11:30 AM" },
+      { name: "Aakash Dhakshnamoorthy & Bhavya Srii", topic: "The Stateful AI: Implementing Model Context Protocol (MCP) for Coherent Conversations", time: "11:45 - 12:30 PM" },
+      { name: "Ernestine Lerisha John", topic: "Quantum Demystified: Why Everyone's Talking About It", time: "12:30 - 1:15 PM" }
+    ],
+    image: event3,
+  },
+  {
     id: "sprint-imagine-cup-2025",
     title: "Sprint to Imagine Cup – AI Innovation Day",
     date: new Date("2025-11-15"),
@@ -62,7 +111,7 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Industry Experts", topic: "AI Innovation Patterns" },
       { name: "Microsoft MVPs", topic: "Building for Imagine Cup" }
     ],
-    image: event2,
+    image: event4,
   },
   {
     id: "skill-up-india-oct-2025",
@@ -84,29 +133,7 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Apoorva Sharma", topic: "AZ-900 Azure Fundamentals" },
       { name: "Naveen Prabhu Chinnadurai", topic: "AI-900 Azure AI Fundamentals" }
     ],
-    image: event3,
-  },
-  {
-    id: "ai-in-cloud-oct-2025",
-    title: "AI in the Cloud – Containers & Data at Scale",
-    date: new Date("2025-10-25"),
-    dateStr: "October 25, 2025",
-    location: "Bengaluru",
-    venue: "Tech Hub, Bengaluru",
-    attendees: "120+",
-    description: "An exclusive event powered by TechNexus Community, in collaboration with Docker, Microsoft, and industry partners. Deep dive into containerization and scaling AI workloads.",
-    highlights: [
-      "Docker containerization best practices",
-      "Scaling AI/ML workloads in Kubernetes",
-      "Azure Container Apps deployment",
-      "Real-world case studies",
-      "Hands-on container labs"
-    ],
-    speakers: [
-      { name: "Docker Experts", topic: "Container Orchestration" },
-      { name: "Cloud Architects", topic: "Data at Scale Patterns" }
-    ],
-    image: event4,
+    image: event1,
   },
   {
     id: "season-of-ai-s3-jan-2025",
@@ -129,6 +156,6 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Vinodh Kumar", topic: "AI Meets Data: Revolutionizing Microsoft Fabric with GenAI" },
       { name: "Manikandan Murugesan", topic: "Developing AI Applications: Key Use Cases and Design Patterns" }
     ],
-    image: event1,
+    image: event2,
   },
 ].sort((a, b) => b.date.getTime() - a.date.getTime()); // Sort recent to old
