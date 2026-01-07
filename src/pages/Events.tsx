@@ -1,103 +1,208 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react";
+import { Calendar, MapPin, Clock, ExternalLink, Users } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
-import PreviousEventsSection from "@/components/PreviousEventsSection";
+import { previousEvents } from "@/data/previousEvents";
 
 const upcomingEvent = {
   title: "Agentic AI Connect - Bengaluru",
   date: new Date("2026-01-10T09:00:00"),
   dateStr: "January 10, 2026",
   location: "Microsoft Ferns, Bengaluru",
-  description: "Join us for an immersive experience exploring Agentic AI systems, autonomous agents, and the future of AI-powered automation. Network with industry experts and Microsoft MVPs.",
+  description: "Join us for an immersive experience exploring Agentic AI systems, autonomous agents, and the future of AI-powered automation.",
   topics: ["Agentic AI Patterns", "Autonomous Agents", "LLM Orchestration", "Real-world Use Cases"],
 };
 
 const Events = () => {
+  const handleEventClick = (eventId: string) => {
+    window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <main className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 hero-gradient relative overflow-hidden">
+      {/* Hero Section - Compact */}
+      <section className="pt-28 pb-8 hero-gradient relative overflow-hidden">
         <div className="absolute inset-0 mesh-gradient" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-4xl mx-auto mb-12"
+            className="text-center max-w-4xl mx-auto"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold uppercase tracking-wider mb-4">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold uppercase tracking-wider mb-3">
               Events
             </span>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
+            <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-3">
               Community <span className="gradient-text-reverse">Events</span>
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-lg text-muted-foreground">
               From intimate workshops to large-scale conferences, we bring the tech community together
             </p>
-          </motion.div>
-
-          {/* Upcoming Event Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="glass-card-emerald p-8 md:p-10 rounded-3xl max-w-4xl mx-auto glow-border-emerald"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-              </span>
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Next Event</span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{upcomingEvent.title}</h2>
-            <p className="text-muted-foreground mb-6">{upcomingEvent.description}</p>
-
-            <div className="flex flex-wrap gap-4 mb-8">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Calendar className="w-5 h-5 text-primary" />
-                <span>{upcomingEvent.dateStr}</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <MapPin className="w-5 h-5 text-secondary" />
-                <span>{upcomingEvent.location}</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Clock className="w-5 h-5 text-primary" />
-                <span>9:00 AM onwards</span>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-8">
-              {upcomingEvent.topics.map((topic) => (
-                <span key={topic} className="px-3 py-1 rounded-full bg-foreground/5 text-sm">
-                  {topic}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <CountdownTimer targetDate={upcomingEvent.date} />
-              <a
-                href="https://meetu.ps/e/PJJMV/1dmQqv/i"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary-glow px-8 py-4 rounded-2xl text-primary-foreground font-semibold inline-flex items-center gap-2"
-              >
-                <ExternalLink className="w-5 h-5" />
-                <span>Register via Meetup</span>
-              </a>
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Previous Events Section */}
-      <PreviousEventsSection />
+      {/* All Events Grid */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            
+            {/* Upcoming Event - Featured Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="lg:col-span-3"
+            >
+              <div className="glass-card-emerald p-6 md:p-8 rounded-3xl glow-border-emerald">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                      </span>
+                      <span className="text-sm font-semibold text-primary uppercase tracking-wider">Upcoming Event</span>
+                    </div>
+
+                    <h2 className="text-2xl md:text-3xl font-bold mb-3">{upcomingEvent.title}</h2>
+                    <p className="text-muted-foreground mb-4 text-sm md:text-base">{upcomingEvent.description}</p>
+
+                    <div className="flex flex-wrap gap-3 mb-4 text-sm">
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <Calendar className="w-4 h-4 text-primary" />
+                        <span>{upcomingEvent.dateStr}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <MapPin className="w-4 h-4 text-secondary" />
+                        <span>{upcomingEvent.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <Clock className="w-4 h-4 text-primary" />
+                        <span>9:00 AM onwards</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {upcomingEvent.topics.map((topic) => (
+                        <span key={topic} className="px-2.5 py-1 rounded-full bg-foreground/5 text-xs">
+                          {topic}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-center gap-4">
+                    <CountdownTimer targetDate={upcomingEvent.date} />
+                    <a
+                      href="https://meetu.ps/e/PJJMV/1dmQqv/i"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary-glow px-6 py-3 rounded-xl text-primary-foreground font-semibold inline-flex items-center gap-2 text-sm"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Register via Meetup</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Section Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-3 text-center mt-8 mb-4"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold uppercase tracking-wider mb-3">
+                Our Journey
+              </span>
+              <h2 className="text-2xl md:text-3xl font-black">
+                Previous <span className="gradient-text">Events</span>
+              </h2>
+            </motion.div>
+
+            {/* Previous Events Grid */}
+            {previousEvents.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 + index * 0.05 }}
+                onClick={() => handleEventClick(event.id)}
+                className="group cursor-pointer"
+              >
+                <div 
+                  className="relative h-full rounded-2xl overflow-hidden transition-all duration-500 
+                             backdrop-blur-xl bg-white/80 dark:bg-white/10
+                             border border-emerald-200/50 dark:border-primary/30 
+                             hover:border-emerald-400 dark:hover:border-primary/60
+                             shadow-lg hover:shadow-xl hover:shadow-emerald-500/20
+                             hover:scale-[1.02] transform-gpu"
+                >
+                  {/* Image */}
+                  <div className="aspect-video relative overflow-hidden">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-background dark:via-background/40" />
+                    
+                    {/* External Link Icon */}
+                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                      <div className="p-1.5 rounded-full backdrop-blur-xl bg-emerald-500/90 border border-emerald-400">
+                        <ExternalLink className="w-3 h-3 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Date Badge */}
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded-full backdrop-blur-xl bg-white/90 dark:bg-background/80 border border-emerald-200/50 dark:border-primary/30 text-xs font-semibold text-slate-700 dark:text-foreground">
+                        {event.dateStr}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative p-4 text-center">
+                    <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent line-clamp-2">
+                      {event.title}
+                    </h3>
+                    
+                    <p className="text-slate-600 dark:text-muted-foreground mb-3 line-clamp-2 text-xs">
+                      {event.description}
+                    </p>
+
+                    {/* Location & Attendees */}
+                    <div className="flex flex-wrap justify-center gap-3 text-xs">
+                      <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
+                        <MapPin className="w-3 h-3 text-emerald-500" />
+                        <span>{event.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
+                        <Users className="w-3 h-3 text-cyan-500" />
+                        <span>{event.attendees}</span>
+                      </div>
+                    </div>
+
+                    {/* View Details CTA */}
+                    <div className="mt-3 pt-3 border-t border-emerald-100 dark:border-white/10">
+                      <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-primary font-semibold text-xs group-hover:gap-2 transition-all">
+                        View Details
+                        <ExternalLink className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </main>
