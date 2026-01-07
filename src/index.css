@@ -209,7 +209,7 @@
 
   /* Stats Counter */
   .stat-number {
-    @apply text-5xl md:text-6xl font-black tracking-tighter gradient-text;
+    @apply text-4xl md:text-5xl font-black tracking-tighter gradient-text;
   }
 
   /* Logo Watermark */
