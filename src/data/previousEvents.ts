@@ -13,11 +13,35 @@ export interface PreviousEvent {
   attendees: string;
   description: string;
   highlights: string[];
-  speakers?: { name: string; topic: string }[];
+  speakers?: { name: string; topic: string; time?: string }[];
   image: string;
 }
 
 export const previousEvents: PreviousEvent[] = [
+  {
+    id: "agentic-ai-connect-chennai-dec-2025",
+    title: "Agentic AI Connect - Chennai",
+    date: new Date("2025-12-20"),
+    dateStr: "December 20, 2025",
+    location: "Chennai",
+    venue: "Yuniq, Ticel Biopark, Taramani, Chennai",
+    attendees: "200+",
+    description: "An exclusive Agentic AI event hosted by TechNexus Community exploring autonomous AI systems, LLM orchestration, RAG patterns, and multi-agent architectures. Industry leaders shared insights on building intelligent AI applications.",
+    highlights: [
+      "Fabric AI Transformations for Modern Data Platforms",
+      "AI Product and Overview of RAG LLM",
+      "Building Stateful Multi-Agent Systems with LangGraph",
+      "Intelligent Apps with Agentic Retrieval and MCP",
+      "Networking with Microsoft MVPs and AI experts"
+    ],
+    speakers: [
+      { name: "Vinodh Kumar", topic: "Fabric AI Transformations for Modern Data Platforms", time: "10:00 - 10:45 AM" },
+      { name: "Reshma", topic: "AI Product and Overview of RAG LLM", time: "10:45 - 11:30 AM" },
+      { name: "Premkumar Kora", topic: "From Chains to Cycles: Building a Stateful, Multi-Agent Job Matching Engine with LangGraph", time: "12:00 - 12:45 PM" },
+      { name: "Akshaykumar", topic: "Building Intelligent Apps with Agentic Retrieval and MCP", time: "12:45 - 1:30 PM" }
+    ],
+    image: event1,
+  },
   {
     id: "sprint-imagine-cup-2025",
     title: "Sprint to Imagine Cup – AI Innovation Day",
@@ -38,7 +62,7 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Industry Experts", topic: "AI Innovation Patterns" },
       { name: "Microsoft MVPs", topic: "Building for Imagine Cup" }
     ],
-    image: event1,
+    image: event2,
   },
   {
     id: "skill-up-india-oct-2025",
@@ -60,7 +84,7 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Apoorva Sharma", topic: "AZ-900 Azure Fundamentals" },
       { name: "Naveen Prabhu Chinnadurai", topic: "AI-900 Azure AI Fundamentals" }
     ],
-    image: event2,
+    image: event3,
   },
   {
     id: "ai-in-cloud-oct-2025",
@@ -82,7 +106,7 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Docker Experts", topic: "Container Orchestration" },
       { name: "Cloud Architects", topic: "Data at Scale Patterns" }
     ],
-    image: event3,
+    image: event4,
   },
   {
     id: "season-of-ai-s3-jan-2025",
@@ -106,63 +130,5 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Manikandan Murugesan", topic: "Developing AI Applications: Key Use Cases and Design Patterns" }
     ],
     image: event1,
-  },
-  {
-    id: "agentic-ai-chennai-dec-2024",
-    title: "Agentic AI Connect - Chennai",
-    date: new Date("2024-12-20"),
-    dateStr: "December 20, 2024",
-    location: "Chennai",
-    venue: "Tech Park, Chennai",
-    attendees: "200+",
-    description: "Our flagship Agentic AI event exploring autonomous AI systems and their real-world applications. Industry leaders and developers came together to discuss the future of AI agents.",
-    highlights: [
-      "Agentic AI architecture patterns",
-      "Autonomous agent development",
-      "LLM orchestration techniques",
-      "Multi-agent systems",
-      "Real-world AI agent demos"
-    ],
-    speakers: [
-      { name: "Microsoft MVPs", topic: "Agentic AI Patterns" },
-      { name: "Industry Experts", topic: "Production AI Agents" }
-    ],
-    image: event2,
-  },
-  {
-    id: "azure-workshop-oct-2024",
-    title: "Azure Cloud Workshop",
-    date: new Date("2024-10-15"),
-    dateStr: "October 2024",
-    location: "Bengaluru",
-    venue: "Microsoft Office, Bengaluru",
-    attendees: "120+",
-    description: "Hands-on workshop covering Azure fundamentals and cloud architecture best practices. Participants learned to build scalable solutions using Azure services.",
-    highlights: [
-      "Azure fundamentals deep dive",
-      "Cloud architecture patterns",
-      "Hands-on lab exercises",
-      "Best practices for production",
-      "Cost optimization strategies"
-    ],
-    image: event3,
-  },
-  {
-    id: "ai-hackathon-sep-2024",
-    title: "AI Hackathon",
-    date: new Date("2024-09-20"),
-    dateStr: "September 2024",
-    location: "Hyderabad",
-    venue: "Innovation Hub, Hyderabad",
-    attendees: "80+",
-    description: "24-hour hackathon focused on building AI-powered solutions using Azure services. Teams competed to create innovative applications solving real-world problems.",
-    highlights: [
-      "24-hour coding challenge",
-      "Azure OpenAI integration",
-      "Team collaboration",
-      "Mentorship from experts",
-      "Prizes and recognition"
-    ],
-    image: event4,
   },
 ].sort((a, b) => b.date.getTime() - a.date.getTime()); // Sort recent to old
