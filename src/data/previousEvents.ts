@@ -149,6 +149,58 @@ export const previousEvents: PreviousEvent[] = [
     gallery: [vscodeDevDays1, vscodeDevDays2, vscodeDevDays3, vscodeDevDays4, vscodeDevDays5],
   },
   {
+    id: "microsoft-agentverse-bengaluru-aug-2025",
+    title: "Microsoft AgentVerse: Bengaluru",
+    date: new Date("2025-08-09"),
+    dateStr: "August 9, 2025",
+    location: "Bengaluru",
+    venue: "Microsoft Ferns, Bangalore",
+    attendees: "200+",
+    description: "An immersive event exploring multi-agent AI workflows, Azure Foundry, GitOps, and Copilot Studio. Developers learned to build production-ready AI agents and deploy GenAI solutions with RAG patterns.",
+    highlights: [
+      "Design Patterns for Multi-Agent AI Workflows",
+      "Zero-to-Production Journey with Azure Foundry",
+      "GitOps Dynamics: The new era of DevOps",
+      "Copilot Camp Blueprint for Agent Builders",
+      "Build with GenAI & RAG",
+      "Multi-agent solutions with Copilot Studio"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "Keynote: Design Patterns for Multi-Agent AI Workflows", time: "9:30 - 10:00 AM" },
+      { name: "Sujithkumar P Sukumaran", topic: "From Idea to Implementation: A Zero-to-Production Journey with Azure Foundry", time: "10:00 - 10:30 AM" },
+      { name: "Megha Kadur", topic: "GitOps Dynamics: Navigating the new era of DevOps", time: "10:30 - 11:00 AM" },
+      { name: "Kamal Shree", topic: "Prompt. Prototype. Deploy: The Copilot Camp Blueprint for Agent Builders", time: "11:30 - 12:00 PM" },
+      { name: "Deepak Chawla", topic: "From Prompts to Projects: Build with GenAI & RAG", time: "12:00 - 12:30 PM" },
+      { name: "Sriram Balaji", topic: "Build multi agent solutions with Copilot Studio", time: "12:30 - 1:00 PM" }
+    ],
+    image: event3,
+  },
+  {
+    id: "global-genai-bootcamp-bengaluru-jul-2025",
+    title: "Global GenAI Bootcamp - Bengaluru",
+    date: new Date("2025-07-05"),
+    dateStr: "July 5, 2025",
+    location: "Bengaluru",
+    venue: "Microsoft Ferns, Bangalore",
+    attendees: "180+",
+    description: "A global bootcamp exploring LLM agents, Copilot Studio, and enterprise-grade multi-agent systems. Attendees learned about the future of AI workforces and building smart agents with Elasticsearch and Azure Semantic Kernel.",
+    highlights: [
+      "AI Agents as Organizational Species",
+      "Smart LLM Agents with Elasticsearch and Copilot Studio",
+      "Knowledge as a Commodity in SDLC",
+      "Automating Workflows with Copilot Studio",
+      "Enterprise multi-agent with Azure Semantic Kernel and MCP"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "Keynote: AI Agents as Organizational Species - What Happens When Workforces Go Synthetic?", time: "9:30 - 10:00 AM" },
+      { name: "Someshwaran Mohankumar", topic: "Building Smart LLM Agents with Elasticsearch and Microsoft Copilot Studio!", time: "10:00 - 10:45 AM" },
+      { name: "Sujithkumar P Sukumaran", topic: "How 'Knowledge as a Commodity' Changes the SDLC with AI Agents", time: "10:45 - 11:30 AM" },
+      { name: "Sujin Nelladath", topic: "Unlocking Copilot Studio: Automating Workflows with Precision", time: "12:00 - 12:45 PM" },
+      { name: "Santhosh Kumar", topic: "Building and deploying an enterprise grade multi-agent using Azure Semantic Kernel and MCP", time: "12:45 - 1:30 PM" }
+    ],
+    image: event4,
+  },
+  {
     id: "sprint-imagine-cup-2025",
     title: "Sprint to Imagine Cup – AI Innovation Day",
     date: new Date("2025-11-15"),
