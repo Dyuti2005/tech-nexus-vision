@@ -1,12 +1,8 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, MapPin, MessageCircle } from "lucide-react";
-import CountdownTimer from "./CountdownTimer";
+import { ArrowRight, Calendar, MapPin, ExternalLink } from "lucide-react";
 import Logo from "./Logo";
 
 const HeroSection = () => {
-  // Agentic AI Connect - Bengaluru: January 10, 2025 at 10:00 AM IST
-  const eventDate = new Date("2025-01-10T10:00:00");
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
       {/* Mesh Gradient Overlay */}
@@ -83,19 +79,18 @@ const HeroSection = () => {
                 </div>
               </div>
               
-              <CountdownTimer targetDate={eventDate} />
             </div>
 
-            {/* WhatsApp CTA */}
+            {/* Meetup CTA */}
             <div className="mt-6 pt-6 border-t border-border/50">
               <a
-                href="https://chat.whatsapp.com/yourlink"
+                href="https://meetu.ps/e/PJJMV/1dmQqv/i"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 btn-primary-glow px-8 py-4 rounded-2xl text-primary-foreground font-semibold group"
               >
-                <MessageCircle className="w-5 h-5" />
-                <span>Register via WhatsApp</span>
+                <ExternalLink className="w-5 h-5" />
+                <span>Register via Meetup</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
