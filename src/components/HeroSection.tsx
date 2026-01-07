@@ -207,7 +207,7 @@ const HeroSection = () => {
               { number: "100+", label: "Hours of Content" },
               { number: "150+", label: "Events Organised" },
               { number: "5000+", label: "Community Members" },
-              { number: "3", label: "City Chapters" },
+              { number: "2", label: "City Chapters" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
