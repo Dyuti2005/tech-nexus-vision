@@ -72,6 +72,28 @@ export const previousEvents: PreviousEvent[] = [
     image: event2,
   },
   {
+    id: "skill-up-india-oct-2025",
+    title: "TechNexus Skill-Up India – Azure & AI Fundamentals",
+    date: new Date("2025-10-04"),
+    dateStr: "October 4, 2025",
+    location: "Virtual",
+    venue: "Online Event",
+    attendees: "500+",
+    description: "A complimentary, community-initiated learning track designed to empower students, recent graduates, and professionals across India with essential cloud (AZ-900) and AI (AI-900) skills. Participants attend live expert-led sessions and become eligible for up to 50% discounted Microsoft certification vouchers.",
+    highlights: [
+      "Live sessions covering AZ-900 Azure Fundamentals",
+      "AI-900 AI Fundamentals training",
+      "Complete assignments for voucher eligibility",
+      "50% off Microsoft certification vouchers",
+      "Become Microsoft Certified in Azure or AI Fundamentals"
+    ],
+    speakers: [
+      { name: "Apoorva Sharma", topic: "AZ-900 Azure Fundamentals" },
+      { name: "Naveen Prabhu Chinnadurai", topic: "AI-900 Azure AI Fundamentals" }
+    ],
+    image: event1,
+  },
+  {
     id: "sprint-imagine-cup-chennai-oct-2025",
     title: "Sprint to Imagine Cup: AI Innovation Day - Chennai",
     date: new Date("2025-10-18"),
@@ -97,6 +119,30 @@ export const previousEvents: PreviousEvent[] = [
     gallery: [sprintChennai1, sprintChennai2, sprintChennai3],
   },
   {
+    id: "vs-code-dev-days-bengaluru-sep-2025",
+    title: "VS Code Dev Days – Bengaluru",
+    date: new Date("2025-09-20"),
+    dateStr: "September 20, 2025",
+    location: "Bengaluru",
+    venue: "Microsoft Corporation (India) Pvt. Ltd, Bengaluru",
+    attendees: "200+",
+    description: "A developer-focused event exploring VS Code, GitHub Copilot, and the Model Context Protocol (MCP). Attendees learned how to accelerate their coding journey with AI-powered tools and advanced integrations.",
+    highlights: [
+      "VS Code and GitHub Copilot keynote",
+      "Accelerating coding with Copilot",
+      "GitHub Copilot for AI Engineering",
+      "MCP integration with GitHub Copilot",
+      "Real-world AI development scenarios"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "Keynote: VS Code and GitHub Copilot", time: "9:30 - 10:15 AM" },
+      { name: "Prasanna Nagarajan", topic: "Accelerating your coding Journey - Guided by Copilot", time: "10:15 - 11:00 AM" },
+      { name: "Sagnik Banerjee", topic: "Leveraging GitHub Copilot for AI Engineering", time: "11:00 - 11:45 AM" },
+      { name: "Prateek Singh", topic: "Integrating MCP (Model Context Protocol) with GitHub Copilot", time: "12:00 - 1:00 PM" }
+    ],
+    image: event3,
+  },
+  {
     id: "sprint-imagine-cup-2025",
     title: "Sprint to Imagine Cup – AI Innovation Day",
     date: new Date("2025-11-15"),
@@ -117,28 +163,6 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Microsoft MVPs", topic: "Building for Imagine Cup" }
     ],
     image: event4,
-  },
-  {
-    id: "skill-up-india-oct-2025",
-    title: "Skill-Up India: AZ-900 & AI-900 Sessions",
-    date: new Date("2025-10-26"),
-    dateStr: "October 2025",
-    location: "Virtual",
-    venue: "Online Sessions",
-    attendees: "500+",
-    description: "A community-led initiative to master Azure fundamentals with AZ-900 and AI-900 certifications. Multiple expert-led sessions covering cloud fundamentals and AI concepts.",
-    highlights: [
-      "AZ-900 Azure Fundamentals deep dive",
-      "AI-900 Azure AI Fundamentals training",
-      "Live Q&A with certified professionals",
-      "Practice exam walkthroughs",
-      "Certification tips and strategies"
-    ],
-    speakers: [
-      { name: "Apoorva Sharma", topic: "AZ-900 Azure Fundamentals" },
-      { name: "Naveen Prabhu Chinnadurai", topic: "AI-900 Azure AI Fundamentals" }
-    ],
-    image: event1,
   },
   {
     id: "season-of-ai-s3-jan-2025",
