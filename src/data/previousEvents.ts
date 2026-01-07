@@ -10,6 +10,11 @@ import vscodeDevDays2 from "@/assets/events/vscode-dev-days-2.png";
 import vscodeDevDays3 from "@/assets/events/vscode-dev-days-3.png";
 import vscodeDevDays4 from "@/assets/events/vscode-dev-days-4.png";
 import vscodeDevDays5 from "@/assets/events/vscode-dev-days-5.png";
+import agentverseBengaluru1 from "@/assets/events/agentverse-bengaluru-1.png";
+import agentverseBengaluru2 from "@/assets/events/agentverse-bengaluru-2.png";
+import agentverseBengaluru3 from "@/assets/events/agentverse-bengaluru-3.png";
+import agentverseBengaluru4 from "@/assets/events/agentverse-bengaluru-4.png";
+import agentverseBengaluru5 from "@/assets/events/agentverse-bengaluru-5.png";
 
 export interface PreviousEvent {
   id: string;
@@ -173,7 +178,56 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Deepak Chawla", topic: "From Prompts to Projects: Build with GenAI & RAG", time: "12:00 - 12:30 PM" },
       { name: "Sriram Balaji", topic: "Build multi agent solutions with Copilot Studio", time: "12:30 - 1:00 PM" }
     ],
+    image: agentverseBengaluru1,
+    gallery: [agentverseBengaluru1, agentverseBengaluru2, agentverseBengaluru3, agentverseBengaluru4, agentverseBengaluru5],
+  },
+  {
+    id: "github-copilot-bootcamp-chennai-jun-2025",
+    title: "GitHub Copilot Bootcamp @ Chennai",
+    date: new Date("2025-06-28"),
+    dateStr: "June 28, 2025",
+    location: "Chennai",
+    venue: "Microsoft Corporation India Pvt. Ltd.",
+    attendees: "150+",
+    description: "A hands-on bootcamp exploring GitHub Copilot, GitOps workflows, and AI-powered CI/CD. Developers learned to accelerate development with Copilot and integrate it with Azure Pipelines.",
+    highlights: [
+      "From Code to Co-Creation with GitHub Copilot",
+      "Simplifying GitOps workflow for app development",
+      "Vibe Coding with GitHub Copilot",
+      "Hands-On Workshop: Accelerating Development",
+      "AI-Powered CI/CD with Azure Pipelines"
+    ],
+    speakers: [
+      { name: "Vinodh Kumar", topic: "Keynote: From Code to Co-Creation: The Future with GitHub Copilot", time: "9:30 - 10:00 AM" },
+      { name: "Ajay Kidave", topic: "Simplifying GitOps workflow for app development", time: "10:00 - 10:40 AM" },
+      { name: "Janarthanan Selvaraj", topic: "Vibe Coding with GitHub Copilot: A Game-Changer or a Risky Shortcut?", time: "10:40 - 11:20 AM" },
+      { name: "Naveen Prabhu Chinnadurai & Kishore Kumar", topic: "Accelerating Development with GitHub Copilot: Hands-On Workshop", time: "11:50 - 12:30 PM" },
+      { name: "Natheem Yousuf", topic: "AI-Powered CI/CD with GitHub Copilot & Azure Pipelines", time: "12:30 - 1:10 PM" }
+    ],
     image: event3,
+  },
+  {
+    id: "github-copilot-global-bootcamp-bengaluru-jun-2025",
+    title: "GitHub Copilot Global Bootcamp - Bengaluru",
+    date: new Date("2025-06-21"),
+    dateStr: "June 21, 2025",
+    location: "Bengaluru",
+    venue: "Microsoft Luxor North Tower",
+    attendees: "200+",
+    description: "A global learning series helping developers leverage GitHub Copilot within VS Code, Visual Studio, and GitHub Codespaces. Hands-on labs explored Copilot capabilities with community experts and Microsoft MVPs.",
+    highlights: [
+      "AI Agents in Software Development",
+      "From Code Completion to Co-Creation",
+      "The evolution of LLMs in development",
+      "Live Demos & Real-world Use Cases",
+      "Hands-on Labs with GitHub Copilot"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "AI Agents in Software Development – How tools like Copilot reshape workflows" },
+      { name: "Lakshit Pant", topic: "From Code Completion to Co-Creation – The evolution of LLMs in dev" },
+      { name: "Pruthvi S", topic: "Live Demos & Use Cases – Real-world impact of GitHub Copilot" }
+    ],
+    image: event2,
   },
   {
     id: "global-genai-bootcamp-bengaluru-jul-2025",
