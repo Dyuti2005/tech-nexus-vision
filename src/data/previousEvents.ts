@@ -2,6 +2,9 @@ import event1 from "@/assets/gallery/event-1.jpeg";
 import event2 from "@/assets/gallery/event-2.jpeg";
 import event3 from "@/assets/gallery/event-3.jpeg";
 import event4 from "@/assets/gallery/event-4.jpeg";
+import sprintChennai1 from "@/assets/events/sprint-imagine-cup-chennai-1.png";
+import sprintChennai2 from "@/assets/events/sprint-imagine-cup-chennai-2.png";
+import sprintChennai3 from "@/assets/events/sprint-imagine-cup-chennai-3.png";
 
 export interface PreviousEvent {
   id: string;
@@ -15,6 +18,7 @@ export interface PreviousEvent {
   highlights: string[];
   speakers?: { name: string; topic: string; time?: string }[];
   image: string;
+  gallery?: string[];
 }
 
 export const previousEvents: PreviousEvent[] = [
@@ -89,7 +93,8 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Aakash Dhakshnamoorthy & Bhavya Srii", topic: "The Stateful AI: Implementing Model Context Protocol (MCP) for Coherent Conversations", time: "11:45 - 12:30 PM" },
       { name: "Ernestine Lerisha John", topic: "Quantum Demystified: Why Everyone's Talking About It", time: "12:30 - 1:15 PM" }
     ],
-    image: event3,
+    image: sprintChennai1,
+    gallery: [sprintChennai1, sprintChennai2, sprintChennai3],
   },
   {
     id: "sprint-imagine-cup-2025",

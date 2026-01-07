@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, ArrowLeft, CheckCircle, User } from "lucide-react";
+import { Calendar, MapPin, Users, ArrowLeft, CheckCircle, User, Image } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { previousEvents } from "@/data/previousEvents";
@@ -184,6 +184,45 @@ const EventDetail = () => {
                             <p className="text-slate-600 dark:text-muted-foreground">{speaker.topic}</p>
                           </div>
                         </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* Photo Gallery */}
+            {event.gallery && event.gallery.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.25 }}
+                className="mb-12"
+              >
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                  Event <span className="gradient-text-reverse">Gallery</span>
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {event.gallery.map((img, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group relative aspect-video rounded-2xl overflow-hidden cursor-pointer"
+                    >
+                      <img
+                        src={img}
+                        alt={`${event.title} - Photo ${index + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-xl text-white text-sm font-medium">
+                          Photo {index + 1}
+                        </span>
                       </div>
                     </motion.div>
                   ))}
