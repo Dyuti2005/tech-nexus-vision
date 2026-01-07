@@ -143,7 +143,7 @@ const EventDetail = () => {
               </div>
             </motion.div>
 
-            {/* Speakers */}
+            {/* Speakers & Sessions */}
             {event.speakers && event.speakers.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -153,28 +153,38 @@ const EventDetail = () => {
                 className="mb-12"
               >
                 <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                  Featured <span className="gradient-text">Speakers</span>
+                  Speakers & <span className="gradient-text">Sessions</span>
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
                   {event.speakers.map((speaker, index) => (
                     <motion.div
-                      key={speaker.name}
+                      key={speaker.name + index}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      className="glass-card rounded-2xl p-6 border border-secondary/20 hover:border-secondary/40 transition-all"
+                      className="backdrop-blur-xl bg-white/80 dark:bg-white/10 rounded-2xl p-6 border border-emerald-200/50 dark:border-primary/30 hover:border-emerald-400 dark:hover:border-primary/50 transition-all shadow-lg"
                     >
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                          <User className="w-6 h-6 text-primary-foreground" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-lg">{speaker.name}</h3>
-                          <p className="text-sm text-muted-foreground">Speaker</p>
+                      <div className="flex flex-col md:flex-row md:items-center gap-4">
+                        {/* Time Badge */}
+                        {speaker.time && (
+                          <div className="flex-shrink-0">
+                            <span className="inline-block px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white text-sm font-bold">
+                              {speaker.time}
+                            </span>
+                          </div>
+                        )}
+                        
+                        <div className="flex items-center gap-4 flex-1">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                            <User className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-bold text-lg text-slate-800 dark:text-foreground">{speaker.name}</h3>
+                            <p className="text-slate-600 dark:text-muted-foreground">{speaker.topic}</p>
+                          </div>
                         </div>
                       </div>
-                      <p className="text-muted-foreground">{speaker.topic}</p>
                     </motion.div>
                   ))}
                 </div>
