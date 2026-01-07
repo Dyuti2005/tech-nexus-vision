@@ -442,4 +442,48 @@ export const previousEvents: PreviousEvent[] = [
     ],
     image: event2,
   },
+  {
+    id: "ai-in-action-microsoft-bengaluru-jan-2025",
+    title: "AI In Action: Exploring Innovation @ Microsoft",
+    date: new Date("2025-01-03"),
+    dateStr: "January 3, 2025",
+    location: "Bengaluru",
+    venue: "Microsoft Reactor, Bengaluru",
+    attendees: "180+",
+    description: "An event exploring cutting-edge AI advancements and how they're reshaping industries. Sessions covered the latest AI breakthroughs, real-world applications, and responsible AI practices.",
+    highlights: [
+      "Latest Breakthroughs in AI Innovation",
+      "Real-world AI Applications Across Industries",
+      "Responsible AI and Ethical Innovation",
+      "Transformative Power of AI",
+      "Networking with Thought Leaders"
+    ],
+    speakers: [
+      { name: "Vinayak Hegde", topic: "Principle AI Advocate Insights", time: "11:00 AM" },
+      { name: "Lakshit Pant", topic: "Program Manager Perspectives", time: "12:00 PM" },
+      { name: "Mohamed Azarudeen", topic: "AI Innovation and Development", time: "1:00 PM" }
+    ],
+    image: event1,
+  },
+  {
+    id: "learn-azure-bot-services-dec-2024",
+    title: "Learn Azure Bot Services & Identity Access",
+    date: new Date("2024-12-28"),
+    dateStr: "December 28, 2024",
+    location: "Srivilliputhur",
+    venue: "KARE, Srivilliputhur",
+    attendees: "100+",
+    description: "The inaugural TechNexus Community event! An empowering day focused on Azure Bot Services and Identity Access. Expert insights on navigating a career in tech, networking, and building an inclusive tech community.",
+    highlights: [
+      "Azure Bot Services Deep Dive",
+      "Identity Access Management",
+      "Career Insights in Tech",
+      "Diversity and Inclusion in Tech",
+      "First TechNexus Community Event 🎉"
+    ],
+    speakers: [
+      { name: "Justice Gideon", topic: "Azure Bot Services & Identity Access", time: "12:00 - 3:00 PM" }
+    ],
+    image: event4,
+  },
 ].sort((a, b) => b.date.getTime() - a.date.getTime()); // Sort recent to old
