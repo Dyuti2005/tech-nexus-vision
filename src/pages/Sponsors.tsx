@@ -23,7 +23,7 @@ const Sponsors = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold uppercase tracking-wider mb-4">
-              Partners
+              Sponsors
             </span>
             <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
               Sponsor <span className="gradient-text">TechNexus</span>
@@ -36,7 +36,7 @@ const Sponsors = () => {
         </div>
       </section>
 
-      {/* Why Partner */}
+      {/* Why Sponsor */}
       <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div
