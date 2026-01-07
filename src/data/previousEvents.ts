@@ -255,6 +255,28 @@ export const previousEvents: PreviousEvent[] = [
     image: event1,
   },
   {
+    id: "nextgen-ai-connect-chennai-may-2025",
+    title: "NextGen AI Connect: Building NextGen Leaders",
+    date: new Date("2025-05-03"),
+    dateStr: "May 3, 2025",
+    location: "Chennai",
+    venue: "Microsoft Corporation India Pvt. Ltd.",
+    attendees: "150+",
+    description: "An inspiring event focused on building the next generation of AI leaders. Students and professionals explored AI innovation, the power of community, and the new era of AI in education.",
+    highlights: [
+      "NextGen AI: Innovate, Integrate, Inspire",
+      "3 C's of Success: College, Cloud, Community",
+      "AI in Education - New Era of Coding",
+      "Networking with Microsoft MVPs"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "NextGen AI: Innovate, Integrate, Inspire", time: "9:50 - 10:30 AM" },
+      { name: "Lakshit Pant", topic: "3 C's of Success: College, Cloud, Community", time: "10:30 - 11:15 AM" },
+      { name: "ShivaRam", topic: "AI in Education - New Era of Coding", time: "11:30 - 12:15 PM" }
+    ],
+    image: event3,
+  },
+  {
     id: "global-genai-bootcamp-bengaluru-jul-2025",
     title: "Global GenAI Bootcamp - Bengaluru",
     date: new Date("2025-07-05"),
