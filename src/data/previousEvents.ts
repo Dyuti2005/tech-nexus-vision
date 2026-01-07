@@ -300,6 +300,31 @@ export const previousEvents: PreviousEvent[] = [
     image: event2,
   },
   {
+    id: "innovateher-microsoft-women-ai-tech-apr-2025",
+    title: "InnovateHer with Microsoft - Women in AI & Tech 👩🏻‍💼",
+    date: new Date("2025-04-10"),
+    dateStr: "April 10, 2025",
+    location: "Chennai",
+    venue: "Microsoft Corporation (India) Pvt. Ltd.",
+    attendees: "120+",
+    description: "A special event celebrating women in AI and tech. Sessions covered empowering women with Azure AI, productivity techniques, growth mindset, and overcoming self-doubt in leadership.",
+    highlights: [
+      "AI for Her: Empowering Women with Azure AI",
+      "Vedic Todolist for Productivity",
+      "Rewiring Your Mind with Growth Mindset",
+      "From Fear to Fearless: Overcoming Self-Doubt in Leadership",
+      "Learn, Connect, and Innovate with AI"
+    ],
+    speakers: [
+      { name: "Sindhu Chengad", topic: "Keynote: Cloud & AI Business Leadership", time: "5:45 - 6:00 PM" },
+      { name: "Poornimma S", topic: "AI for Her: Empowering Women with Azure AI", time: "6:00 - 6:30 PM" },
+      { name: "Vanitha Ganeshmurthy", topic: "Vedic Todolist to be Productive", time: "6:30 - 7:00 PM" },
+      { name: "Kauser Khan", topic: "Rewiring Your Mind: How a Growth Mindset Fuels Motivation", time: "7:15 - 7:45 PM" },
+      { name: "Supriya Prashanth", topic: "From Fear to Fearless: Overcoming Self-Doubt in Leadership", time: "7:45 - 8:15 PM" }
+    ],
+    image: event4,
+  },
+  {
     id: "global-genai-bootcamp-bengaluru-jul-2025",
     title: "Global GenAI Bootcamp - Bengaluru",
     date: new Date("2025-07-05"),
