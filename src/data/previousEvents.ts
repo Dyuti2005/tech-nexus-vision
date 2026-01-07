@@ -425,20 +425,20 @@ export const previousEvents: PreviousEvent[] = [
     date: new Date("2025-01-25"),
     dateStr: "January 25, 2025",
     location: "Chennai",
-    venue: "Microsoft Corporation Pvt Ltd, Chennai",
+    venue: "Microsoft Corporation India Pvt. Ltd.",
     attendees: "200+",
-    description: "Season 3 of our flagship AI series, showcasing the Best of AI @ Ignite with an incredible lineup of speakers covering AI-first innovation, Generative AI with Microsoft Fabric, and building scalable AI applications.",
+    description: "Season 3 of our flagship AI series, showcasing the Best of AI @ Ignite. Sessions covered AI Foundry for rapid prototyping, GenAI integration with Microsoft Fabric, and key design patterns for AI applications.",
     highlights: [
-      "AI First Innovation with Agents",
-      "Microsoft Copilot in Power Platform",
-      "GenAI with Microsoft Fabric",
-      "AI Application Design Patterns",
-      "Industry use cases"
+      "Innovation with AI Foundry: Transforming Ideas into Impact",
+      "AI Meets Data: Revolutionizing Microsoft Fabric with GenAI",
+      "Developing AI Applications: Key Use Cases and Design Patterns",
+      "Real-world examples and live demos",
+      "Panel Discussion with Industry Experts"
     ],
     speakers: [
-      { name: "Karthikeyan VK", topic: "AI First Innovation with Agents and Microsoft Copilot" },
-      { name: "Vinodh Kumar", topic: "AI Meets Data: Revolutionizing Microsoft Fabric with GenAI" },
-      { name: "Manikandan Murugesan", topic: "Developing AI Applications: Key Use Cases and Design Patterns" }
+      { name: "Mohamed Azarudeen", topic: "Innovation with AI Foundry: Transforming Ideas into Impact", time: "10:00 - 10:45 AM" },
+      { name: "Vinodh Kumar", topic: "AI Meets Data: Revolutionizing Microsoft Fabric with GenAI", time: "10:45 - 11:30 AM" },
+      { name: "Manikandan", topic: "Developing AI Applications: Key Use Cases and Design Patterns", time: "11:40 - 12:30 PM" }
     ],
     image: event2,
   },
