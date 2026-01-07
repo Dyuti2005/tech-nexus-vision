@@ -52,22 +52,23 @@ const HeroSection = () => {
             technologies through hands-on workshops, expert sessions, and vibrant community events.
           </motion.p>
 
-          {/* Upcoming Event Card */}
+          {/* Upcoming Event Card - Frosted Glass Premium */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative p-8 md:p-10 rounded-3xl max-w-3xl mx-auto mb-10 overflow-hidden"
+            className="relative p-8 md:p-10 rounded-3xl max-w-3xl mx-auto mb-10 overflow-hidden border border-white/20"
             style={{
-              background: 'rgba(16, 24, 32, 0.6)',
+              background: 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(24px)',
               WebkitBackdropFilter: 'blur(24px)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset',
             }}
           >
-            {/* Glowing Border */}
+            {/* Subtle Glowing Border */}
             <motion.div 
               animate={{ 
-                opacity: [0.4, 0.7, 0.4],
+                opacity: [0.3, 0.5, 0.3],
               }}
               transition={{ 
                 duration: 3, 
@@ -84,7 +85,7 @@ const HeroSection = () => {
               }}
             />
 
-            {/* Animated Mesh Gradient Blob */}
+            {/* Animated Mesh Gradient Blob - subtle behind text */}
             <motion.div
               animate={{ 
                 x: [0, 30, -20, 0],
@@ -96,7 +97,7 @@ const HeroSection = () => {
                 repeat: Infinity, 
                 ease: "easeInOut" 
               }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] rounded-full blur-3xl opacity-30 pointer-events-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] rounded-full blur-3xl opacity-20 pointer-events-none"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))',
               }}
@@ -108,12 +109,17 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-5 border border-primary/30"
+                className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5 border"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--secondary) / 0.15))',
+                  borderColor: 'hsl(var(--primary) / 0.4)',
+                  color: 'hsl(var(--primary))',
+                }}
               >
                 Upcoming Event
               </motion.span>
 
-              {/* Event Title with Gradient */}
+              {/* Event Title with Gradient - Centered */}
               <motion.h2 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -129,35 +135,36 @@ const HeroSection = () => {
                 Agentic AI Connect
               </motion.h2>
 
-              {/* Event Details */}
+              {/* Event Details - Centered with high contrast */}
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-6 text-muted-foreground mb-8"
+                className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
               >
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-secondary" />
-                  <span className="text-lg">January 10, 2025</span>
+                  <Calendar className="w-5 h-5" style={{ color: 'hsl(var(--secondary))' }} />
+                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>January 10, 2025</span>
                 </div>
-                <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-secondary/50" />
+                <div className="hidden sm:block w-1.5 h-1.5 rounded-full" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-secondary" />
-                  <span className="text-lg">Microsoft Ferns, Bengaluru</span>
+                  <MapPin className="w-5 h-5" style={{ color: 'hsl(var(--secondary))' }} />
+                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>Microsoft Reactor, Bengaluru</span>
                 </div>
               </motion.div>
 
-              {/* Meetup CTA Button */}
+              {/* Meetup CTA Button - Centered with Glow */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
+                className="flex justify-center"
               >
                 <a
                   href="https://meetu.ps/e/PJJMV/1dmQqv/i"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-primary-foreground font-bold text-lg group overflow-hidden"
+                  className="relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-white font-bold text-lg group overflow-hidden"
                   style={{
                     background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%)',
                   }}
