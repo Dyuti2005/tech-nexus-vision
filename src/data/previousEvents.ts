@@ -325,6 +325,30 @@ export const previousEvents: PreviousEvent[] = [
     image: event4,
   },
   {
+    id: "microsoft-ai-and-chai-chennai-mar-2025",
+    title: "Microsoft AI and Chai ☕ – Sip, Learn, Innovate!",
+    date: new Date("2025-03-15"),
+    dateStr: "March 15, 2025",
+    location: "Chennai",
+    venue: "Microsoft Corporation (India) Pvt. Ltd.",
+    attendees: "150+",
+    description: "An engaging event combining AI learning with chai! Sessions covered Azure OpenAI Service integration, monitoring AI instances, and deep dives into reasoning LLMs with Chain of Thought and reinforcement learning.",
+    highlights: [
+      "AI for Developers: Writing Code or Resignations?",
+      "Azure OpenAI Service: From Setup to Production",
+      "RAG Patterns and Optimization Techniques",
+      "Monitoring Azure OpenAI Instances",
+      "Deep Dive into Reasoning LLMs and Chain of Thought"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "Keynote: AI for Developers - Writing Code or Writing Our Resignations?", time: "10:00 - 10:30 AM" },
+      { name: "Priyanka Sharma", topic: "Practical Guide to Azure OpenAI Service Integration: From Setup to Production", time: "10:30 - 11:15 AM" },
+      { name: "Samik Roy", topic: "Monitor Your Azure OpenAI Instances", time: "11:15 - 12:10 PM" },
+      { name: "Jayita Bhattacharyya", topic: "Seeking Deep onto Reasoning LLMs", time: "12:30 - 1:15 PM" }
+    ],
+    image: event1,
+  },
+  {
     id: "global-genai-bootcamp-bengaluru-jul-2025",
     title: "Global GenAI Bootcamp - Bengaluru",
     date: new Date("2025-07-05"),
