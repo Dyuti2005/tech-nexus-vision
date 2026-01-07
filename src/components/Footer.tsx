@@ -1,4 +1,4 @@
-import { Linkedin, Twitter, Youtube, MessageCircle, Mail, MapPin } from "lucide-react";
+import { Linkedin, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import footerLogo from "@/assets/technexus-footer-logo.png";
 
@@ -22,9 +22,6 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/company/technexuscommunity/", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Youtube, href: "#", label: "YouTube" },
-  { icon: MessageCircle, href: "https://chat.whatsapp.com/yourlink", label: "WhatsApp" },
 ];
 
 const Footer = () => {
