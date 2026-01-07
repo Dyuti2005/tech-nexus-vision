@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
@@ -7,8 +7,8 @@ import PreviousEventsSection from "@/components/PreviousEventsSection";
 
 const upcomingEvent = {
   title: "Agentic AI Connect - Bengaluru",
-  date: new Date("2025-01-10T09:00:00"),
-  dateStr: "January 10, 2025",
+  date: new Date("2026-02-15T09:00:00"),
+  dateStr: "February 15, 2026",
   location: "Microsoft Ferns, Bengaluru",
   description: "Join us for an immersive experience exploring Agentic AI systems, autonomous agents, and the future of AI-powered automation. Network with industry experts and Microsoft MVPs.",
   topics: ["Agentic AI Patterns", "Autonomous Agents", "LLM Orchestration", "Real-world Use Cases"],
@@ -83,13 +83,13 @@ const Events = () => {
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <CountdownTimer targetDate={upcomingEvent.date} />
               <a
-                href="https://chat.whatsapp.com/yourlink"
+                href="https://meetu.ps/e/PJJMV/1dmQqv/i"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary-glow px-8 py-4 rounded-2xl text-primary-foreground font-semibold inline-flex items-center gap-2"
               >
-                <MessageCircle className="w-5 h-5" />
-                <span>Register Now</span>
+                <ExternalLink className="w-5 h-5" />
+                <span>Register via Meetup</span>
               </a>
             </div>
           </motion.div>
