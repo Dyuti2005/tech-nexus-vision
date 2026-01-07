@@ -214,9 +214,9 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="glass-card p-4 rounded-2xl"
+                className="glass-card p-4 rounded-2xl overflow-visible"
               >
-                <div className="stat-number">{stat.number}</div>
+                <div className="stat-number whitespace-nowrap">{stat.number}</div>
                 <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
               </motion.div>
             ))}
