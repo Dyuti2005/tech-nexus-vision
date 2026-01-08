@@ -8,23 +8,20 @@ export default function Dashboard() {
     events: 0,
     founders: 0,
     footerLinks: 0,
-    techHubs: 0,
   });
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [eventsRes, foundersRes, linksRes, hubsRes] = await Promise.all([
+      const [eventsRes, foundersRes, linksRes] = await Promise.all([
         supabase.from('events').select('id', { count: 'exact', head: true }),
         supabase.from('founders').select('id', { count: 'exact', head: true }),
         supabase.from('footer_links').select('id', { count: 'exact', head: true }),
-        supabase.from('tech_hubs').select('id', { count: 'exact', head: true }),
       ]);
 
       setStats({
         events: eventsRes.count || 0,
         founders: foundersRes.count || 0,
         footerLinks: linksRes.count || 0,
-        techHubs: hubsRes.count || 0,
       });
     };
 
@@ -35,7 +32,6 @@ export default function Dashboard() {
     { label: 'Events', value: stats.events, icon: Calendar, color: 'text-blue-500' },
     { label: 'Founders', value: stats.founders, icon: Users, color: 'text-green-500' },
     { label: 'Footer Links', value: stats.footerLinks, icon: Link, color: 'text-purple-500' },
-    { label: 'Tech Hubs', value: stats.techHubs, icon: FileText, color: 'text-orange-500' },
   ];
 
   return (
