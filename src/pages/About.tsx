@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Linkedin, Award, Target, Heart, Users, Lightbulb, MapPin } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import azarudeenImg from "@/assets/founders/azarudeen.png";
 
 const founders = [
   {
@@ -10,6 +11,7 @@ const founders = [
     title: "Microsoft MVP & AI Community Leader",
     linkedin: "https://www.linkedin.com/in/mohamed-azarudeen-428659205/",
     bio: "Passionate about democratizing AI education and building inclusive tech communities across India.",
+    image: azarudeenImg,
   },
   {
     name: "Vinodh Kumar",
@@ -17,6 +19,7 @@ const founders = [
     title: "Microsoft MVP & Data/AI Architect",
     linkedin: "https://www.linkedin.com/in/vinodh-kumar-173582132/",
     bio: "Dedicated to empowering the next generation of data and AI professionals through hands-on learning.",
+    image: null,
   },
 ];
 
@@ -173,18 +176,29 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
+                className="flex"
               >
-                <div className="glass-card-emerald p-8 rounded-3xl h-full">
+                <div className="glass-card-emerald p-8 rounded-3xl h-full w-full flex flex-col items-center text-center">
                   <div className="flex items-center gap-2 mb-6">
                     <Award className="w-5 h-5 text-primary" />
                     <span className="text-sm font-semibold text-primary">Microsoft MVP</span>
                   </div>
 
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6">
-                    <span className="text-2xl font-black text-primary-foreground">
-                      {founder.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                    </span>
-                  </div>
+                  {founder.image ? (
+                    <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 ring-2 ring-primary/20 ring-offset-2 ring-offset-background">
+                      <img 
+                        src={founder.image} 
+                        alt={founder.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6">
+                      <span className="text-3xl font-black text-primary-foreground">
+                        {founder.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                      </span>
+                    </div>
+                  )}
 
                   <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-1 block">
                     {founder.role}
