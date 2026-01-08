@@ -1,9 +1,60 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, ArrowLeft, CheckCircle, User, Image } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { Calendar, MapPin, Users, ArrowLeft, CheckCircle, User } from "lucide-react";
+import { lazy, Suspense, useState, useCallback } from "react";
 import { previousEvents } from "@/data/previousEvents";
+
+// Lazy load heavy components
+const Navigation = lazy(() => import("@/components/Navigation"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+// Optimized image component with loading states
+const OptimizedImage = ({ 
+  src, 
+  alt, 
+  className = "",
+  priority = false 
+}: { 
+  src: string; 
+  alt: string; 
+  className?: string;
+  priority?: boolean;
+}) => {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleLoad = useCallback(() => setLoaded(true), []);
+  const handleError = useCallback(() => setError(true), []);
+
+  return (
+    <div className={`relative ${className}`}>
+      {!loaded && !error && (
+        <div className="absolute inset-0 bg-muted animate-pulse" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        onLoad={handleLoad}
+        onError={handleError}
+      />
+    </div>
+  );
+};
+
+// Loading skeleton for page
+const PageSkeleton = () => (
+  <div className="min-h-screen bg-background">
+    <div className="h-16 bg-muted/50 animate-pulse" />
+    <div className="h-[50vh] bg-muted animate-pulse" />
+    <div className="container mx-auto px-4 py-16 space-y-8">
+      <div className="h-8 w-64 bg-muted animate-pulse rounded" />
+      <div className="h-24 bg-muted animate-pulse rounded" />
+    </div>
+  </div>
+);
 
 const EventDetail = () => {
   const { eventId } = useParams<{ eventId: string }>();
@@ -25,24 +76,30 @@ const EventDetail = () => {
   }
 
   return (
-    <main className="min-h-screen">
-      <Navigation />
+    <Suspense fallback={<PageSkeleton />}>
+      <main className="min-h-screen">
+        <Navigation />
 
-      {/* Hero Section with Event Image */}
-      <section className="pt-24 pb-0 relative overflow-hidden">
-        <div className="absolute inset-0 hero-gradient" />
-        <div className="absolute inset-0 mesh-gradient opacity-50" />
-        
-        {/* Hero Image */}
-        <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
-          <motion.img
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            src={event.image}
-            alt={event.title}
-            className="w-full h-full object-cover"
-          />
+        {/* Hero Section with Event Image */}
+        <section className="pt-24 pb-0 relative overflow-hidden">
+          <div className="absolute inset-0 hero-gradient" />
+          <div className="absolute inset-0 mesh-gradient opacity-50" />
+          
+          {/* Hero Image - Priority loading */}
+          <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+            <motion.div
+              initial={{ scale: 1.1, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-full h-full"
+            >
+              <OptimizedImage
+                src={event.image}
+                alt={event.title}
+                className="w-full h-full"
+                priority={true}
+              />
+            </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
           
           {/* Back Button */}
@@ -210,13 +267,13 @@ const EventDetail = () => {
                       initial={{ opacity: 0, scale: 0.95 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: Math.min(index * 0.05, 0.2) }}
                       className="group relative aspect-video rounded-2xl overflow-hidden cursor-pointer"
                     >
-                      <img
+                      <OptimizedImage
                         src={img}
                         alt={`${event.title} - Photo ${index + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -257,8 +314,9 @@ const EventDetail = () => {
         </div>
       </section>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </Suspense>
   );
 };
 

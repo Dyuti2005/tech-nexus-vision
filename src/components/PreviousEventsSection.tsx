@@ -3,8 +3,12 @@ import { Calendar, MapPin, Users, ExternalLink } from "lucide-react";
 import { previousEvents } from "@/data/previousEvents";
 
 const PreviousEventsSection = () => {
+  // Instant tab open - no waiting for assets
   const handleEventClick = (eventId: string) => {
-    window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
+    // Open immediately without blocking
+    const newWindow = window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
+    // Focus the new tab instantly
+    if (newWindow) newWindow.focus();
   };
 
   return (
