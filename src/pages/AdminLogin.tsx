@@ -9,7 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Lock, ArrowLeft } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
-type AuthMode = 'signin' | 'signup' | 'reset';
+type AuthMode = 'signin' | 'reset';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -46,34 +46,6 @@ export default function AdminLogin() {
       return;
     }
 
-    if (mode === 'signup') {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: window.location.origin,
-        },
-      });
-
-      if (error) {
-        toast({
-          title: 'Sign Up Failed',
-          description: error.message,
-          variant: 'destructive',
-        });
-        setIsLoading(false);
-        return;
-      }
-
-      toast({
-        title: 'Account Created',
-        description: 'You can now sign in with your credentials.',
-      });
-      setMode('signin');
-      setIsLoading(false);
-      return;
-    }
-
     const { error } = await signIn(email, password);
 
     if (error) {
@@ -95,34 +67,20 @@ export default function AdminLogin() {
   };
 
   const getTitle = () => {
-    switch (mode) {
-      case 'signup': return 'Create Account';
-      case 'reset': return 'Reset Password';
-      default: return 'Admin Portal';
-    }
+    return mode === 'reset' ? 'Reset Password' : 'Admin Portal';
   };
 
   const getDescription = () => {
-    switch (mode) {
-      case 'signup': return 'Create your admin account';
-      case 'reset': return 'Enter your email to receive a reset link';
-      default: return 'Sign in to access the TechNexus CMS';
-    }
+    return mode === 'reset' 
+      ? 'Enter your email to receive a reset link' 
+      : 'Sign in to access the TechNexus CMS';
   };
 
   const getButtonText = () => {
     if (isLoading) {
-      switch (mode) {
-        case 'signup': return 'Creating account...';
-        case 'reset': return 'Sending...';
-        default: return 'Signing in...';
-      }
+      return mode === 'reset' ? 'Sending...' : 'Signing in...';
     }
-    switch (mode) {
-      case 'signup': return 'Create Account';
-      case 'reset': return 'Send Reset Link';
-      default: return 'Sign In';
-    }
+    return mode === 'reset' ? 'Send Reset Link' : 'Sign In';
   };
 
   return (
@@ -175,33 +133,15 @@ export default function AdminLogin() {
             </Button>
           </form>
           <div className="mt-4 space-y-2 text-center">
-            {mode === 'signin' && (
-              <>
-                <button
-                  type="button"
-                  className="text-sm text-muted-foreground hover:text-primary underline block w-full"
-                  onClick={() => setMode('reset')}
-                >
-                  Forgot your password?
-                </button>
-                <button
-                  type="button"
-                  className="text-sm text-muted-foreground hover:text-primary underline block w-full"
-                  onClick={() => setMode('signup')}
-                >
-                  Don't have an account? Sign up
-                </button>
-              </>
-            )}
-            {mode === 'signup' && (
-              <button
-                type="button"
-                className="text-sm text-muted-foreground hover:text-primary underline"
-                onClick={() => setMode('signin')}
-              >
-                Already have an account? Sign in
-              </button>
-            )}
+          {mode === 'signin' && (
+            <button
+              type="button"
+              className="text-sm text-muted-foreground hover:text-primary underline block w-full"
+              onClick={() => setMode('reset')}
+            >
+              Forgot your password?
+            </button>
+          )}
           </div>
         </CardContent>
       </Card>
