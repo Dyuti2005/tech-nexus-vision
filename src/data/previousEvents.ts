@@ -15,6 +15,12 @@ import agentverseBengaluru2 from "@/assets/events/agentverse-bengaluru-2.png";
 import agentverseBengaluru3 from "@/assets/events/agentverse-bengaluru-3.png";
 import agentverseBengaluru4 from "@/assets/events/agentverse-bengaluru-4.png";
 import agentverseBengaluru5 from "@/assets/events/agentverse-bengaluru-5.png";
+import azureBot1 from "@/assets/events/azure-bot-1.png";
+import azureBot2 from "@/assets/events/azure-bot-2.png";
+import azureBot3 from "@/assets/events/azure-bot-3.png";
+import azureBot4 from "@/assets/events/azure-bot-4.png";
+import azureBot5 from "@/assets/events/azure-bot-5.png";
+import azureBot6 from "@/assets/events/azure-bot-6.png";
 
 export interface PreviousEvent {
   id: string;
@@ -484,6 +490,7 @@ export const previousEvents: PreviousEvent[] = [
     speakers: [
       { name: "Justice Gideon", topic: "Azure Bot Services & Identity Access", time: "12:00 - 3:00 PM" }
     ],
-    image: event4,
+    image: azureBot1,
+    gallery: [azureBot1, azureBot2, azureBot3, azureBot4, azureBot5, azureBot6],
   },
 ].sort((a, b) => b.date.getTime() - a.date.getTime()); // Sort recent to old
