@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,6 +13,7 @@ export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -19,6 +21,34 @@ export default function AdminLogin() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
+    if (isSignUp) {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: window.location.origin + '/admin/dashboard',
+        },
+      });
+
+      if (error) {
+        toast({
+          title: 'Sign Up Failed',
+          description: error.message,
+          variant: 'destructive',
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      toast({
+        title: 'Account Created',
+        description: 'You can now sign in.',
+      });
+      setIsSignUp(false);
+      setIsLoading(false);
+      return;
+    }
 
     const { error } = await signIn(email, password);
 
@@ -49,7 +79,7 @@ export default function AdminLogin() {
           </div>
           <CardTitle className="text-2xl">Admin Portal</CardTitle>
           <CardDescription>
-            Sign in to access the TechNexus CMS
+            {isSignUp ? 'Create your admin account' : 'Sign in to access the TechNexus CMS'}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -74,12 +104,22 @@ export default function AdminLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={6}
               />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? (isSignUp ? 'Creating...' : 'Signing in...') : (isSignUp ? 'Create Account' : 'Sign In')}
             </Button>
           </form>
+          <div className="mt-4 text-center">
+            <button
+              type="button"
+              onClick={() => setIsSignUp(!isSignUp)}
+              className="text-sm text-primary hover:underline"
+            >
+              {isSignUp ? 'Already have an account? Sign in' : 'First time? Create an account'}
+            </button>
+          </div>
         </CardContent>
       </Card>
     </div>
