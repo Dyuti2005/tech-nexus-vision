@@ -14,16 +14,251 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      events: {
+        Row: {
+          attendees: string | null
+          created_at: string
+          date: string
+          date_str: string
+          description: string | null
+          gallery: string[] | null
+          highlights: string[] | null
+          id: string
+          image_url: string | null
+          is_upcoming: boolean | null
+          location: string
+          meetup_link: string | null
+          title: string
+          updated_at: string
+          venue: string | null
+        }
+        Insert: {
+          attendees?: string | null
+          created_at?: string
+          date: string
+          date_str: string
+          description?: string | null
+          gallery?: string[] | null
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_upcoming?: boolean | null
+          location: string
+          meetup_link?: string | null
+          title: string
+          updated_at?: string
+          venue?: string | null
+        }
+        Update: {
+          attendees?: string | null
+          created_at?: string
+          date?: string
+          date_str?: string
+          description?: string | null
+          gallery?: string[] | null
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_upcoming?: boolean | null
+          location?: string
+          meetup_link?: string | null
+          title?: string
+          updated_at?: string
+          venue?: string | null
+        }
+        Relationships: []
+      }
+      footer_links: {
+        Row: {
+          category: string
+          created_at: string
+          display_order: number | null
+          id: string
+          label: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          label: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          label?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      founders: {
+        Row: {
+          bio: string | null
+          created_at: string
+          display_order: number | null
+          id: string
+          image_url: string | null
+          linkedin_url: string | null
+          name: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_content: {
+        Row: {
+          content: Json
+          id: string
+          section: string
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          id?: string
+          section: string
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          id?: string
+          section?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      speakers: {
+        Row: {
+          created_at: string
+          event_id: string
+          id: string
+          image_url: string | null
+          name: string
+          time: string | null
+          topic: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          id?: string
+          image_url?: string | null
+          name: string
+          time?: string | null
+          topic?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          id?: string
+          image_url?: string | null
+          name?: string
+          time?: string | null
+          topic?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "speakers_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tech_hubs: {
+        Row: {
+          created_at: string
+          description: string | null
+          display_order: number | null
+          icon: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +385,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
