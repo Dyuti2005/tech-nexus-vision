@@ -1,15 +1,9 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, ExternalLink } from "lucide-react";
+import { MapPin, Users, ExternalLink } from "lucide-react";
 import { previousEvents } from "@/data/previousEvents";
+import { Link } from "react-router-dom";
 
 const PreviousEventsSection = () => {
-  // Instant tab open - no waiting for assets
-  const handleEventClick = (eventId: string) => {
-    // Open immediately without blocking
-    const newWindow = window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
-    // Focus the new tab instantly
-    if (newWindow) newWindow.focus();
-  };
 
   return (
     <section className="py-24">
@@ -35,13 +29,13 @@ const PreviousEventsSection = () => {
           {previousEvents.map((event, index) => (
             <motion.div
               key={event.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              onClick={() => handleEventClick(event.id)}
-              className="group cursor-pointer"
+              transition={{ delay: Math.min(index * 0.05, 0.15) }}
+              className="group"
             >
+              <Link to={`/events/${event.id}`} className="block h-full">
               {/* Bright & Premium Frosted Glass Card */}
               <div 
                 className="relative h-full rounded-3xl overflow-hidden transition-all duration-500 
@@ -112,6 +106,7 @@ const PreviousEventsSection = () => {
                   </div>
                 </div>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>

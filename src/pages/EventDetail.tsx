@@ -1,60 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Users, ArrowLeft, CheckCircle, User } from "lucide-react";
-import { lazy, Suspense, useState, useCallback } from "react";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { previousEvents } from "@/data/previousEvents";
-
-// Lazy load heavy components
-const Navigation = lazy(() => import("@/components/Navigation"));
-const Footer = lazy(() => import("@/components/Footer"));
-
-// Optimized image component with loading states
-const OptimizedImage = ({ 
-  src, 
-  alt, 
-  className = "",
-  priority = false 
-}: { 
-  src: string; 
-  alt: string; 
-  className?: string;
-  priority?: boolean;
-}) => {
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  const handleLoad = useCallback(() => setLoaded(true), []);
-  const handleError = useCallback(() => setError(true), []);
-
-  return (
-    <div className={`relative ${className}`}>
-      {!loaded && !error && (
-        <div className="absolute inset-0 bg-muted animate-pulse" />
-      )}
-      <img
-        src={src}
-        alt={alt}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        onLoad={handleLoad}
-        onError={handleError}
-      />
-    </div>
-  );
-};
-
-// Loading skeleton for page
-const PageSkeleton = () => (
-  <div className="min-h-screen bg-background">
-    <div className="h-16 bg-muted/50 animate-pulse" />
-    <div className="h-[50vh] bg-muted animate-pulse" />
-    <div className="container mx-auto px-4 py-16 space-y-8">
-      <div className="h-8 w-64 bg-muted animate-pulse rounded" />
-      <div className="h-24 bg-muted animate-pulse rounded" />
-    </div>
-  </div>
-);
 
 const EventDetail = () => {
   const { eventId } = useParams<{ eventId: string }>();
@@ -76,38 +25,28 @@ const EventDetail = () => {
   }
 
   return (
-    <Suspense fallback={<PageSkeleton />}>
-      <main className="min-h-screen">
-        <Navigation />
+    <main className="min-h-screen">
+      <Navigation />
 
-        {/* Hero Section with Event Image */}
-        <section className="pt-24 pb-0 relative overflow-hidden">
-          <div className="absolute inset-0 hero-gradient" />
-          <div className="absolute inset-0 mesh-gradient opacity-50" />
-          
-          {/* Hero Image - Priority loading */}
-          <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
-            <motion.div
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="w-full h-full"
-            >
-              <OptimizedImage
-                src={event.image}
-                alt={event.title}
-                className="w-full h-full"
-                priority={true}
-              />
-            </motion.div>
+      {/* Hero Section with Event Image */}
+      <section className="pt-24 pb-0 relative overflow-hidden">
+        <div className="absolute inset-0 hero-gradient" />
+        <div className="absolute inset-0 mesh-gradient opacity-50" />
+        
+        {/* Hero Image - Instant render */}
+        <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+          <img
+            src={event.image}
+            alt={event.title}
+            className="w-full h-full object-cover"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
           
           {/* Back Button */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="absolute top-8 left-4 md:left-8 z-20"
-          >
+          <div className="absolute top-8 left-4 md:left-8 z-20">
             <Link
               to="/events"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-xl bg-background/30 border border-white/10 text-foreground hover:bg-background/50 transition-all"
@@ -115,16 +54,12 @@ const EventDetail = () => {
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Events</span>
             </Link>
-          </motion.div>
+          </div>
           
           {/* Event Title Overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
             <div className="container mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
+              <div>
                 <span className="inline-block px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-sm text-primary text-sm font-semibold uppercase tracking-wider mb-4 border border-primary/30">
                   Past Event
                 </span>
@@ -145,7 +80,7 @@ const EventDetail = () => {
                     <span className="font-medium">{event.attendees} Attendees</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -156,70 +91,45 @@ const EventDetail = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Description */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-12"
-            >
+            <div className="mb-12">
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 About This <span className="gradient-text">Event</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {event.description}
               </p>
-            </motion.div>
+            </div>
 
             {/* Highlights */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="mb-12"
-            >
+            <div className="mb-12">
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 Event <span className="gradient-text-reverse">Highlights</span>
               </h2>
               <div className="glass-card-emerald rounded-2xl p-6 md:p-8 glow-border-emerald">
                 <div className="grid gap-4">
-                  {event.highlights.map((highlight, index) => (
-                    <motion.div
+                  {event.highlights.map((highlight) => (
+                    <div
                       key={highlight}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
                       className="flex items-start gap-3"
                     >
                       <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                       <span className="text-foreground/90 text-lg">{highlight}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Speakers & Sessions */}
             {event.speakers && event.speakers.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="mb-12"
-              >
+              <div className="mb-12">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6">
                   Speakers & <span className="gradient-text">Sessions</span>
                 </h2>
                 <div className="space-y-4">
                   {event.speakers.map((speaker, index) => (
-                    <motion.div
+                    <div
                       key={speaker.name + index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
                       className="backdrop-blur-xl bg-white/80 dark:bg-white/10 rounded-2xl p-6 border border-emerald-200/50 dark:border-primary/30 hover:border-emerald-400 dark:hover:border-primary/50 transition-all shadow-lg"
                     >
                       <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -242,38 +152,30 @@ const EventDetail = () => {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {/* Photo Gallery */}
             {event.gallery && event.gallery.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.25 }}
-                className="mb-12"
-              >
+              <div className="mb-12">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6">
                   Event <span className="gradient-text-reverse">Gallery</span>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {event.gallery.map((img, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: Math.min(index * 0.05, 0.2) }}
                       className="group relative aspect-video rounded-2xl overflow-hidden cursor-pointer"
                     >
-                      <OptimizedImage
+                      <img
                         src={img}
                         alt={`${event.title} - Photo ${index + 1}`}
-                        className="w-full h-full transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -281,20 +183,14 @@ const EventDetail = () => {
                           Photo {index + 1}
                         </span>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-center"
-            >
+            <div className="text-center">
               <div className="glass-card rounded-2xl p-8 md:p-10">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">
                   Don't Miss Our Upcoming Events!
@@ -309,14 +205,13 @@ const EventDetail = () => {
                   View All Events
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-        <Footer />
-      </main>
-    </Suspense>
+      <Footer />
+    </main>
   );
 };
 
