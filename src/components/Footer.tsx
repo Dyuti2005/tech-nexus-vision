@@ -1,4 +1,4 @@
-import { Linkedin, Mail, MapPin } from "lucide-react";
+import { Linkedin, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import footerLogo from "@/assets/technexus-footer-logo.png";
 
@@ -8,63 +8,39 @@ const footerLinks = {
     { name: "Our Events", href: "/events" },
     { name: "Sponsors", href: "/sponsors" },
   ],
-  resources: [
-    { name: "AZ-900 Prep", href: "/skill-up#az-900" },
-    { name: "AI-900 Prep", href: "/skill-up#ai-900" },
-    { name: "Microsoft Learn", href: "https://learn.microsoft.com", external: true },
-  ],
-  connect: [
-    { name: "WhatsApp Group", href: "https://chat.whatsapp.com/yourlink", external: true },
-    { name: "LinkedIn", href: "https://www.linkedin.com/company/technexuscommunity/", external: true },
-    { name: "Contact Us", href: "mailto:hello@technexuscommunity.com" },
-  ],
 };
-
-const socialLinks = [
-  { icon: Linkedin, href: "https://www.linkedin.com/company/technexuscommunity/", label: "LinkedIn" },
-];
 
 const Footer = () => {
   return (
-    <footer className="relative pt-24 pb-8 overflow-hidden bg-muted/30">
+    <footer className="relative pt-20 pb-10 overflow-hidden bg-muted/30">
       {/* Top Border Gradient */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="flex flex-col lg:flex-row items-start justify-center gap-16 lg:gap-24 mb-16">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <img src={footerLogo} alt="TechNexus Community" className="h-16 mb-6" />
-            <p className="text-muted-foreground mb-6 leading-relaxed">
+          <div className="max-w-sm text-center lg:text-left">
+            <img src={footerLogo} alt="TechNexus Community" className="h-16 mb-6 mx-auto lg:mx-0" />
+            <p className="text-muted-foreground mb-6 leading-relaxed text-base">
               India's premier Microsoft AI & Cloud technology community. Learn, connect, and grow with 5000+ tech professionals.
             </p>
             
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-foreground/5 hover:bg-primary/10 hover:text-primary flex items-center justify-center transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+            {/* Location */}
+            <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span>Bengaluru • Chennai</span>
             </div>
           </div>
 
           {/* Community Links */}
-          <div>
-            <h4 className="font-bold mb-6">Community</h4>
-            <ul className="space-y-3">
+          <div className="text-center lg:text-left">
+            <h4 className="font-bold text-lg mb-6">Community</h4>
+            <ul className="space-y-4">
               {footerLinks.community.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-colors text-base"
                   >
                     {link.name}
                   </Link>
@@ -73,59 +49,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Resources Links */}
-          <div>
-            <h4 className="font-bold mb-6">Resources</h4>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.name}>
-                  {link.external ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.name}
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Connect */}
-          <div>
-            <h4 className="font-bold mb-6">Connect</h4>
-            <ul className="space-y-3">
-              {footerLinks.connect.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noopener noreferrer" : undefined}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            {/* Locations */}
-            <div className="mt-6 pt-6 border-t border-border">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span>Bengaluru • Chennai</span>
-              </div>
-            </div>
+          <div className="text-center lg:text-left">
+            <h4 className="font-bold text-lg mb-6">Connect</h4>
+            <a
+              href="https://www.linkedin.com/company/technexuscommunity/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors text-base group"
+            >
+              <span className="w-10 h-10 rounded-xl bg-foreground/5 group-hover:bg-primary/10 group-hover:text-primary flex items-center justify-center transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </span>
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
 
