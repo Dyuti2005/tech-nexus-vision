@@ -3,6 +3,7 @@ import { Linkedin, Award, Target, Heart, Users, Lightbulb, MapPin } from "lucide
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import azarudeenImg from "@/assets/founders/azarudeen.png";
+import vinodhImg from "@/assets/founders/vinodh-kumar.png";
 
 const founders = [
   {
@@ -19,7 +20,7 @@ const founders = [
     title: "Microsoft MVP & Data/AI Architect",
     linkedin: "https://www.linkedin.com/in/vinodh-kumar-173582132/",
     bio: "Dedicated to empowering the next generation of data and AI professionals through hands-on learning.",
-    image: null,
+    image: vinodhImg,
   },
 ];
 
