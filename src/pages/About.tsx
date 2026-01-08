@@ -185,7 +185,7 @@ const About = () => {
                   </div>
 
                   {founder.image ? (
-                    <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 ring-2 ring-primary/20 ring-offset-2 ring-offset-background">
+                    <div className="w-32 h-32 rounded-2xl overflow-hidden mb-6 ring-2 ring-primary/20 ring-offset-2 ring-offset-background">
                       <img 
                         src={founder.image} 
                         alt={founder.name}
@@ -193,8 +193,8 @@ const About = () => {
                       />
                     </div>
                   ) : (
-                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6">
-                      <span className="text-3xl font-black text-primary-foreground">
+                    <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6">
+                      <span className="text-4xl font-black text-primary-foreground">
                         {founder.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                       </span>
                     </div>
