@@ -70,7 +70,7 @@ const FoundersSection = () => {
 
                 {/* Avatar with Image */}
                 <div className="relative mb-6 inline-block">
-                  <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${founder.gradient} overflow-hidden shadow-lg mx-auto`}>
+                  <div className={`w-32 h-32 rounded-2xl bg-gradient-to-br ${founder.gradient} overflow-hidden shadow-lg mx-auto`}>
                     <img 
                       src={founder.image} 
                       alt={founder.name}
