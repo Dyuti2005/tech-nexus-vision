@@ -10,7 +10,7 @@ const upcomingEvent = {
   title: "Agentic AI Connect - Bengaluru",
   date: new Date("2026-01-10T09:00:00"),
   dateStr: "January 10, 2026",
-  location: "Microsoft Ferns, Bengaluru",
+  location: "Microsoft Reactor, Bengaluru",
   description: "Join us for an immersive experience exploring Agentic AI systems, autonomous agents, and the future of AI-powered automation.",
   topics: ["Agentic AI Patterns", "Autonomous Agents", "LLM Orchestration", "Real-world Use Cases"],
 };
