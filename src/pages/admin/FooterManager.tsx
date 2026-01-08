@@ -30,7 +30,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 
-const CATEGORIES = ['social', 'quick_links', 'contact'];
+const CATEGORIES = ['community', 'connect', 'legal'];
 
 export default function FooterManager() {
   const [links, setLinks] = useState<FooterLink[]>([]);
@@ -148,9 +148,9 @@ export default function FooterManager() {
 
   const getCategoryLabel = (category: string) => {
     switch (category) {
-      case 'social': return 'Social Media';
-      case 'quick_links': return 'Quick Links';
-      case 'contact': return 'Contact Info';
+      case 'community': return 'Community';
+      case 'connect': return 'Connect';
+      case 'legal': return 'Legal';
       default: return category;
     }
   };
