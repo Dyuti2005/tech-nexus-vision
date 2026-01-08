@@ -72,7 +72,7 @@ const Navigation = () => {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="https://chat.whatsapp.com/yourlink"
+              href="https://www.meetup.com/technexus-community/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary-glow px-6 py-2.5 rounded-full text-sm font-semibold text-primary-foreground"
@@ -152,7 +152,7 @@ const Navigation = () => {
 
                 <div className="mt-auto">
                   <a
-                    href="https://chat.whatsapp.com/yourlink"
+                    href="https://www.meetup.com/technexus-community/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full btn-primary-glow px-6 py-4 rounded-xl text-center font-semibold text-primary-foreground"
