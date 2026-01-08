@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Linkedin, Award, Sparkles } from "lucide-react";
+import azarudeenImg from "@/assets/founders/azarudeen.png";
+import vinodhImg from "@/assets/founders/vinodh-kumar.png";
 
 const founders = [
   {
@@ -8,6 +10,7 @@ const founders = [
     title: "Microsoft MVP & AI Community Leader",
     linkedin: "https://www.linkedin.com/in/mohamed-azarudeen-428659205/",
     gradient: "from-primary to-secondary",
+    image: azarudeenImg,
   },
   {
     name: "Vinodh Kumar",
@@ -15,6 +18,7 @@ const founders = [
     title: "Microsoft MVP & Data/AI Architect",
     linkedin: "https://www.linkedin.com/in/vinodh-kumar-173582132/",
     gradient: "from-secondary to-primary",
+    image: vinodhImg,
   },
 ];
 
@@ -64,12 +68,14 @@ const FoundersSection = () => {
                   </div>
                 </div>
 
-                {/* Avatar Placeholder with Initials */}
+                {/* Avatar with Image */}
                 <div className="relative mb-6">
-                  <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${founder.gradient} flex items-center justify-center shadow-lg`}>
-                    <span className="text-3xl font-black text-primary-foreground">
-                      {founder.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                    </span>
+                  <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${founder.gradient} overflow-hidden shadow-lg`}>
+                    <img 
+                      src={founder.image} 
+                      alt={founder.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <motion.div
                     animate={{ rotate: 360 }}
