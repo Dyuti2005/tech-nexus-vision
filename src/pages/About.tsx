@@ -74,7 +74,7 @@ const About = () => {
             </h1>
             <p className="text-xl text-muted-foreground">
               TechNexus Community is India's premier Microsoft AI & Cloud technology community, 
-              uniting 5000+ professionals across 3 major cities.
+              uniting 5000+ professionals across 2 major cities.
             </p>
           </motion.div>
         </div>
