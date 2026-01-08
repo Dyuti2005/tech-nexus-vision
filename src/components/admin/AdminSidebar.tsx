@@ -27,7 +27,7 @@ export default function AdminSidebar() {
   return (
     <div className="w-64 bg-card border-r min-h-screen flex flex-col">
       <div className="p-6 border-b">
-        <h1 className="text-xl font-bold text-primary">TechNexus</h1>
+        <h1 className="text-xl font-bold text-primary">TechNexus Admin</h1>
         <p className="text-sm text-muted-foreground truncate">{user?.email}</p>
       </div>
 
