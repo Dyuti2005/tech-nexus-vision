@@ -56,12 +56,12 @@ const FoundersSection = () => {
               whileHover={{ y: -5 }}
               className="group"
             >
-              <div className="glass-card-emerald p-8 rounded-3xl relative overflow-hidden h-full">
+              <div className="glass-card-emerald p-8 rounded-3xl relative overflow-hidden h-full text-center">
                 {/* Background Glow */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${founder.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                 
                 {/* MVP Badge */}
-                <div className="flex items-center gap-2 mb-6">
+                <div className="flex items-center justify-center gap-2 mb-6">
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20">
                     <Award className="w-4 h-4 text-primary" />
                     <span className="text-xs font-semibold text-primary">Microsoft MVP</span>
@@ -69,8 +69,8 @@ const FoundersSection = () => {
                 </div>
 
                 {/* Avatar with Image */}
-                <div className="relative mb-6">
-                  <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${founder.gradient} overflow-hidden shadow-lg`}>
+                <div className="relative mb-6 inline-block">
+                  <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${founder.gradient} overflow-hidden shadow-lg mx-auto`}>
                     <img 
                       src={founder.image} 
                       alt={founder.name}
