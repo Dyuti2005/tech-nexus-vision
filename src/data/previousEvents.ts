@@ -21,6 +21,11 @@ import azureBot3 from "@/assets/events/azure-bot-3.png";
 import azureBot4 from "@/assets/events/azure-bot-4.png";
 import azureBot5 from "@/assets/events/azure-bot-5.png";
 import azureBot6 from "@/assets/events/azure-bot-6.png";
+import aiChai1 from "@/assets/events/ai-chai-1.png";
+import aiChai2 from "@/assets/events/ai-chai-2.png";
+import aiChai3 from "@/assets/events/ai-chai-3.png";
+import aiChai4 from "@/assets/events/ai-chai-4.png";
+import aiChai5 from "@/assets/events/ai-chai-5.png";
 
 export interface PreviousEvent {
   id: string;
@@ -352,7 +357,8 @@ export const previousEvents: PreviousEvent[] = [
       { name: "Samik Roy", topic: "Monitor Your Azure OpenAI Instances", time: "11:15 - 12:10 PM" },
       { name: "Jayita Bhattacharyya", topic: "Seeking Deep onto Reasoning LLMs", time: "12:30 - 1:15 PM" }
     ],
-    image: event1,
+    image: aiChai1,
+    gallery: [aiChai1, aiChai2, aiChai3, aiChai4, aiChai5],
   },
   {
     id: "microsoft-ai-community-day-bengaluru-feb-2025",
