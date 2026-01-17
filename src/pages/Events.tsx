@@ -8,7 +8,7 @@ import { previousEvents } from "@/data/previousEvents";
 
 const upcomingEvent = {
   title: "Code & Cold Pizza: Bengaluru Edition",
-  date: new Date("2025-02-07T09:00:00"),
+  date: new Date("2026-02-07T09:30:00"),
   dateStr: "February 7th, 2025",
   location: "TBA",
   description: "Join us for Code & Cold Pizza - a unique developer meetup combining coding sessions with cold pizza! Network with fellow developers and learn something new.",
