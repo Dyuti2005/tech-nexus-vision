@@ -10,7 +10,7 @@ const HeroSection = () => {
       
       {/* Logo Watermark */}
       <div className="logo-watermark">
-        <img src={watermarkLogo} alt="" className="w-full h-full object-contain opacity-10" />
+        <img src={watermarkLogo} alt="" className="w-full h-full object-contain opacity-[0.08] mix-blend-multiply dark:mix-blend-screen" />
       </div>
 
       {/* Animated Background Elements */}

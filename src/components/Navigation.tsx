@@ -47,7 +47,7 @@ const Navigation = () => {
               <img 
                 src={techNexusLogo} 
                 alt="TechNexus Community" 
-                className="h-12 md:h-14 w-auto object-cover object-top"
+                className="h-12 md:h-14 w-auto object-cover object-top mix-blend-multiply dark:mix-blend-screen"
               />
             </div>
           </Link>
@@ -119,7 +119,7 @@ const Navigation = () => {
             >
               <div className="flex flex-col h-full p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <img src={techNexusLogo} alt="TechNexus Community" className="h-8 w-auto" />
+                  <img src={techNexusLogo} alt="TechNexus Community" className="h-8 w-auto mix-blend-multiply dark:mix-blend-screen" />
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 rounded-lg hover:bg-muted transition-colors"
