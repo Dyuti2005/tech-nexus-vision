@@ -7,12 +7,12 @@ import CountdownTimer from "@/components/CountdownTimer";
 import { previousEvents } from "@/data/previousEvents";
 
 const upcomingEvent = {
-  title: "Agentic AI Connect - Bengaluru",
-  date: new Date("2026-01-10T09:00:00"),
-  dateStr: "January 10, 2026",
-  location: "Microsoft Reactor, Bengaluru",
-  description: "Join us for an immersive experience exploring Agentic AI systems, autonomous agents, and the future of AI-powered automation.",
-  topics: ["Agentic AI Patterns", "Autonomous Agents", "LLM Orchestration", "Real-world Use Cases"],
+  title: "Code & Cold Pizza: Bengaluru Edition",
+  date: new Date("2025-02-07T09:00:00"),
+  dateStr: "February 7th, 2025",
+  location: "TBA",
+  description: "Join us for Code & Cold Pizza - a unique developer meetup combining coding sessions with cold pizza! Network with fellow developers and learn something new.",
+  topics: ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
 };
 
 const Events = () => {
