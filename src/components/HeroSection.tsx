@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin, ExternalLink } from "lucide-react";
-import watermarkLogo from "@/assets/technexus-watermark.png";
+import watermarkLogo from "@/assets/technexus-logo-transparent.png";
 
 const HeroSection = () => {
   return (
