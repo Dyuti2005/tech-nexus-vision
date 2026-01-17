@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row items-start justify-center gap-16 lg:gap-24 mb-16">
           {/* Brand Column */}
           <div className="max-w-sm text-center lg:text-left">
-            <img src={footerLogo} alt="TechNexus Community" className="h-16 mb-6 mx-auto lg:mx-0" />
+            <img src={footerLogo} alt="TechNexus Community" className="h-16 mb-6 mx-auto lg:mx-0 mix-blend-multiply dark:mix-blend-screen" />
             <p className="text-muted-foreground mb-6 leading-relaxed text-base">
               India's premier Microsoft AI & Cloud technology community. Learn, connect, and grow with 5000+ tech professionals.
             </p>
