@@ -1,9 +1,20 @@
 import { motion } from "framer-motion";
+import techNexusWatermark from "@/assets/technexus-logo-transparent.png";
 
 const EventsSection = () => {
   return (
     <section id="events" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+      {/* Watermark Logo */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <img 
+          src={techNexusWatermark} 
+          alt="" 
+          className="w-[600px] md:w-[800px] opacity-[0.05]"
+          aria-hidden="true"
+        />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

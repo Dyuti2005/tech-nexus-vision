@@ -1,6 +1,6 @@
 import { Linkedin, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import footerLogo from "@/assets/technexus-footer-logo.png";
+import footerLogo from "@/assets/technexus-logo-transparent.png";
 
 const footerLinks = {
   community: [
