@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import techNexusLogo from "@/assets/technexus-logo-transparent-new.png";
+import techNexusLogo from "@/assets/technexus-logo-transparent.png";
 
 const navLinks = [
   { name: "Home", href: "/" },
