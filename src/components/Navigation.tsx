@@ -41,17 +41,20 @@ const Navigation = () => {
             : "bg-transparent py-5"
         }`}
       >
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center">
-            <div className="h-10 md:h-12 overflow-hidden">
-              <img 
-                src={techNexusLogo} 
-                alt="TechNexus Community" 
-                className="h-12 md:h-14 w-auto object-cover object-top mix-blend-multiply dark:mix-blend-screen"
-              />
-            </div>
-          </Link>
+        <Link
+          to="/"
+          className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex items-center z-10"
+        >
+          <div className="h-10 md:h-12 overflow-hidden">
+            <img 
+              src={techNexusLogo} 
+              alt="TechNexus Community" 
+              className="h-12 md:h-14 w-auto object-cover object-top mix-blend-multiply dark:mix-blend-screen"
+            />
+          </div>
+        </Link>
 
+        <div className="container mx-auto px-4 flex items-center justify-between">
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
