@@ -7,90 +7,95 @@ const sponsors = [
   {
     name: "Microsoft",
     logo: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" className="h-8 w-auto">
-        <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
-        <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
-        <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
-        <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
-      </svg>
-    ),
-    textLogo: "Microsoft"
+      <div className="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" className="h-6 w-auto">
+          <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
+          <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
+          <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
+          <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+        </svg>
+        <span className="text-lg font-semibold text-[#737373]">Microsoft</span>
+      </div>
+    )
   },
   {
     name: "Neon",
     logo: (
-      <svg viewBox="0 0 120 40" className="h-8 w-auto">
-        <rect x="2" y="2" width="36" height="36" rx="8" fill="none" stroke="url(#neonGrad)" strokeWidth="3"/>
-        <path d="M14 28 L14 12 L26 28 L26 12" fill="none" stroke="url(#neonGrad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-        <defs>
-          <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00e5a0"/>
-            <stop offset="100%" stopColor="#00c4e0"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
-    textLogo: "NEON"
+      <div className="flex items-center gap-1.5">
+        <svg viewBox="0 0 40 40" className="h-7 w-auto">
+          <rect x="2" y="2" width="36" height="36" rx="6" fill="none" stroke="url(#neonGrad2)" strokeWidth="3"/>
+          <path d="M12 28 L12 12 L28 28 L28 12" fill="none" stroke="url(#neonGrad2)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+          <defs>
+            <linearGradient id="neonGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#00e5a0"/>
+              <stop offset="100%" stopColor="#00c4e0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span className="text-lg font-bold bg-gradient-to-r from-[#00e5a0] to-[#00c4e0] bg-clip-text text-transparent">neon</span>
+      </div>
+    )
   },
   {
     name: "ID8NXT",
     logo: (
-      <svg viewBox="0 0 100 40" className="h-8 w-auto">
-        <rect x="2" y="2" width="96" height="36" fill="none" stroke="#e63946" strokeWidth="2"/>
-      </svg>
-    ),
-    textLogo: "ID8NXT",
-    textColor: "#1a1a2e"
+      <div className="flex items-center px-3 py-1 border-2 border-[#1a1a2e] rounded-sm">
+        <span className="text-lg font-bold tracking-tight text-[#1a1a2e]">ID8NXT</span>
+      </div>
+    )
   },
   {
     name: "Azure Society of Excellence",
-    logo: null,
-    textLogo: (
-      <div className="flex flex-col items-center">
-        <span className="text-[#0078d4] font-semibold text-sm">Azure</span>
-        <span className="text-xs text-muted-foreground">Society of Excellence</span>
-        <span className="text-[10px] text-muted-foreground/70">Powered by ID8NXT</span>
+    logo: (
+      <div className="flex flex-col items-center leading-tight">
+        <span className="text-[#0078d4] font-bold text-base">Azure</span>
+        <span className="text-xs text-[#5c5c5c] font-medium">Society of Excellence</span>
+        <span className="text-[9px] text-[#888] italic">Powered by ID8NXT</span>
       </div>
     )
   },
   {
     name: "Elastic",
     logo: (
-      <svg viewBox="0 0 40 40" className="h-8 w-auto">
-        <circle cx="20" cy="8" r="6" fill="#fed10a"/>
-        <circle cx="10" cy="20" r="6" fill="#00bfb3"/>
-        <circle cx="30" cy="20" r="6" fill="#f04e98"/>
-        <circle cx="15" cy="32" r="6" fill="#1ba9f5"/>
-        <circle cx="25" cy="32" r="6" fill="#93c90e"/>
-        <circle cx="20" cy="20" r="5" fill="#0077cc"/>
-      </svg>
-    ),
-    textLogo: "elastic"
+      <div className="flex items-center gap-1.5">
+        <svg viewBox="0 0 40 40" className="h-8 w-auto">
+          <path d="M20 4 L36 12 L36 28 L20 36 L4 28 L4 12 Z" fill="none" stroke="#343741" strokeWidth="1.5"/>
+          <path d="M4 12 L20 20 L36 12" fill="none" stroke="#343741" strokeWidth="1.5"/>
+          <path d="M20 20 L20 36" fill="none" stroke="#343741" strokeWidth="1.5"/>
+          <ellipse cx="20" cy="12" rx="12" ry="5" fill="#fed10a"/>
+          <ellipse cx="12" cy="20" rx="5" ry="8" fill="#00bfb3" transform="rotate(-15 12 20)"/>
+          <ellipse cx="28" cy="20" rx="5" ry="8" fill="#f04e98" transform="rotate(15 28 20)"/>
+          <ellipse cx="20" cy="28" rx="10" ry="5" fill="#1ba9f5"/>
+        </svg>
+        <span className="text-lg font-medium text-[#343741]">elastic</span>
+      </div>
+    )
   },
   {
     name: "Polaris School of Technology",
     logo: (
-      <svg viewBox="0 0 40 40" className="h-8 w-auto">
-        <path d="M20 5 L35 35 L5 35 Z" fill="none" stroke="#f5a623" strokeWidth="2"/>
-        <circle cx="25" cy="15" r="3" fill="#f5a623"/>
-        <path d="M25 15 Q30 20 35 15" fill="none" stroke="#f5a623" strokeWidth="1.5"/>
-      </svg>
-    ),
-    textLogo: (
-      <div className="flex flex-col">
-        <span className="font-bold text-foreground">POLARIS</span>
-        <span className="text-[10px] text-muted-foreground uppercase tracking-wide">School of Technology</span>
+      <div className="flex items-center gap-2">
+        <svg viewBox="0 0 50 50" className="h-10 w-auto">
+          <polygon points="25,5 45,42 5,42" fill="none" stroke="#d4a44a" strokeWidth="2"/>
+          <circle cx="32" cy="18" r="4" fill="#d4a44a"/>
+          <path d="M32 18 Q38 22 42 18" fill="none" stroke="#d4a44a" strokeWidth="1.5"/>
+          <line x1="32" y1="18" x2="32" y2="10" stroke="#d4a44a" strokeWidth="1.5"/>
+        </svg>
+        <div className="flex flex-col leading-tight">
+          <span className="font-bold text-lg text-[#1a1a2e]">POLARIS</span>
+          <span className="text-[9px] text-[#666] uppercase tracking-widest">School of Technology</span>
+        </div>
       </div>
     )
   },
   {
     name: "Redis",
     logo: (
-      <svg viewBox="0 0 100 40" className="h-10 w-auto">
-        <text x="5" y="32" fontFamily="cursive, serif" fontSize="32" fontWeight="bold" fontStyle="italic" fill="#d82c20">Redis</text>
+      <svg viewBox="0 0 90 35" className="h-9 w-auto">
+        <text x="5" y="28" fontFamily="Georgia, serif" fontSize="28" fontWeight="bold" fontStyle="italic" fill="#d82c20">Redis</text>
+        <circle cx="80" cy="10" r="5" fill="#d82c20"/>
       </svg>
-    ),
-    textLogo: null
+    )
   }
 ];
 
@@ -219,17 +224,9 @@ const Sponsors = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="group flex items-center gap-2 px-6 py-4 rounded-xl transition-all duration-300 hover:bg-white/5 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 cursor-pointer"
+                  className="group flex items-center gap-2 px-6 py-4 rounded-xl transition-all duration-300 hover:bg-white/5 hover:scale-105 cursor-pointer"
                 >
                   {sponsor.logo}
-                  {typeof sponsor.textLogo === 'string' ? (
-                    <span 
-                      className="text-xl md:text-2xl font-bold"
-                      style={{ color: sponsor.textColor || 'currentColor' }}
-                    >
-                      {sponsor.textLogo}
-                    </span>
-                  ) : sponsor.textLogo}
                 </motion.div>
               ))}
             </div>
