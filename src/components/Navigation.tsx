@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import techNexusLogo from "@/assets/technexus-logo-transparent-new.png";
+import techNexusLogo from "@/assets/technexus-logo-transparent.png";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -47,7 +47,7 @@ const Navigation = () => {
               <img 
                 src={techNexusLogo} 
                 alt="TechNexus Community" 
-                className="h-14 md:h-16 w-auto object-contain"
+                className="h-14 md:h-16 w-auto object-contain mix-blend-multiply dark:mix-blend-screen"
               />
             </div>
           </Link>
@@ -118,7 +118,7 @@ const Navigation = () => {
             >
               <div className="flex flex-col h-full p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <img src={techNexusLogo} alt="TechNexus Community" className="h-10 w-auto object-contain" />
+                  <img src={techNexusLogo} alt="TechNexus Community" className="h-10 w-auto object-contain mix-blend-multiply dark:mix-blend-screen" />
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 rounded-lg hover:bg-muted transition-colors"
