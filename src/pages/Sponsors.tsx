@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 
 const currentSponsors = [
-  { name: "Microsoft", tier: "Technology Sponsor" },
+  { name: "Microsoft" },
 ];
 
 const Sponsors = () => {
@@ -125,7 +125,7 @@ const Sponsors = () => {
                 viewport={{ once: true }}
                 className="glass-card-emerald px-16 py-10 rounded-3xl text-center"
               >
-                <div className="flex items-center justify-center gap-4 mb-3">
+                <div className="flex items-center justify-center gap-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" className="w-10 h-10">
                     <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
                     <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
@@ -134,7 +134,6 @@ const Sponsors = () => {
                   </svg>
                   <span className="text-4xl font-black gradient-text">{sponsor.name}</span>
                 </div>
-                <p className="text-base text-muted-foreground">{sponsor.tier}</p>
               </motion.div>
             ))}
           </div>
