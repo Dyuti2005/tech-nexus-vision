@@ -42,9 +42,20 @@ const Events = () => {
             <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-3">
               Community <span className="gradient-text-reverse">Events</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground mb-4">
               From intimate workshops to large-scale conferences, we bring the tech community together
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Calendar className="w-4 h-4 text-primary" />
+                <span>February 7th, 2026</span>
+              </div>
+              <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary/50" />
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <MapPin className="w-4 h-4 text-secondary" />
+                <span>Polaris School of Technology, Brookefield</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
