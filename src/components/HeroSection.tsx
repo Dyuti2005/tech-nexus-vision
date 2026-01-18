@@ -144,12 +144,12 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>February 7th, 2025</span>
+                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>February 7th, 2026</span>
                 </div>
                 <div className="hidden sm:block w-1.5 h-1.5 rounded-full" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
                 <div className="flex items-center gap-2">
                   <MapPin className="w-5 h-5" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>TBA</span>
+                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>Polaris School of Technology, Brookefield</span>
                 </div>
               </motion.div>
 
@@ -161,7 +161,7 @@ const HeroSection = () => {
                 className="flex justify-center"
               >
                 <a
-                  href="https://meetu.ps/e/PJJMV/1dmQqv/i"
+                  href="https://hostwebs.site/DWu3hb"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-white font-bold text-lg group overflow-hidden"
