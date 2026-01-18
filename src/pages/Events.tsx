@@ -9,8 +9,8 @@ import { previousEvents } from "@/data/previousEvents";
 const upcomingEvent = {
   title: "Code & Cold Pizza: Bengaluru Edition",
   date: new Date("2026-02-07T09:30:00"),
-  dateStr: "February 7th, 2025",
-  location: "TBA",
+  dateStr: "February 7th, 2026",
+  location: "Polaris School of Technology, Brookefield",
   description: "Join us for Code & Cold Pizza - a unique developer meetup combining coding sessions with cold pizza! Network with fellow developers and learn something new.",
   topics: ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
 };
@@ -101,7 +101,7 @@ const Events = () => {
                   <div className="flex flex-col items-center gap-4">
                     <CountdownTimer targetDate={upcomingEvent.date} />
                     <a
-                      href="https://meetu.ps/e/PJJMV/1dmQqv/i"
+                      href="https://hostwebs.site/DWu3hb"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary-glow px-6 py-3 rounded-xl text-primary-foreground font-semibold inline-flex items-center gap-2 text-sm"
