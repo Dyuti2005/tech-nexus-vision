@@ -17,6 +17,12 @@ import vscodeDevDays1 from "@/assets/events/vscode-dev-days-1.png";
 import agentverseBengaluru1 from "@/assets/events/agentverse-bengaluru-1.png";
 import azureBot1 from "@/assets/events/azure-bot-1.png";
 import aiChai1 from "@/assets/events/ai-chai-1.png";
+import agenticAiBengaluruCover from "@/assets/events/agentic-ai-bengaluru-cover.jpg";
+import agenticAiBengaluru1 from "@/assets/events/agentic-ai-bengaluru-1.jpg";
+import agenticAiBengaluru2 from "@/assets/events/agentic-ai-bengaluru-2.jpg";
+import agenticAiBengaluru3 from "@/assets/events/agentic-ai-bengaluru-3.jpg";
+import agenticAiBengaluru4 from "@/assets/events/agentic-ai-bengaluru-4.jpg";
+import agenticAiBengaluru5 from "@/assets/events/agentic-ai-bengaluru-5.png";
 
 // Map database image paths to imported assets
 const imageMap: Record<string, string> = {
@@ -29,6 +35,12 @@ const imageMap: Record<string, string> = {
   '/assets/events/agentverse-bengaluru-1.png': agentverseBengaluru1,
   '/assets/events/azure-bot-1.png': azureBot1,
   '/assets/events/ai-chai-1.png': aiChai1,
+  '/assets/events/agentic-ai-bengaluru-cover.jpg': agenticAiBengaluruCover,
+  '/assets/events/agentic-ai-bengaluru-1.jpg': agenticAiBengaluru1,
+  '/assets/events/agentic-ai-bengaluru-2.jpg': agenticAiBengaluru2,
+  '/assets/events/agentic-ai-bengaluru-3.jpg': agenticAiBengaluru3,
+  '/assets/events/agentic-ai-bengaluru-4.jpg': agenticAiBengaluru4,
+  '/assets/events/agentic-ai-bengaluru-5.png': agenticAiBengaluru5,
 };
 
 const getEventImage = (imageUrl?: string): string => {
@@ -343,7 +355,7 @@ const EventDetail = () => {
                       className="group relative aspect-video rounded-2xl overflow-hidden cursor-pointer"
                     >
                       <img
-                        src={img}
+                        src={imageMap[img] || img}
                         alt={`${event.title} - Photo ${index + 1}`}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"

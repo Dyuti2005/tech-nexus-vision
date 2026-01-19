@@ -16,6 +16,7 @@ import vscodeDevDays1 from "@/assets/events/vscode-dev-days-1.png";
 import agentverseBengaluru1 from "@/assets/events/agentverse-bengaluru-1.png";
 import azureBot1 from "@/assets/events/azure-bot-1.png";
 import aiChai1 from "@/assets/events/ai-chai-1.png";
+import agenticAiBengaluruCover from "@/assets/events/agentic-ai-bengaluru-cover.jpg";
 
 // Map database image paths to imported assets
 const imageMap: Record<string, string> = {
@@ -28,6 +29,7 @@ const imageMap: Record<string, string> = {
   '/assets/events/agentverse-bengaluru-1.png': agentverseBengaluru1,
   '/assets/events/azure-bot-1.png': azureBot1,
   '/assets/events/ai-chai-1.png': aiChai1,
+  '/assets/events/agentic-ai-bengaluru-cover.jpg': agenticAiBengaluruCover,
 };
 
 const getEventImage = (imageUrl?: string): string => {
