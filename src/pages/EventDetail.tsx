@@ -37,73 +37,103 @@ const EventDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchEvent = async () => {
-      if (!eventId) {
-        setLoading(false);
-        return;
-      }
-
-      // First try to fetch from database
-      const { data: dbEvent, error } = await supabase
-        .from('events')
-        .select('*')
-        .eq('id', eventId)
-        .single();
-
-      if (dbEvent && !error) {
-        // Fetch speakers for this event
-        const { data: speakers } = await supabase
-          .from('speakers')
-          .select('*')
-          .eq('event_id', eventId)
-          .order('created_at');
-
-        setEvent({
-          id: dbEvent.id,
-          title: dbEvent.title,
-          date: dbEvent.date,
-          dateStr: dbEvent.date_str,
-          location: dbEvent.location,
-          venue: dbEvent.venue || undefined,
-          attendees: dbEvent.attendees || "50+",
-          description: dbEvent.description || "",
-          highlights: dbEvent.highlights || [],
-          image: dbEvent.image_url || "/placeholder.svg",
-          gallery: dbEvent.gallery || undefined,
-          speakers: speakers || [],
-          fromDatabase: true,
-        });
-      } else {
-        // Fallback to local data
-        const localEvent = previousEvents.find((e) => e.id === eventId);
-        if (localEvent) {
-          setEvent({
-            id: localEvent.id,
-            title: localEvent.title,
-            date: localEvent.date.toISOString(),
-            dateStr: localEvent.dateStr,
-            location: localEvent.location,
-            venue: localEvent.venue,
-            attendees: localEvent.attendees,
-            description: localEvent.description,
-            highlights: localEvent.highlights,
-            image: localEvent.image,
-            gallery: localEvent.gallery,
-            speakers: localEvent.speakers?.map((s, i) => ({
-              id: `local-${i}`,
-              name: s.name,
-              topic: s.topic,
-              time: s.time,
-            })),
-            fromDatabase: false,
-          });
-        }
-      }
-      setLoading(false);
-    };
-
     fetchEvent();
+
+    // Subscribe to real-time updates for this event
+    const eventsChannel = supabase
+      .channel('event-detail-realtime')
+      .on('postgres_changes', { 
+        event: '*', 
+        schema: 'public', 
+        table: 'events',
+        filter: `id=eq.${eventId}`
+      }, () => {
+        fetchEvent();
+      })
+      .subscribe();
+
+    const speakersChannel = supabase
+      .channel('speakers-realtime')
+      .on('postgres_changes', { 
+        event: '*', 
+        schema: 'public', 
+        table: 'speakers',
+        filter: `event_id=eq.${eventId}`
+      }, () => {
+        fetchEvent();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(eventsChannel);
+      supabase.removeChannel(speakersChannel);
+    };
   }, [eventId]);
+
+  const fetchEvent = async () => {
+    if (!eventId) {
+      setLoading(false);
+      return;
+    }
+
+    // First try to fetch from database
+    const { data: dbEvent, error } = await supabase
+      .from('events')
+      .select('*')
+      .eq('id', eventId)
+      .single();
+
+    if (dbEvent && !error) {
+      // Fetch speakers for this event
+      const { data: speakers } = await supabase
+        .from('speakers')
+        .select('*')
+        .eq('event_id', eventId)
+        .order('created_at');
+
+      setEvent({
+        id: dbEvent.id,
+        title: dbEvent.title,
+        date: dbEvent.date,
+        dateStr: dbEvent.date_str,
+        location: dbEvent.location,
+        venue: dbEvent.venue || undefined,
+        attendees: dbEvent.attendees || "50+",
+        description: dbEvent.description || "",
+        highlights: dbEvent.highlights || [],
+        image: dbEvent.image_url || "/placeholder.svg",
+        gallery: dbEvent.gallery || undefined,
+        speakers: speakers || [],
+        fromDatabase: true,
+      });
+    } else {
+      // Fallback to local data
+      const localEvent = previousEvents.find((e) => e.id === eventId);
+      if (localEvent) {
+        setEvent({
+          id: localEvent.id,
+          title: localEvent.title,
+          date: localEvent.date.toISOString(),
+          dateStr: localEvent.dateStr,
+          location: localEvent.location,
+          venue: localEvent.venue,
+          attendees: localEvent.attendees,
+          description: localEvent.description,
+          highlights: localEvent.highlights,
+          image: localEvent.image,
+          gallery: localEvent.gallery,
+          speakers: localEvent.speakers?.map((s, i) => ({
+            id: `local-${i}`,
+            name: s.name,
+            topic: s.topic,
+            time: s.time,
+          })),
+          fromDatabase: false,
+        });
+      }
+    }
+    setLoading(false);
+  };
 
   if (loading) {
     return (

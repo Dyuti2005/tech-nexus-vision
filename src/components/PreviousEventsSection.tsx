@@ -21,66 +21,78 @@ const PreviousEventsSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const { data: dbEvents, error } = await supabase
-          .from('events')
-          .select('*')
-          .eq('is_upcoming', false)
-          .order('date', { ascending: false });
-
-        if (error) {
-          console.error('Error fetching events:', error);
-        }
-
-        // Combine database events with fallback events
-        const dbEventsMapped: EventDisplay[] = (dbEvents || []).map(e => ({
-          id: e.id,
-          title: e.title,
-          date: new Date(e.date),
-          dateStr: e.date_str,
-          location: e.location,
-          attendees: e.attendees || "50+",
-          description: e.description || "",
-          image: e.image_url || "/placeholder.svg",
-        }));
-
-        const fallbackMapped: EventDisplay[] = fallbackEvents.map(e => ({
-          id: e.id,
-          title: e.title,
-          date: e.date,
-          dateStr: e.dateStr,
-          location: e.location,
-          attendees: e.attendees,
-          description: e.description,
-          image: e.image,
-        }));
-
-        // Combine and sort by date
-        const combined = [...dbEventsMapped, ...fallbackMapped]
-          .sort((a, b) => b.date.getTime() - a.date.getTime());
-
-        setEvents(combined);
-      } catch (err) {
-        console.error('Error:', err);
-        // Use fallback events on error
-        setEvents(fallbackEvents.map(e => ({
-          id: e.id,
-          title: e.title,
-          date: e.date,
-          dateStr: e.dateStr,
-          location: e.location,
-          attendees: e.attendees,
-          description: e.description,
-          image: e.image,
-        })));
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchEvents();
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('previous-events-realtime')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'events' }, () => {
+        fetchEvents();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const { data: dbEvents, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('is_upcoming', false)
+        .order('date', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching events:', error);
+      }
+
+      // Combine database events with fallback events
+      const dbEventsMapped: EventDisplay[] = (dbEvents || []).map(e => ({
+        id: e.id,
+        title: e.title,
+        date: new Date(e.date),
+        dateStr: e.date_str,
+        location: e.location,
+        attendees: e.attendees || "50+",
+        description: e.description || "",
+        image: e.image_url || "/placeholder.svg",
+      }));
+
+      const fallbackMapped: EventDisplay[] = fallbackEvents.map(e => ({
+        id: e.id,
+        title: e.title,
+        date: e.date,
+        dateStr: e.dateStr,
+        location: e.location,
+        attendees: e.attendees,
+        description: e.description,
+        image: e.image,
+      }));
+
+      // Combine and sort by date
+      const combined = [...dbEventsMapped, ...fallbackMapped]
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+      setEvents(combined);
+    } catch (err) {
+      console.error('Error:', err);
+      // Use fallback events on error
+      setEvents(fallbackEvents.map(e => ({
+        id: e.id,
+        title: e.title,
+        date: e.date,
+        dateStr: e.dateStr,
+        location: e.location,
+        attendees: e.attendees,
+        description: e.description,
+        image: e.image,
+      })));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="py-24">
