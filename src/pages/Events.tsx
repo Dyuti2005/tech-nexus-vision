@@ -1,24 +1,102 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Clock, ExternalLink, Users } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
-import { previousEvents } from "@/data/previousEvents";
+import { supabase } from "@/integrations/supabase/client";
+import { previousEvents as fallbackEvents } from "@/data/previousEvents";
 
-const upcomingEvent = {
-  title: "Code & Cold Pizza: Bengaluru Edition",
-  date: new Date("2026-02-07T09:30:00"),
-  dateStr: "February 7th, 2026",
-  location: "Polaris School of Technology, Brookefield",
-  description: "Join us for Code & Cold Pizza - a unique developer meetup combining coding sessions with cold pizza! Network with fellow developers and learn something new.",
-  topics: ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
-};
+interface DatabaseEvent {
+  id: string;
+  title: string;
+  date: string;
+  date_str: string;
+  location: string;
+  venue?: string;
+  attendees?: string;
+  description?: string;
+  highlights?: string[];
+  image_url?: string;
+  gallery?: string[];
+  meetup_link?: string;
+  is_upcoming?: boolean;
+}
 
 const Events = () => {
+  const [dbEvents, setDbEvents] = useState<DatabaseEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchEvents();
   }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .order('date', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching events:', error);
+      } else {
+        setDbEvents(data || []);
+      }
+    } catch (err) {
+      console.error('Error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Get upcoming event from database or use default
+  const upcomingDbEvent = dbEvents.find(e => e.is_upcoming);
+  const upcomingEvent = upcomingDbEvent ? {
+    title: upcomingDbEvent.title,
+    date: new Date(upcomingDbEvent.date),
+    dateStr: upcomingDbEvent.date_str,
+    location: upcomingDbEvent.location,
+    description: upcomingDbEvent.description || "",
+    topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
+    meetupLink: upcomingDbEvent.meetup_link,
+  } : {
+    title: "Code & Cold Pizza: Bengaluru Edition",
+    date: new Date("2026-02-07T09:30:00"),
+    dateStr: "February 7th, 2026",
+    location: "Polaris School of Technology, Brookefield",
+    description: "Join us for Code & Cold Pizza - a unique developer meetup combining coding sessions with cold pizza! Network with fellow developers and learn something new.",
+    topics: ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
+    meetupLink: "https://hostwebs.site/DWu3hb",
+  };
+
+  // Combine database events (past) with fallback events
+  const pastDbEvents = dbEvents.filter(e => !e.is_upcoming);
+  const combinedPastEvents = [
+    ...pastDbEvents.map(e => ({
+      id: e.id,
+      title: e.title,
+      date: new Date(e.date),
+      dateStr: e.date_str,
+      location: e.location,
+      attendees: e.attendees || "50+",
+      description: e.description || "",
+      image: e.image_url || "/placeholder.svg",
+      fromDatabase: true,
+    })),
+    ...fallbackEvents.map(e => ({
+      id: e.id,
+      title: e.title,
+      date: e.date,
+      dateStr: e.dateStr,
+      location: e.location,
+      attendees: e.attendees,
+      description: e.description,
+      image: e.image,
+      fromDatabase: false,
+    }))
+  ].sort((a, b) => b.date.getTime() - a.date.getTime());
   const handleEventClick = (eventId: string) => {
     window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
   };
@@ -112,7 +190,7 @@ const Events = () => {
                   <div className="flex flex-col items-center gap-4">
                     <CountdownTimer targetDate={upcomingEvent.date} />
                     <a
-                      href="https://hostwebs.site/DWu3hb"
+                      href={upcomingEvent.meetupLink || "https://hostwebs.site/DWu3hb"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary-glow px-6 py-3 rounded-xl text-primary-foreground font-semibold inline-flex items-center gap-2 text-sm"
@@ -141,7 +219,7 @@ const Events = () => {
             </motion.div>
 
             {/* Previous Events Grid */}
-            {previousEvents.map((event, index) => (
+            {combinedPastEvents.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 30 }}
