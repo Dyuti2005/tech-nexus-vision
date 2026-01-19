@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { supabase, Event, Speaker } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Pencil, Trash2, Users } from 'lucide-react';
+import { Plus, Pencil, Trash2, Users, Upload, X, Image as ImageIcon } from 'lucide-react';
 
 export default function EventsManager() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -32,6 +32,9 @@ export default function EventsManager() {
   const [isSpeakersOpen, setIsSpeakersOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -94,6 +97,7 @@ export default function EventsManager() {
       is_upcoming: false,
     });
     setSelectedEvent(null);
+    setImagePreview(null);
   };
 
   const openEditDialog = (event: Event) => {
@@ -111,8 +115,73 @@ export default function EventsManager() {
       meetup_link: event.meetup_link || '',
       is_upcoming: event.is_upcoming || false,
     });
+    setImagePreview(event.image_url || null);
     setIsDialogOpen(true);
   };
+
+  const handleImageUpload = async (file: File) => {
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({ title: 'Error', description: 'Please upload an image file', variant: 'destructive' });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: 'Error', description: 'Image must be less than 5MB', variant: 'destructive' });
+      return;
+    }
+
+    setIsUploading(true);
+
+    try {
+      // Create unique filename
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      const filePath = `events/${fileName}`;
+
+      // Upload to Supabase Storage
+      const { error: uploadError } = await supabase.storage
+        .from('event-images')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('event-images')
+        .getPublicUrl(filePath);
+
+      setFormData({ ...formData, image_url: publicUrl });
+      setImagePreview(publicUrl);
+      toast({ title: 'Success', description: 'Image uploaded successfully' });
+    } catch (error: any) {
+      console.error('Upload error:', error);
+      toast({ title: 'Error', description: error.message || 'Failed to upload image', variant: 'destructive' });
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleImageUpload(file);
+    }
+  };
+
+  const removeImage = () => {
+    setFormData({ ...formData, image_url: '' });
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -339,25 +408,88 @@ export default function EventsManager() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="image_url">Image URL</Label>
+              {/* Image Upload Section */}
+              <div className="space-y-2">
+                <Label>Event Image</Label>
+                <div className="space-y-3">
+                  {/* Image Preview */}
+                  {imagePreview && (
+                    <div className="relative w-full h-40 rounded-lg overflow-hidden border bg-muted">
+                      <img 
+                        src={imagePreview} 
+                        alt="Event preview" 
+                        className="w-full h-full object-cover"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="icon"
+                        className="absolute top-2 right-2 h-8 w-8"
+                        onClick={removeImage}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Upload Button */}
+                  {!imagePreview && (
+                    <div 
+                      className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer hover:border-primary transition-colors"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        {isUploading ? (
+                          <>
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                            <p className="text-sm text-muted-foreground">Uploading...</p>
+                          </>
+                        ) : (
+                          <>
+                            <ImageIcon className="h-8 w-8 text-muted-foreground" />
+                            <p className="text-sm text-muted-foreground">Click to upload an image</p>
+                            <p className="text-xs text-muted-foreground">PNG, JPG up to 5MB</p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
+
+                  {/* Or use URL */}
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-px bg-border"></div>
+                    <span className="text-xs text-muted-foreground">or enter URL</span>
+                    <div className="flex-1 h-px bg-border"></div>
+                  </div>
+
                   <Input
                     id="image_url"
                     placeholder="https://..."
                     value={formData.image_url}
-                    onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, image_url: e.target.value });
+                      setImagePreview(e.target.value || null);
+                    }}
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="meetup_link">Meetup/Registration Link</Label>
-                  <Input
-                    id="meetup_link"
-                    placeholder="https://..."
-                    value={formData.meetup_link}
-                    onChange={(e) => setFormData({ ...formData, meetup_link: e.target.value })}
-                  />
-                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="meetup_link">Meetup/Registration Link</Label>
+                <Input
+                  id="meetup_link"
+                  placeholder="https://..."
+                  value={formData.meetup_link}
+                  onChange={(e) => setFormData({ ...formData, meetup_link: e.target.value })}
+                />
               </div>
 
               <div className="flex items-center gap-2">
