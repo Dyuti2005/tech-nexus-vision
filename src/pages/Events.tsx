@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
 import { supabase } from "@/integrations/supabase/client";
-import { previousEvents as fallbackEvents } from "@/data/previousEvents";
+
 
 interface DatabaseEvent {
   id: string;
@@ -83,32 +83,18 @@ const Events = () => {
     meetupLink: "https://hostwebs.site/DWu3hb",
   };
 
-  // Combine database events (past) with fallback events
+  // Use only database events for past events
   const pastDbEvents = dbEvents.filter(e => !e.is_upcoming);
-  const combinedPastEvents = [
-    ...pastDbEvents.map(e => ({
-      id: e.id,
-      title: e.title,
-      date: new Date(e.date),
-      dateStr: e.date_str,
-      location: e.location,
-      attendees: e.attendees || "50+",
-      description: e.description || "",
-      image: e.image_url || "/placeholder.svg",
-      fromDatabase: true,
-    })),
-    ...fallbackEvents.map(e => ({
-      id: e.id,
-      title: e.title,
-      date: e.date,
-      dateStr: e.dateStr,
-      location: e.location,
-      attendees: e.attendees,
-      description: e.description,
-      image: e.image,
-      fromDatabase: false,
-    }))
-  ].sort((a, b) => b.date.getTime() - a.date.getTime());
+  const pastEvents = pastDbEvents.map(e => ({
+    id: e.id,
+    title: e.title,
+    date: new Date(e.date),
+    dateStr: e.date_str,
+    location: e.location,
+    attendees: e.attendees || "50+",
+    description: e.description || "",
+    image: e.image_url || "/placeholder.svg",
+  })).sort((a, b) => b.date.getTime() - a.date.getTime());
   const handleEventClick = (eventId: string) => {
     window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
   };
@@ -231,7 +217,7 @@ const Events = () => {
             </motion.div>
 
             {/* Previous Events Grid */}
-            {combinedPastEvents.map((event, index) => (
+            {pastEvents.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 30 }}
