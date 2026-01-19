@@ -6,6 +6,40 @@ import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
 import { supabase } from "@/integrations/supabase/client";
 
+// Import event images
+import event1 from "@/assets/gallery/event-1.jpeg";
+import event2 from "@/assets/gallery/event-2.jpeg";
+import event3 from "@/assets/gallery/event-3.jpeg";
+import event4 from "@/assets/gallery/event-4.jpeg";
+import sprintChennai1 from "@/assets/events/sprint-imagine-cup-chennai-1.png";
+import vscodeDevDays1 from "@/assets/events/vscode-dev-days-1.png";
+import agentverseBengaluru1 from "@/assets/events/agentverse-bengaluru-1.png";
+import azureBot1 from "@/assets/events/azure-bot-1.png";
+import aiChai1 from "@/assets/events/ai-chai-1.png";
+
+// Map database image paths to imported assets
+const imageMap: Record<string, string> = {
+  '/assets/gallery/event-1.jpeg': event1,
+  '/assets/gallery/event-2.jpeg': event2,
+  '/assets/gallery/event-3.jpeg': event3,
+  '/assets/gallery/event-4.jpeg': event4,
+  '/assets/events/sprint-imagine-cup-chennai-1.png': sprintChennai1,
+  '/assets/events/vscode-dev-days-1.png': vscodeDevDays1,
+  '/assets/events/agentverse-bengaluru-1.png': agentverseBengaluru1,
+  '/assets/events/azure-bot-1.png': azureBot1,
+  '/assets/events/ai-chai-1.png': aiChai1,
+};
+
+const getEventImage = (imageUrl?: string): string => {
+  if (!imageUrl) return event1;
+  // Check if it's a mapped path
+  if (imageMap[imageUrl]) return imageMap[imageUrl];
+  // If it starts with http, use as-is (external URL)
+  if (imageUrl.startsWith('http')) return event1; // Fallback for invalid URLs
+  // Otherwise return the path or fallback
+  return event1;
+};
+
 
 interface DatabaseEvent {
   id: string;
@@ -93,7 +127,7 @@ const Events = () => {
     location: e.location,
     attendees: e.attendees || "50+",
     description: e.description || "",
-    image: e.image_url || "/placeholder.svg",
+    image: getEventImage(e.image_url),
   })).sort((a, b) => b.date.getTime() - a.date.getTime());
   const handleEventClick = (eventId: string) => {
     window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
