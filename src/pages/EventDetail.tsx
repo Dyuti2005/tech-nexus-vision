@@ -7,6 +7,37 @@ import Footer from "@/components/Footer";
 import { previousEvents } from "@/data/previousEvents";
 import { supabase } from "@/integrations/supabase/client";
 
+// Import event images
+import event1 from "@/assets/gallery/event-1.jpeg";
+import event2 from "@/assets/gallery/event-2.jpeg";
+import event3 from "@/assets/gallery/event-3.jpeg";
+import event4 from "@/assets/gallery/event-4.jpeg";
+import sprintChennai1 from "@/assets/events/sprint-imagine-cup-chennai-1.png";
+import vscodeDevDays1 from "@/assets/events/vscode-dev-days-1.png";
+import agentverseBengaluru1 from "@/assets/events/agentverse-bengaluru-1.png";
+import azureBot1 from "@/assets/events/azure-bot-1.png";
+import aiChai1 from "@/assets/events/ai-chai-1.png";
+
+// Map database image paths to imported assets
+const imageMap: Record<string, string> = {
+  '/assets/gallery/event-1.jpeg': event1,
+  '/assets/gallery/event-2.jpeg': event2,
+  '/assets/gallery/event-3.jpeg': event3,
+  '/assets/gallery/event-4.jpeg': event4,
+  '/assets/events/sprint-imagine-cup-chennai-1.png': sprintChennai1,
+  '/assets/events/vscode-dev-days-1.png': vscodeDevDays1,
+  '/assets/events/agentverse-bengaluru-1.png': agentverseBengaluru1,
+  '/assets/events/azure-bot-1.png': azureBot1,
+  '/assets/events/ai-chai-1.png': aiChai1,
+};
+
+const getEventImage = (imageUrl?: string): string => {
+  if (!imageUrl) return event1;
+  if (imageMap[imageUrl]) return imageMap[imageUrl];
+  if (imageUrl.startsWith('http')) return event1;
+  return event1;
+};
+
 interface Speaker {
   id: string;
   name: string;
@@ -101,7 +132,7 @@ const EventDetail = () => {
         attendees: dbEvent.attendees || "50+",
         description: dbEvent.description || "",
         highlights: dbEvent.highlights || [],
-        image: dbEvent.image_url || "/placeholder.svg",
+        image: getEventImage(dbEvent.image_url),
         gallery: dbEvent.gallery || undefined,
         speakers: speakers || [],
         fromDatabase: true,
