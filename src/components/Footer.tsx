@@ -24,32 +24,44 @@ const Footer = () => {
   const [communityLinks, setCommunityLinks] = useState(fallbackLinks.community);
 
   useEffect(() => {
-    const fetchFooterLinks = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('footer_links')
-          .select('*')
-          .eq('category', 'community')
-          .order('display_order', { ascending: true });
-
-        if (error) {
-          console.error('Error fetching footer links:', error);
-          return;
-        }
-
-        if (data && data.length > 0) {
-          setCommunityLinks(data.map(link => ({
-            name: link.label,
-            href: link.url,
-          })));
-        }
-      } catch (err) {
-        console.error('Error:', err);
-      }
-    };
-
     fetchFooterLinks();
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('footer-links-realtime')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'footer_links' }, () => {
+        fetchFooterLinks();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
+
+  const fetchFooterLinks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('footer_links')
+        .select('*')
+        .eq('category', 'community')
+        .order('display_order', { ascending: true });
+
+      if (error) {
+        console.error('Error fetching footer links:', error);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        setCommunityLinks(data.map(link => ({
+          name: link.label,
+          href: link.url,
+        })));
+      }
+    } catch (err) {
+      console.error('Error:', err);
+    }
+  };
 
   return (
     <footer className="relative pt-20 pb-10 overflow-hidden bg-muted/30">

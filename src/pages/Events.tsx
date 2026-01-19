@@ -30,6 +30,18 @@ const Events = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchEvents();
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('events-realtime')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'events' }, () => {
+        fetchEvents();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const fetchEvents = async () => {

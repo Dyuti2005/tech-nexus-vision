@@ -37,31 +37,43 @@ const FoundersSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchFounders = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('founders')
-          .select('*')
-          .order('display_order', { ascending: true });
-
-        if (error) {
-          console.error('Error fetching founders:', error);
-          setFounders(fallbackFounders);
-        } else if (data && data.length > 0) {
-          setFounders(data);
-        } else {
-          setFounders(fallbackFounders);
-        }
-      } catch (err) {
-        console.error('Error:', err);
-        setFounders(fallbackFounders);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchFounders();
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('founders-realtime')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'founders' }, () => {
+        fetchFounders();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
+
+  const fetchFounders = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('founders')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (error) {
+        console.error('Error fetching founders:', error);
+        setFounders(fallbackFounders);
+      } else if (data && data.length > 0) {
+        setFounders(data);
+      } else {
+        setFounders(fallbackFounders);
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      setFounders(fallbackFounders);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const gradients = ["from-primary to-secondary", "from-secondary to-primary"];
 
