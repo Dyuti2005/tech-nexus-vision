@@ -1,13 +1,122 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Users, ArrowLeft, CheckCircle, User } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { previousEvents } from "@/data/previousEvents";
+import { supabase } from "@/integrations/supabase/client";
+
+interface Speaker {
+  id: string;
+  name: string;
+  topic?: string;
+  time?: string;
+  image_url?: string;
+}
+
+interface EventData {
+  id: string;
+  title: string;
+  date: string;
+  dateStr: string;
+  location: string;
+  venue?: string;
+  attendees: string;
+  description: string;
+  highlights: string[];
+  image: string;
+  gallery?: string[];
+  speakers?: Speaker[];
+  fromDatabase?: boolean;
+}
 
 const EventDetail = () => {
   const { eventId } = useParams<{ eventId: string }>();
-  const event = previousEvents.find((e) => e.id === eventId);
+  const [event, setEvent] = useState<EventData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      if (!eventId) {
+        setLoading(false);
+        return;
+      }
+
+      // First try to fetch from database
+      const { data: dbEvent, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('id', eventId)
+        .single();
+
+      if (dbEvent && !error) {
+        // Fetch speakers for this event
+        const { data: speakers } = await supabase
+          .from('speakers')
+          .select('*')
+          .eq('event_id', eventId)
+          .order('created_at');
+
+        setEvent({
+          id: dbEvent.id,
+          title: dbEvent.title,
+          date: dbEvent.date,
+          dateStr: dbEvent.date_str,
+          location: dbEvent.location,
+          venue: dbEvent.venue || undefined,
+          attendees: dbEvent.attendees || "50+",
+          description: dbEvent.description || "",
+          highlights: dbEvent.highlights || [],
+          image: dbEvent.image_url || "/placeholder.svg",
+          gallery: dbEvent.gallery || undefined,
+          speakers: speakers || [],
+          fromDatabase: true,
+        });
+      } else {
+        // Fallback to local data
+        const localEvent = previousEvents.find((e) => e.id === eventId);
+        if (localEvent) {
+          setEvent({
+            id: localEvent.id,
+            title: localEvent.title,
+            date: localEvent.date.toISOString(),
+            dateStr: localEvent.dateStr,
+            location: localEvent.location,
+            venue: localEvent.venue,
+            attendees: localEvent.attendees,
+            description: localEvent.description,
+            highlights: localEvent.highlights,
+            image: localEvent.image,
+            gallery: localEvent.gallery,
+            speakers: localEvent.speakers?.map((s, i) => ({
+              id: `local-${i}`,
+              name: s.name,
+              topic: s.topic,
+              time: s.time,
+            })),
+            fromDatabase: false,
+          });
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchEvent();
+  }, [eventId]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen">
+        <Navigation />
+        <div className="pt-32 pb-16 container mx-auto px-4 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading event...</p>
+        </div>
+        <Footer />
+      </main>
+    );
+  }
 
   if (!event) {
     return (
@@ -101,24 +210,26 @@ const EventDetail = () => {
             </div>
 
             {/* Highlights */}
-            <div className="mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                Event <span className="gradient-text-reverse">Highlights</span>
-              </h2>
-              <div className="glass-card-emerald rounded-2xl p-6 md:p-8 glow-border-emerald">
-                <div className="grid gap-4">
-                  {event.highlights.map((highlight) => (
-                    <div
-                      key={highlight}
-                      className="flex items-start gap-3"
-                    >
-                      <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-foreground/90 text-lg">{highlight}</span>
-                    </div>
-                  ))}
+            {event.highlights && event.highlights.length > 0 && (
+              <div className="mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                  Event <span className="gradient-text-reverse">Highlights</span>
+                </h2>
+                <div className="glass-card-emerald rounded-2xl p-6 md:p-8 glow-border-emerald">
+                  <div className="grid gap-4">
+                    {event.highlights.map((highlight) => (
+                      <div
+                        key={highlight}
+                        className="flex items-start gap-3"
+                      >
+                        <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-foreground/90 text-lg">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Speakers & Sessions */}
             {event.speakers && event.speakers.length > 0 && (
@@ -129,7 +240,7 @@ const EventDetail = () => {
                 <div className="space-y-4">
                   {event.speakers.map((speaker, index) => (
                     <div
-                      key={speaker.name + index}
+                      key={speaker.id || speaker.name + index}
                       className="backdrop-blur-xl bg-white/80 dark:bg-white/10 rounded-2xl p-6 border border-emerald-200/50 dark:border-primary/30 hover:border-emerald-400 dark:hover:border-primary/50 transition-all shadow-lg"
                     >
                       <div className="flex flex-col md:flex-row md:items-center gap-4">

@@ -1,8 +1,18 @@
+import { useEffect, useState } from "react";
 import { Linkedin, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import footerLogo from "@/assets/technexus-logo-transparent.png";
 
-const footerLinks = {
+interface FooterLink {
+  id: string;
+  category: string;
+  label: string;
+  url: string;
+  display_order?: number;
+}
+
+const fallbackLinks = {
   community: [
     { name: "About Us", href: "/about" },
     { name: "Our Events", href: "/events" },
@@ -11,6 +21,36 @@ const footerLinks = {
 };
 
 const Footer = () => {
+  const [communityLinks, setCommunityLinks] = useState(fallbackLinks.community);
+
+  useEffect(() => {
+    const fetchFooterLinks = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('footer_links')
+          .select('*')
+          .eq('category', 'community')
+          .order('display_order', { ascending: true });
+
+        if (error) {
+          console.error('Error fetching footer links:', error);
+          return;
+        }
+
+        if (data && data.length > 0) {
+          setCommunityLinks(data.map(link => ({
+            name: link.label,
+            href: link.url,
+          })));
+        }
+      } catch (err) {
+        console.error('Error:', err);
+      }
+    };
+
+    fetchFooterLinks();
+  }, []);
+
   return (
     <footer className="relative pt-20 pb-10 overflow-hidden bg-muted/30">
       {/* Top Border Gradient */}
@@ -36,7 +76,7 @@ const Footer = () => {
           <div className="text-center lg:text-left">
             <h4 className="font-bold text-lg mb-6">Community</h4>
             <ul className="space-y-4">
-              {footerLinks.community.map((link) => (
+              {communityLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
