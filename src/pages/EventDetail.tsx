@@ -28,6 +28,14 @@ import agenticAiBengaluru6 from "@/assets/events/agentic-ai-bengaluru-6.jpg";
 import agenticAiBengaluru7 from "@/assets/events/agentic-ai-bengaluru-7.png";
 import agenticAiBengaluru8 from "@/assets/events/agentic-ai-bengaluru-8.jpg";
 import agenticAiBengaluru9 from "@/assets/events/agentic-ai-bengaluru-9.jpg";
+import agenticAiChennai1 from "@/assets/events/agentic-ai-chennai-1.jpg";
+import agenticAiChennai2 from "@/assets/events/agentic-ai-chennai-2.jpg";
+import agenticAiChennai3 from "@/assets/events/agentic-ai-chennai-3.jpg";
+import agenticAiChennai4 from "@/assets/events/agentic-ai-chennai-4.jpg";
+import agenticAiChennai5 from "@/assets/events/agentic-ai-chennai-5.jpg";
+import agenticAiChennai6 from "@/assets/events/agentic-ai-chennai-6.jpg";
+import agenticAiChennai7 from "@/assets/events/agentic-ai-chennai-7.jpg";
+import agenticAiChennai8 from "@/assets/events/agentic-ai-chennai-8.jpg";
 
 // Map database image paths to imported assets
 const imageMap: Record<string, string> = {
@@ -50,6 +58,14 @@ const imageMap: Record<string, string> = {
   '/assets/events/agentic-ai-bengaluru-7.png': agenticAiBengaluru7,
   '/assets/events/agentic-ai-bengaluru-8.jpg': agenticAiBengaluru8,
   '/assets/events/agentic-ai-bengaluru-9.jpg': agenticAiBengaluru9,
+  '/assets/events/agentic-ai-chennai-1.jpg': agenticAiChennai1,
+  '/assets/events/agentic-ai-chennai-2.jpg': agenticAiChennai2,
+  '/assets/events/agentic-ai-chennai-3.jpg': agenticAiChennai3,
+  '/assets/events/agentic-ai-chennai-4.jpg': agenticAiChennai4,
+  '/assets/events/agentic-ai-chennai-5.jpg': agenticAiChennai5,
+  '/assets/events/agentic-ai-chennai-6.jpg': agenticAiChennai6,
+  '/assets/events/agentic-ai-chennai-7.jpg': agenticAiChennai7,
+  '/assets/events/agentic-ai-chennai-8.jpg': agenticAiChennai8,
 };
 
 const getEventImage = (imageUrl?: string): string => {
