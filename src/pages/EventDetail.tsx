@@ -23,6 +23,10 @@ import agenticAiBengaluru2 from "@/assets/events/agentic-ai-bengaluru-2.jpg";
 import agenticAiBengaluru3 from "@/assets/events/agentic-ai-bengaluru-3.jpg";
 import agenticAiBengaluru4 from "@/assets/events/agentic-ai-bengaluru-4.jpg";
 import agenticAiBengaluru5 from "@/assets/events/agentic-ai-bengaluru-5.png";
+import agenticAiBengaluru6 from "@/assets/events/agentic-ai-bengaluru-6.jpg";
+import agenticAiBengaluru7 from "@/assets/events/agentic-ai-bengaluru-7.png";
+import agenticAiBengaluru8 from "@/assets/events/agentic-ai-bengaluru-8.jpg";
+import agenticAiBengaluru9 from "@/assets/events/agentic-ai-bengaluru-9.jpg";
 
 // Map database image paths to imported assets
 const imageMap: Record<string, string> = {
@@ -41,6 +45,10 @@ const imageMap: Record<string, string> = {
   '/assets/events/agentic-ai-bengaluru-3.jpg': agenticAiBengaluru3,
   '/assets/events/agentic-ai-bengaluru-4.jpg': agenticAiBengaluru4,
   '/assets/events/agentic-ai-bengaluru-5.png': agenticAiBengaluru5,
+  '/assets/events/agentic-ai-bengaluru-6.jpg': agenticAiBengaluru6,
+  '/assets/events/agentic-ai-bengaluru-7.png': agenticAiBengaluru7,
+  '/assets/events/agentic-ai-bengaluru-8.jpg': agenticAiBengaluru8,
+  '/assets/events/agentic-ai-bengaluru-9.jpg': agenticAiBengaluru9,
 };
 
 const getEventImage = (imageUrl?: string): string => {
