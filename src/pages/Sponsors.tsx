@@ -146,7 +146,7 @@ const Sponsors = () => {
               Interested in sponsoring TechNexus Community? We'd love to hear from you.
             </p>
             <a
-              href="https://www.linkedin.com/company/technexus-community/"
+              href="https://www.linkedin.com/company/technexuscommunity/posts/?feedView=all"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 btn-primary-glow px-8 py-4 rounded-2xl text-primary-foreground font-semibold"
