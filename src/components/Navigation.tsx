@@ -42,8 +42,8 @@ const Navigation = () => {
         <div className="container mx-auto px-4 flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img alt="TechNexus Community" className="rounded-none object-contain" style={{
-            height: '100px',
-            width: '280px',
+            height: '120px',
+            width: 'auto',
             background: 'transparent',
             boxShadow: 'none'
           }} src="/lovable-uploads/a6574e27-fb04-4dd3-8207-a5844054b331.png" />
