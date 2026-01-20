@@ -41,8 +41,9 @@ const Navigation = () => {
     }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass-card py-3 shadow-lg" : "bg-transparent py-5"}`}>
         <div className="container mx-auto px-4 flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img alt="TechNexus Community" className="w-auto rounded-none object-scale-down" style={{
-            height: '80px',
+            <img alt="TechNexus Community" className="rounded-none object-contain" style={{
+            height: '100px',
+            width: '280px',
             background: 'transparent',
             boxShadow: 'none'
           }} src="/lovable-uploads/a6574e27-fb04-4dd3-8207-a5844054b331.png" />
