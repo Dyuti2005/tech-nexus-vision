@@ -27,7 +27,7 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">
+      <div className="container mx-auto px-4 pt-48 pb-16 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
 
           {/* Main Heading */}
