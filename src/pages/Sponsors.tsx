@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, Award, Handshake, Mail } from "lucide-react";
+import { Heart, Award, Handshake, Linkedin } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import sponsorsBanner from "@/assets/sponsors/sponsors-banner.png";
@@ -146,10 +146,12 @@ const Sponsors = () => {
               Interested in sponsoring TechNexus Community? We'd love to hear from you.
             </p>
             <a
-              href="mailto:sponsors@technexuscommunity.com"
+              href="https://www.linkedin.com/company/technexus-community/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 btn-primary-glow px-8 py-4 rounded-2xl text-primary-foreground font-semibold"
             >
-              <Mail className="w-5 h-5" />
+              <Linkedin className="w-5 h-5" />
               <span>Contact Us</span>
             </a>
           </motion.div>
