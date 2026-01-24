@@ -88,7 +88,7 @@ const TestimonialsSection = () => {
             Testimonials
           </span>
           <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
-            What Our <span className="gradient-text">Members Say</span>
+            What Our <span className="gradient-text">Experts Say</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Hear from industry leaders and community members about their TechNexus experience

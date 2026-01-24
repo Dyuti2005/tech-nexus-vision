@@ -1,125 +1,85 @@
-import { useEffect, useState } from "react";
-import { Linkedin, MapPin } from "lucide-react";
+import { Linkedin, Instagram, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import footerLogo from "@/assets/technexus-logo-transparent.png";
 
-interface FooterLink {
-  id: string;
-  category: string;
-  label: string;
-  url: string;
-  display_order?: number;
-}
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Events", href: "/events" },
+  { name: "About", href: "/about" },
+  { name: "Sponsors", href: "/sponsors" },
+];
 
-const fallbackLinks = {
-  community: [
-    { name: "About Us", href: "/about" },
-    { name: "Our Events", href: "/events" },
-    { name: "Sponsors", href: "/sponsors" },
-  ],
-};
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/technexuscommunity/posts/?feedView=all",
+    icon: Linkedin,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/p/DTo2_1-CHuX/",
+    icon: Instagram,
+  },
+  {
+    name: "Meetup",
+    href: "https://www.meetup.com/technexus-community/",
+    icon: Users,
+  },
+];
 
 const Footer = () => {
-  const [communityLinks, setCommunityLinks] = useState(fallbackLinks.community);
-
-  useEffect(() => {
-    fetchFooterLinks();
-
-    // Subscribe to real-time updates
-    const channel = supabase
-      .channel('footer-links-realtime')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'footer_links' }, () => {
-        fetchFooterLinks();
-      })
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
-
-  const fetchFooterLinks = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('footer_links')
-        .select('*')
-        .eq('category', 'community')
-        .order('display_order', { ascending: true });
-
-      if (error) {
-        console.error('Error fetching footer links:', error);
-        return;
-      }
-
-      if (data && data.length > 0) {
-        setCommunityLinks(data.map(link => ({
-          name: link.label,
-          href: link.url,
-        })));
-      }
-    } catch (err) {
-      console.error('Error:', err);
-    }
-  };
-
   return (
-    <footer className="relative pt-20 pb-10 overflow-hidden bg-muted/30">
+    <footer className="relative pt-16 pb-8 overflow-hidden bg-muted/30">
       {/* Top Border Gradient */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-start justify-start gap-16 lg:gap-24 mb-16">
-          {/* Brand Column */}
-          <div className="max-w-sm text-left">
-            <img src={footerLogo} alt="TechNexus Community" className="h-16 mb-6 mix-blend-multiply dark:mix-blend-screen" />
-            <p className="text-muted-foreground mb-6 leading-relaxed text-base">
-              India's premier Microsoft AI & Cloud technology community. Learn, connect, and grow with 5000+ tech professionals.
-            </p>
-            
-            {/* Location */}
-            <div className="flex items-center justify-start gap-2 text-sm text-muted-foreground">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span>Bengaluru • Chennai</span>
-            </div>
+      <div className="container mx-auto px-10">
+        {/* Main Footer Content - 3 Column Layout */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
+          {/* LEFT: Logo */}
+          <div className="flex-shrink-0">
+            <Link to="/">
+              <img 
+                src={footerLogo} 
+                alt="TechNexus Community" 
+                className="h-[50px] w-auto object-contain mix-blend-multiply dark:mix-blend-screen"
+                style={{ background: 'transparent' }}
+              />
+            </Link>
           </div>
 
-          {/* Community Links */}
-          <div className="text-left">
-            <h4 className="font-bold text-lg mb-6">Community</h4>
-            <ul className="space-y-4">
-              {communityLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors text-base"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* CENTER: Navigation Links */}
+          <nav className="flex items-center gap-6 md:gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm md:text-base font-medium"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
 
-          {/* Connect */}
-          <div className="text-left">
-            <h4 className="font-bold text-lg mb-6">Connect</h4>
-            <a
-              href="https://www.linkedin.com/company/technexuscommunity/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors text-base group"
-            >
-              <span className="w-10 h-10 rounded-xl bg-foreground/5 group-hover:bg-primary/10 group-hover:text-primary flex items-center justify-center transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </span>
-              <span>LinkedIn</span>
-            </a>
+          {/* RIGHT: Social Links */}
+          <div className="flex items-center gap-3">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-foreground/5 hover:bg-primary/10 hover:text-primary flex items-center justify-center transition-colors"
+                aria-label={social.name}
+              >
+                <social.icon className="w-5 h-5" />
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border">
+        <div className="pt-6 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} TechNexus Community. All rights reserved.
