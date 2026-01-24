@@ -69,23 +69,23 @@ const Footer = () => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-start justify-center gap-16 lg:gap-24 mb-16">
+        <div className="flex flex-col lg:flex-row items-start justify-start gap-16 lg:gap-24 mb-16">
           {/* Brand Column */}
-          <div className="max-w-sm text-center lg:text-left">
-            <img src={footerLogo} alt="TechNexus Community" className="h-16 mb-6 mx-auto lg:mx-0 mix-blend-multiply dark:mix-blend-screen" />
+          <div className="max-w-sm text-left">
+            <img src={footerLogo} alt="TechNexus Community" className="h-16 mb-6 mix-blend-multiply dark:mix-blend-screen" />
             <p className="text-muted-foreground mb-6 leading-relaxed text-base">
               India's premier Microsoft AI & Cloud technology community. Learn, connect, and grow with 5000+ tech professionals.
             </p>
             
             {/* Location */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center justify-start gap-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4 text-primary" />
               <span>Bengaluru • Chennai</span>
             </div>
           </div>
 
           {/* Community Links */}
-          <div className="text-center lg:text-left">
+          <div className="text-left">
             <h4 className="font-bold text-lg mb-6">Community</h4>
             <ul className="space-y-4">
               {communityLinks.map((link) => (
@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
 
           {/* Connect */}
-          <div className="text-center lg:text-left">
+          <div className="text-left">
             <h4 className="font-bold text-lg mb-6">Connect</h4>
             <a
               href="https://www.linkedin.com/company/technexuscommunity/"
