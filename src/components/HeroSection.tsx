@@ -228,70 +228,20 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* About Section */}
+      {/* Scroll Indicator */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="mt-20 max-w-4xl mx-auto"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div
-          className="relative p-10 md:p-12 rounded-3xl overflow-hidden border border-white/20"
-          style={{
-            background: 'rgba(255, 255, 255, 0.75)',
-            backdropFilter: 'blur(25px)',
-            WebkitBackdropFilter: 'blur(25px)',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5) inset',
-          }}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-6 h-10 rounded-full border-2 border-foreground/20 flex items-start justify-center p-2"
         >
-          {/* Subtle Glowing Border */}
-          <motion.div 
-            animate={{ 
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="absolute inset-0 rounded-3xl pointer-events-none"
-            style={{
-              padding: '1px',
-              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--primary)))',
-              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-              WebkitMaskComposite: 'xor',
-              maskComposite: 'exclude',
-            }}
-          />
-
-          <div className="relative z-10 text-center">
-            {/* Non-Profit Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span className="text-sm font-semibold text-primary tracking-wide">Non-Profit Initiative</span>
-            </div>
-
-            {/* Headline */}
-            <h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wide mb-6"
-              style={{
-                background: 'linear-gradient(135deg, #1e3a5f 0%, #14b8a6 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              Democratizing Intelligence. Driven by Purpose.
-            </h2>
-
-            {/* Sub-heading */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Founded on the principle of giving back, TechNexus is a non-profit movement dedicated to making high-end tech education accessible to all. We host monthly deep-dive workshops on AI offered as a pure community contribution to empower the next generation.
-            </p>
-          </div>
-        </div>
+          <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
+        </motion.div>
       </motion.div>
     </section>
   );
