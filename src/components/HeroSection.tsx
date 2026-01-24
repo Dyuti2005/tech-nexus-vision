@@ -35,10 +35,15 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6"
+            className="text-[4rem] font-extrabold tracking-tight mb-6"
+            style={{
+              background: 'linear-gradient(135deg, #1e3a5f 0%, #14b8a6 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
           >
-            Empowering Tomorrow's{" "}
-            <span className="gradient-text">Tech Leaders</span>
+            India's Fastest Growing Tech Community
           </motion.h1>
 
           {/* Subheading */}
@@ -46,10 +51,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12"
+            className="text-xl text-muted-foreground max-w-[800px] mx-auto mb-12 text-center opacity-90"
           >
-            Join 5000+ professionals learning Microsoft AI, Azure Cloud, and cutting-edge 
-            technologies through hands-on workshops, expert sessions, and vibrant community events.
+            The premier destination for ambitious tech professionals. Master next-gen intelligence and scalable architecture through high-impact workshops and elite peer networking.
           </motion.p>
 
           {/* Upcoming Event Card - Frosted Glass Premium */}
@@ -204,9 +208,9 @@ const HeroSection = () => {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
           >
             {[
-              { number: "100+", label: "Hours of Content" },
-              { number: "150+", label: "Events Organised" },
-              { number: "5000+", label: "Community Members" },
+              { number: "500+", label: "Hours of Content" },
+              { number: "50+", label: "Events Organised" },
+              { number: "15K+", label: "Community Members" },
               { number: "2", label: "City Chapters" },
             ].map((stat, index) => (
               <motion.div
