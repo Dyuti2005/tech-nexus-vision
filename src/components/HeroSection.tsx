@@ -27,7 +27,7 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 pt-48 pb-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 pt-32 sm:pt-40 md:pt-48 pb-16 md:pb-24 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
 
           {/* Main Heading */}
@@ -35,7 +35,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[4rem] font-extrabold tracking-tight mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[4rem] font-extrabold tracking-tight mb-4 sm:mb-6 px-2"
             style={{
               background: 'linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%)',
               WebkitBackgroundClip: 'text',
@@ -51,7 +51,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-muted-foreground max-w-[800px] mx-auto mb-12 text-center opacity-90"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-[800px] mx-auto mb-8 sm:mb-12 text-center opacity-90 px-4"
           >
             The premier destination for ambitious tech professionals. Master next-gen intelligence and scalable architecture through high-impact workshops and elite peer networking.
           </motion.p>
@@ -61,7 +61,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative p-8 md:p-10 rounded-3xl max-w-3xl mx-auto mb-10 overflow-hidden border border-white/20"
+            className="relative p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl max-w-3xl mx-auto mb-8 sm:mb-10 overflow-hidden border border-white/20"
             style={{
               background: 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(24px)',
@@ -128,7 +128,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
-                className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6"
+                className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight mb-4 sm:mb-6 px-2"
                 style={{
                   background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%)',
                   WebkitBackgroundClip: 'text',
@@ -144,16 +144,16 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
+                className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-8"
               >
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>February 7th, 2026</span>
+                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
+                  <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>February 7th, 2026</span>
                 </div>
-                <div className="hidden sm:block w-1.5 h-1.5 rounded-full" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
+                <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>Polaris School of Technology, Brookefield</span>
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
+                  <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>Polaris School of Technology, Brookefield</span>
                 </div>
               </motion.div>
 
@@ -168,7 +168,7 @@ const HeroSection = () => {
                   href="https://hostwebs.site/DWu3hb"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-white font-bold text-lg group overflow-hidden"
+                  className="relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"
                   style={{
                     background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%)',
                   }}
@@ -190,10 +190,10 @@ const HeroSection = () => {
                       filter: 'blur(20px)',
                     }}
                   />
-                  <span className="relative z-10 flex items-center gap-3">
-                    <ExternalLink className="w-5 h-5" />
-                    <span>Register via Meetup</span>
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                    <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="whitespace-nowrap">Register via Meetup</span>
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                   </span>
                 </a>
               </motion.div>
@@ -205,7 +205,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto mb-16 sm:mb-0"
           >
             {[
               { number: "500+", label: "Hours of Content" },
@@ -218,10 +218,10 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="glass-card px-6 py-4 rounded-2xl"
+                className="glass-card px-3 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl"
               >
-                <div className="stat-number whitespace-nowrap pr-1">{stat.number}</div>
-                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter gradient-text whitespace-nowrap">{stat.number}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mt-1">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

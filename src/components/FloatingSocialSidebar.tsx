@@ -18,7 +18,7 @@ const socialLinks = [
   {
     name: "Meetup",
     href: "https://www.meetup.com/technexus-community/",
-    icon: null, // Custom SVG for Meetup
+    icon: null,
     color: "#ED1C40",
   },
 ];
@@ -47,16 +47,17 @@ const FloatingSocialSidebar = () => {
         transition={{ duration: 0.5, delay: 0.5 }}
         className="fixed left-0 top-1/2 -translate-y-1/2 z-[9999] hidden md:flex flex-col gap-4 p-3"
         style={{
-          background: "rgba(255, 255, 255, 0.1)",
+          background: "rgba(255, 255, 255, 0.15)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           borderRadius: "0 12px 12px 0",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
+          border: "1px solid rgba(255, 255, 255, 0.25)",
           borderLeft: "none",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
         }}
       >
         {socialLinks.map((social, index) => (
-          <motion.a
+          <a
             key={social.name}
             href={social.href}
             target="_blank"
@@ -64,28 +65,31 @@ const FloatingSocialSidebar = () => {
             className="relative flex items-center group"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            {/* Icon */}
-            <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300"
-              style={{
+            {/* Icon with 360° roll animation */}
+            <motion.div
+              className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300"
+              animate={{
+                rotate: hoveredIndex === index ? 360 : 0,
                 backgroundColor: hoveredIndex === index ? `${social.color}20` : "transparent",
+              }}
+              transition={{
+                rotate: { duration: 0.5, ease: "easeInOut" },
+                backgroundColor: { duration: 0.3 },
               }}
             >
               {social.icon ? (
                 <social.icon
-                  className="w-5 h-5 transition-colors duration-300"
+                  className="w-5 h-5"
                   style={{ color: social.color }}
                 />
               ) : (
                 <MeetupIcon
-                  className="w-5 h-5 transition-colors duration-300"
+                  className="w-5 h-5"
                   style={{ color: social.color }}
                 />
               )}
-            </div>
+            </motion.div>
 
             {/* Slide-out Label */}
             <motion.span
@@ -98,49 +102,51 @@ const FloatingSocialSidebar = () => {
               transition={{ duration: 0.2 }}
               className="absolute left-12 whitespace-nowrap text-sm font-medium px-3 py-1 rounded-md overflow-hidden"
               style={{
-                background: "rgba(255, 255, 255, 0.9)",
+                background: "rgba(255, 255, 255, 0.95)",
                 color: social.color,
-                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.15)",
               }}
             >
               {social.name}
             </motion.span>
-          </motion.a>
+          </a>
         ))}
       </motion.div>
 
       {/* Mobile Footer Row */}
       <div className="fixed bottom-0 left-0 right-0 z-[9999] md:hidden">
         <div
-          className="flex items-center justify-center gap-6 py-3 px-4"
+          className="flex items-center justify-center gap-6 py-4 px-4"
           style={{
-            background: "rgba(255, 255, 255, 0.1)",
+            background: "rgba(255, 255, 255, 0.15)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
-            borderTop: "1px solid rgba(255, 255, 255, 0.2)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.25)",
+            boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.1)",
           }}
         >
-          {socialLinks.map((social) => (
+          {socialLinks.map((social, index) => (
             <motion.a
               key={social.name}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-lg flex items-center justify-center"
+              whileTap={{ rotate: 360 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="w-12 h-12 rounded-xl flex items-center justify-center"
               style={{
-                backgroundColor: `${social.color}15`,
+                backgroundColor: `${social.color}20`,
+                border: `1px solid ${social.color}30`,
               }}
             >
               {social.icon ? (
                 <social.icon
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   style={{ color: social.color }}
                 />
               ) : (
                 <MeetupIcon
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   style={{ color: social.color }}
                 />
               )}
