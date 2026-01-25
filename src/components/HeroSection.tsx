@@ -37,7 +37,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[4rem] font-extrabold tracking-tight mb-6"
             style={{
-              background: 'linear-gradient(135deg, #1e3a5f 0%, #14b8a6 100%)',
+              background: 'linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
