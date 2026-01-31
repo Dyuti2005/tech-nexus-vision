@@ -129,11 +129,11 @@ const FoundersSection = () => {
 
                   {/* Avatar with Image */}
                   <div className="relative mb-6 inline-block">
-                    <div className={`w-32 h-32 rounded-2xl bg-gradient-to-br ${gradients[index % 2]} overflow-hidden shadow-lg mx-auto`}>
+                    <div className={`w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br ${gradients[index % 2]} overflow-hidden shadow-lg mx-auto`}>
                       <img 
                         src={founder.image_url || "/placeholder.svg"} 
                         alt={founder.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto object-cover"
                       />
                     </div>
                     <motion.div

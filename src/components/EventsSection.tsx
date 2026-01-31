@@ -9,7 +9,7 @@ const EventsSection = () => {
         <img 
           src={techNexusWatermark} 
           alt="" 
-          className="w-[600px] md:w-[800px] opacity-[0.05]"
+          className="w-full max-w-[400px] md:max-w-[800px] opacity-[0.05] mx-auto"
           aria-hidden="true"
         />
       </div>

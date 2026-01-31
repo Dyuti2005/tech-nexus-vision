@@ -321,7 +321,7 @@ export default function EventsManager() {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="title">Title *</Label>
                   <Input
@@ -343,7 +343,7 @@ export default function EventsManager() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="date_str">Display Date *</Label>
                   <Input
@@ -366,7 +366,7 @@ export default function EventsManager() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="venue">Venue</Label>
                   <Input
@@ -418,7 +418,7 @@ export default function EventsManager() {
                       <img 
                         src={imagePreview} 
                         alt="Event preview" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto object-cover"
                       />
                       <Button
                         type="button"
@@ -589,7 +589,7 @@ export default function EventsManager() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label>Add Speaker</Label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                 <Input
                   placeholder="Name"
                   value={speakerForm.name}

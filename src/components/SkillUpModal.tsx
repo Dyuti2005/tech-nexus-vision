@@ -154,7 +154,7 @@ const SkillUpModal = ({ isOpen, onClose }: SkillUpModalProps) => {
               {/* Content */}
               <div className="flex-1 overflow-y-auto p-6 space-y-8">
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div className="glass-card-emerald p-4 rounded-xl text-center">
                     <Clock className="w-6 h-6 text-primary mx-auto mb-2" />
                     <div className="text-2xl font-bold">16+</div>

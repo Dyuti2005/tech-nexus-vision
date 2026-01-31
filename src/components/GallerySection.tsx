@@ -42,8 +42,8 @@ const GallerySection = ({ gallery, title, imageMap }: GallerySectionProps) => {
         Event <span className="gradient-text-reverse">Gallery</span>
       </h2>
       
-      {/* Gallery Grid - 3 images in a row */}
-      <div className="grid grid-cols-3 gap-4">
+      {/* Gallery Grid - responsive: 1 / 2 / 3 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <AnimatePresence mode="popLayout">
           {displayedImages.map((img, index) => {
             const isLastVisible = index === 2 && hasMoreImages && !isExpanded;
@@ -67,7 +67,7 @@ const GallerySection = ({ gallery, title, imageMap }: GallerySectionProps) => {
                 <img
                   src={getImageSrc(img)}
                   alt={`${title} - Photo ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                 />
@@ -196,7 +196,7 @@ const GallerySection = ({ gallery, title, imageMap }: GallerySectionProps) => {
                   <img
                     src={getImageSrc(img)}
                     alt={`Thumbnail ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-cover"
                   />
                 </button>
               ))}

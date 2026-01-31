@@ -293,6 +293,10 @@
   }
 
   .animate-marquee {
-    animation: marquee 40s linear infinite;
+    /* slower default, can be overridden via --marquee-duration */
+    animation: marquee var(--marquee-duration, 60s) linear infinite;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 }

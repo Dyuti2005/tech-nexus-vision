@@ -245,7 +245,7 @@ const EventDetail = () => {
           <img
             src={event.image}
             alt={event.title}
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover"
             loading="eager"
             decoding="sync"
             fetchPriority="high"

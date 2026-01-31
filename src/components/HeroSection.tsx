@@ -10,7 +10,7 @@ const HeroSection = () => {
       
       {/* Logo Watermark */}
       <div className="logo-watermark">
-        <img src={watermarkLogo} alt="" className="w-full h-full object-contain opacity-[0.08] mix-blend-multiply dark:mix-blend-screen" />
+        <img src={watermarkLogo} alt="" className="w-full h-auto max-w-[200px] md:max-w-[400px] mx-auto object-contain opacity-[0.08] mix-blend-multiply dark:mix-blend-screen" />
       </div>
 
       {/* Animated Background Elements */}
@@ -18,16 +18,16 @@ const HeroSection = () => {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full border border-primary/5"
+          className="absolute -top-1/4 -right-1/4 w-[400px] h-[400px] md:w-[800px] md:h-[800px] rounded-full border border-primary/5"
         />
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full border border-secondary/5"
+          className="absolute -bottom-1/4 -left-1/4 w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full border border-secondary/5"
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 pt-32 sm:pt-40 md:pt-48 pb-16 md:pb-24 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-32 md:pt-48 pb-12 md:pb-24 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
 
           {/* Main Heading */}
@@ -35,7 +35,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[4rem] font-extrabold tracking-tight mb-4 sm:mb-6 px-2"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-center max-w-4xl mx-auto mb-4 sm:mb-6 px-2 whitespace-normal"
             style={{
               background: 'linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%)',
               WebkitBackgroundClip: 'text',
@@ -168,7 +168,7 @@ const HeroSection = () => {
                   href="https://hostwebs.site/DWu3hb"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"
+                  className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-10 py-2.5 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"
                   style={{
                     background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%)',
                   }}
@@ -205,7 +205,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto mb-16 sm:mb-0"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto mb-16 sm:mb-0"
           >
             {[
               { number: "500+", label: "Hours of Content" },
@@ -228,21 +228,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-foreground/20 flex items-start justify-center p-2"
-        >
-          <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
-        </motion.div>
-      </motion.div>
+      
     </section>
   );
 };

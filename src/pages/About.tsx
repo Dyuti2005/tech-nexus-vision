@@ -190,7 +190,7 @@ const About = () => {
                       <img 
                         src={founder.image} 
                         alt={founder.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto object-cover"
                       />
                     </div>
                   ) : (

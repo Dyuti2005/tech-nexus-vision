@@ -149,7 +149,7 @@ const PreviousEventsSection = () => {
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-background dark:via-background/40" />
                     

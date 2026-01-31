@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Clock, ExternalLink, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
@@ -131,9 +132,7 @@ const Events = () => {
     description: e.description || "",
     image: getEventImage(e.image_url),
   })).sort((a, b) => b.date.getTime() - a.date.getTime());
-  const handleEventClick = (eventId: string) => {
-    window.open(`/events/${eventId}`, "_blank", "noopener,noreferrer");
-  };
+
 
   return (
     <main className="min-h-screen">
@@ -175,7 +174,7 @@ const Events = () => {
       {/* All Events Grid */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             
             {/* Upcoming Event - Featured Card */}
             <motion.div
@@ -253,78 +252,83 @@ const Events = () => {
             </motion.div>
 
             {/* Previous Events Grid */}
-            {pastEvents.map((event, index) => (
+            {pastEvents.filter(e => e.id).map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + index * 0.05 }}
-                onClick={() => handleEventClick(event.id)}
-                className="group cursor-pointer"
+                className="group cursor-pointer w-full min-w-0"
               >
-                <div 
-                  className="relative h-full rounded-2xl overflow-hidden transition-all duration-500 
-                             backdrop-blur-xl bg-white/80 dark:bg-white/10
-                             border border-emerald-200/50 dark:border-primary/30 
-                             hover:border-emerald-400 dark:hover:border-primary/60
-                             shadow-lg hover:shadow-xl hover:shadow-emerald-500/20
-                             hover:scale-[1.02] transform-gpu"
+                <Link
+                  to={`/events/${encodeURIComponent(event.id)}`}
+                  aria-label={`View details for ${event.title || 'event'}`}
+                  className="block w-full h-full min-w-0"
                 >
-                  {/* Image */}
-                  <div className="aspect-video relative overflow-hidden">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-background dark:via-background/40" />
-                    
-                    {/* External Link Icon */}
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <div className="p-1.5 rounded-full backdrop-blur-xl bg-emerald-500/90 border border-emerald-400">
-                        <ExternalLink className="w-3 h-3 text-white" />
+                  <div 
+                    className="relative h-full rounded-2xl overflow-hidden transition-all duration-500 w-full min-w-0
+                               backdrop-blur-xl bg-white/80 dark:bg-white/10
+                               border border-emerald-200/50 dark:border-primary/30 
+                               hover:border-emerald-400 dark:hover:border-primary/60
+                               shadow-lg hover:shadow-xl hover:shadow-emerald-500/20
+                               hover:scale-[1.02] transform-gpu"
+                  >
+                    {/* Image */}
+                    <div className="aspect-video relative overflow-hidden w-full">
+                      <img
+                        src={event.image}
+                        alt={event.title || 'Event image'}
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-background dark:via-background/40" />
+                      
+                      {/* External Link Icon */}
+                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <div className="p-1.5 rounded-full backdrop-blur-xl bg-emerald-500/90 border border-emerald-400">
+                          <ExternalLink className="w-3 h-3 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Date Badge */}
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-1 rounded-full backdrop-blur-xl bg-white/90 dark:bg-background/80 border border-emerald-200/50 dark:border-primary/30 text-xs font-semibold text-slate-700 dark:text-foreground">
+                          {event.dateStr ?? 'Date TBA'}
+                        </span>
                       </div>
                     </div>
 
-                    {/* Date Badge */}
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-1 rounded-full backdrop-blur-xl bg-white/90 dark:bg-background/80 border border-emerald-200/50 dark:border-primary/30 text-xs font-semibold text-slate-700 dark:text-foreground">
-                        {event.dateStr}
-                      </span>
+                    {/* Content */}
+                    <div className="relative p-4 text-center w-full min-w-0">
+                      <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent line-clamp-2 min-w-0">
+                        {event.title ?? 'Untitled Event'}
+                      </h3>
+                      
+                      <p className="text-slate-600 dark:text-muted-foreground mb-3 line-clamp-2 text-xs min-w-0 break-words">
+                        {event.description ?? ''}
+                      </p>
+
+                      {/* Location & Attendees */}
+                      <div className="flex flex-wrap justify-center gap-3 text-xs">
+                        <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
+                          <MapPin className="w-3 h-3 text-emerald-500" />
+                          <span>{event.location ?? 'Location TBA'}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
+                          <Users className="w-3 h-3 text-cyan-500" />
+                          <span>{event.attendees ?? '—'}</span>
+                        </div>
+                      </div>
+
+                      {/* View Details CTA */}
+                      <div className="mt-3 pt-3 border-t border-emerald-100 dark:border-white/10">
+                        <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-primary font-semibold text-xs group-hover:gap-2 transition-all">
+                          View Details
+                          <ExternalLink className="w-3 h-3" />
+                        </span>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <div className="relative p-4 text-center">
-                    <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent line-clamp-2">
-                      {event.title}
-                    </h3>
-                    
-                    <p className="text-slate-600 dark:text-muted-foreground mb-3 line-clamp-2 text-xs">
-                      {event.description}
-                    </p>
-
-                    {/* Location & Attendees */}
-                    <div className="flex flex-wrap justify-center gap-3 text-xs">
-                      <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
-                        <MapPin className="w-3 h-3 text-emerald-500" />
-                        <span>{event.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
-                        <Users className="w-3 h-3 text-cyan-500" />
-                        <span>{event.attendees}</span>
-                      </div>
-                    </div>
-
-                    {/* View Details CTA */}
-                    <div className="mt-3 pt-3 border-t border-emerald-100 dark:border-white/10">
-                      <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-primary font-semibold text-xs group-hover:gap-2 transition-all">
-                        View Details
-                        <ExternalLink className="w-3 h-3" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>

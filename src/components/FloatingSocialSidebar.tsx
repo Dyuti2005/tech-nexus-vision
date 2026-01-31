@@ -113,47 +113,7 @@ const FloatingSocialSidebar = () => {
         ))}
       </motion.div>
 
-      {/* Mobile Footer Row */}
-      <div className="fixed bottom-0 left-0 right-0 z-[9999] md:hidden">
-        <div
-          className="flex items-center justify-center gap-6 py-4 px-4"
-          style={{
-            background: "rgba(255, 255, 255, 0.15)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            borderTop: "1px solid rgba(255, 255, 255, 0.25)",
-            boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          {socialLinks.map((social, index) => (
-            <motion.a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileTap={{ rotate: 360 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="w-12 h-12 rounded-xl flex items-center justify-center"
-              style={{
-                backgroundColor: `${social.color}20`,
-                border: `1px solid ${social.color}30`,
-              }}
-            >
-              {social.icon ? (
-                <social.icon
-                  className="w-6 h-6"
-                  style={{ color: social.color }}
-                />
-              ) : (
-                <MeetupIcon
-                  className="w-6 h-6"
-                  style={{ color: social.color }}
-                />
-              )}
-            </motion.a>
-          ))}
-        </div>
-      </div>
+
     </>
   );
 };

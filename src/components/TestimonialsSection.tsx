@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Quote } from "lucide-react";
 import abhilekhImg from "@/assets/speakers/abhilekh-verma.png";
 import prasannaImg from "@/assets/speakers/prasanna-nagarajan.jpg";
@@ -36,7 +37,7 @@ const testimonials = [
 const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-  <div className="flex-shrink-0 w-[350px] md:w-[400px] mx-3">
+  <div className="flex-shrink-0 w-[260px] sm:w-[300px] md:w-[350px] mx-3">
     <div className="glass-card p-6 md:p-8 rounded-3xl h-full relative group/card">
       {/* Quote Icon */}
       <div className="absolute top-6 right-6">
@@ -54,7 +55,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
           <img
             src={testimonial.image}
             alt={testimonial.name}
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover"
           />
         </div>
         <div>
@@ -74,6 +75,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
 );
 
 const TestimonialsSection = () => {
+  const [isPaused, setIsPaused] = useState(false);
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -102,12 +104,43 @@ const TestimonialsSection = () => {
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
         
-        {/* Marquee Track */}
-        <div className="group flex w-max animate-marquee hover:[animation-play-state:paused]">
+        {/* Small screens: horizontal scroll */}
+      <div className="md:hidden overflow-x-auto px-4 py-4">
+        <div className="flex gap-4">
           {duplicatedTestimonials.map((testimonial, index) => (
             <TestimonialCard key={`${testimonial.name}-${index}`} testimonial={testimonial} />
           ))}
         </div>
+      </div>
+
+      {/* Desktop/tablet marquee */}
+      <div className="hidden md:block">
+        <div
+          role="button"
+          tabIndex={0}
+          aria-pressed={isPaused}
+          onClick={() => setIsPaused((p) => !p)}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsPaused(p => !p); } }}
+          className="relative w-full overflow-hidden cursor-pointer"
+        >
+          <div
+            className="flex gap-4 animate-marquee"
+            style={{
+              minWidth: '200%',
+              animationPlayState: isPaused ? 'paused' : 'running',
+              animationDuration: '60s'
+            }}
+          >
+            {duplicatedTestimonials.map((testimonial, index) => (
+              <TestimonialCard key={`${testimonial.name}-${index}`} testimonial={testimonial} />
+            ))}
+          </div>
+
+          <div className="absolute right-3 top-3 text-xs text-muted-foreground z-10 select-none">
+            {isPaused ? 'Paused — click to resume' : 'Click to pause'}
+          </div>
+        </div>
+      </div>
       </div>
     </section>
   );

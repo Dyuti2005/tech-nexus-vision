@@ -230,7 +230,7 @@ export default function FoundersManager() {
                     <img
                       src={founder.image_url}
                       alt={founder.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-cover"
                     />
                   ) : (
                     <span className="text-2xl font-bold text-muted-foreground">
