@@ -37,8 +37,8 @@ const getEventImage = (imageUrl?: string): string => {
   if (!imageUrl) return event1;
   // Check if it's a mapped path
   if (imageMap[imageUrl]) return imageMap[imageUrl];
-  // If it starts with http, use as-is (external URL)
-  if (imageUrl.startsWith('http')) return event1; // Fallback for invalid URLs
+  // If it starts with http, use as-is (Supabase storage or external URL)
+  if (imageUrl.startsWith('http')) return imageUrl;
   // Otherwise return the path or fallback
   return event1;
 };
