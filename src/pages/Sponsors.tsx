@@ -2,7 +2,25 @@ import { motion } from "framer-motion";
 import { Heart, Award, Handshake, Linkedin } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import sponsorsBanner from "@/assets/sponsors/sponsors-banner.png";
+
+// Import individual sponsor logos
+import microsoftLogo from "@/assets/sponsors/microsoft.png";
+import neonLogo from "@/assets/sponsors/neon.png";
+import id8nxtLogo from "@/assets/sponsors/id8nxt.png";
+import azureSocietyLogo from "@/assets/sponsors/azure-society.png";
+import elasticLogo from "@/assets/sponsors/elastic.png";
+import polarisLogo from "@/assets/sponsors/polaris.png";
+import redisLogo from "@/assets/sponsors/redis.png";
+
+const sponsors = [
+  { name: "Microsoft", logo: microsoftLogo },
+  { name: "Neon", logo: neonLogo },
+  { name: "ID8NXT", logo: id8nxtLogo },
+  { name: "Azure Society of Excellence", logo: azureSocietyLogo },
+  { name: "Elastic", logo: elasticLogo },
+  { name: "Polaris School of Technology", logo: polarisLogo },
+  { name: "Redis", logo: redisLogo },
+];
 
 const Sponsors = () => {
   return (
@@ -119,14 +137,28 @@ const Sponsors = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-8 md:p-12 rounded-3xl"
+            className="rounded-3xl overflow-hidden shadow-xl"
           >
-            <div className="flex justify-center items-center">
-              <img 
-                src={sponsorsBanner} 
-                alt="Our Sponsors - Microsoft, Neon, ID8NXT, Azure Society of Excellence, Elastic, Polaris School of Technology, Redis" 
-                className="w-full max-w-5xl h-auto object-contain"
-              />
+            <div className="bg-white p-8 md:p-12">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
+                {sponsors.map((sponsor, index) => (
+                  <motion.div
+                    key={sponsor.name}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center justify-center p-4"
+                  >
+                    <img 
+                      src={sponsor.logo} 
+                      alt={sponsor.name}
+                      className="max-h-16 md:max-h-20 w-auto object-contain"
+                    />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
