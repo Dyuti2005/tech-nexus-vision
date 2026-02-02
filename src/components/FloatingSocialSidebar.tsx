@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Instagram } from "lucide-react";
+import meetupLogo from "@/assets/meetup-logo.png";
 
 const socialLinks = [
   {
@@ -20,20 +21,9 @@ const socialLinks = [
     href: "https://www.meetup.com/technexus-community/",
     icon: null,
     color: "#ED1C40",
+    isImage: true,
   },
 ];
-
-const MeetupIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className={className}
-    style={style}
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M6.98 14.77c-.15.38-.35.55-.73.55-.42 0-.72-.28-.72-.75 0-.16.03-.32.1-.54l1.74-5.16c.18-.52.6-.85 1.14-.85.55 0 .96.33 1.14.85l1.74 5.16c.07.22.1.38.1.54 0 .47-.3.75-.72.75-.38 0-.58-.17-.73-.55l-.34-1.05H7.32l-.34 1.05zm2.66-2.15l-.74-2.35h-.03l-.74 2.35h1.51zM11.5 9.72c0-.42.28-.7.7-.7h1.72c1.26 0 2.1.73 2.1 1.85 0 .75-.38 1.33-.96 1.6v.02c.73.2 1.2.83 1.2 1.7 0 1.25-.9 2.06-2.27 2.06H12.2c-.42 0-.7-.28-.7-.7V9.72zm1.4 2.33h1.04c.56 0 .9-.28.9-.72 0-.44-.34-.71-.9-.71h-1.04v1.43zm0 2.7h1.18c.62 0 1-.32 1-.8 0-.48-.38-.78-1-.78h-1.18v1.58zm5.57-2.01c-.1-.03-.18-.03-.28-.03-.43 0-.7.27-.7.68v1.86c0 .42.28.7.7.7h.1c.4 0 .68-.28.68-.68v-1.88c0-.37-.18-.6-.5-.65z" />
-  </svg>
-);
 
 const FloatingSocialSidebar = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -83,12 +73,13 @@ const FloatingSocialSidebar = () => {
                   className="w-5 h-5"
                   style={{ color: social.color }}
                 />
-              ) : (
-                <MeetupIcon
-                  className="w-5 h-5"
-                  style={{ color: social.color }}
+              ) : social.isImage ? (
+                <img
+                  src={meetupLogo}
+                  alt={social.name}
+                  className="w-6 h-6 object-contain"
                 />
-              )}
+              ) : null}
             </motion.div>
 
             {/* Slide-out Label */}
