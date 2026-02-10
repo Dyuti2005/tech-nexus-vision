@@ -111,13 +111,13 @@ const Events = () => {
     topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
     meetupLink: upcomingDbEvent.meetup_link,
   } : {
-    title: "Code & Cold Pizza: Bengaluru Edition",
-    date: new Date("2026-02-07T09:30:00"),
-    dateStr: "February 7th, 2026",
-    location: "Polaris School of Technology, Brookefield",
-    description: "Join us for Code & Cold Pizza - a unique developer meetup combining coding sessions with cold pizza! Network with fellow developers and learn something new.",
-    topics: ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
-    meetupLink: "https://hostwebs.site/DWu3hb",
+    title: "AI Native Meetup – Chennai",
+    date: new Date("2026-02-28T09:30:00"),
+    dateStr: "February 28th, 2026",
+    location: "Yuniq, Ticel BioPark, Chennai",
+    description: "Join us for AI Native Meetup in Chennai! Explore cutting-edge AI topics, network with fellow developers and AI enthusiasts, and learn something new.",
+    topics: ["AI", "Networking", "Developer Community", "Tech Talks"],
+    meetupLink: "",
   };
 
   // Use only database events for past events
@@ -159,12 +159,12 @@ const Events = () => {
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="w-4 h-4 text-primary" />
-                <span>February 7th, 2026</span>
+               <span>February 28th, 2026</span>
               </div>
               <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary/50" />
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 text-secondary" />
-                <span>Polaris School of Technology, Brookefield</span>
+                <span>Yuniq, Ticel BioPark, Chennai</span>
               </div>
             </div>
           </motion.div>
@@ -207,7 +207,7 @@ const Events = () => {
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
                         <Clock className="w-4 h-4 text-primary" />
-                        <span>9:00 AM onwards</span>
+                        <span>9:30 AM – 2:00 PM</span>
                       </div>
                     </div>
 
