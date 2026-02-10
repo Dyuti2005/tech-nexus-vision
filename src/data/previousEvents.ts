@@ -44,6 +44,23 @@ export interface PreviousEvent {
 
 export const previousEvents: PreviousEvent[] = [
   {
+    id: "code-and-cold-pizza-bengaluru-feb-2026",
+    title: "Code & Cold Pizza: Bengaluru Edition",
+    date: new Date("2026-02-07"),
+    dateStr: "February 7, 2026",
+    location: "Bengaluru",
+    venue: "Polaris School of Technology, Brookefield",
+    attendees: "150+",
+    description: "A unique developer meetup combining coding sessions with cold pizza! Developers networked, learned, and coded together in a fun, relaxed atmosphere.",
+    highlights: [
+      "Coding Sessions",
+      "Developer Networking",
+      "Tech Talks",
+      "Community Building"
+    ],
+    image: event1,
+  },
+  {
     id: "agentic-ai-connect-chennai-dec-2025",
     title: "Agentic AI Connect - Chennai",
     date: new Date("2025-12-20"),

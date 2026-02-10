@@ -207,7 +207,7 @@ const Events = () => {
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
                         <Clock className="w-4 h-4 text-primary" />
-                        <span>9:00 AM onwards</span>
+                        <span>9:30 AM – 2:00 PM</span>
                       </div>
                     </div>
 
