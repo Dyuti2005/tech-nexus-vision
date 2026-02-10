@@ -136,7 +136,7 @@ const HeroSection = () => {
                   backgroundClip: 'text',
                 }}
               >
-                Code & Cold Pizza: Bengaluru Edition
+                AI Native Meetup – Chennai
               </motion.h2>
 
               {/* Event Details - Centered with high contrast */}
