@@ -223,7 +223,7 @@ const Events = () => {
                   <div className="flex flex-col items-center gap-4">
                     <CountdownTimer targetDate={upcomingEvent.date} />
                     <a
-                      href={upcomingEvent.meetupLink || "https://hostwebs.site/DWu3hb"}
+                      href="https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary-glow px-6 py-3 rounded-xl text-primary-foreground font-semibold inline-flex items-center gap-2 text-sm"
