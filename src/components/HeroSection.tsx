@@ -165,7 +165,7 @@ const HeroSection = () => {
                 className="flex justify-center"
               >
                 <a
-                  href="https://hostwebs.site/DWu3hb"
+                  href="https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-10 py-2.5 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"
