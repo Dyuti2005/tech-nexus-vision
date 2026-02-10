@@ -109,7 +109,7 @@ const Events = () => {
     location: upcomingDbEvent.location,
     description: upcomingDbEvent.description || "",
     topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
-    meetupLink: upcomingDbEvent.meetup_link,
+      meetupLink: upcomingDbEvent.meetup_link,
   } : {
     title: "AI Native Meetup – Chennai",
     date: new Date("2026-02-28T09:30:00"),
@@ -117,7 +117,7 @@ const Events = () => {
     location: "Yuniq, Ticel BioPark, Chennai",
     description: "Join us for AI Native Meetup in Chennai! Explore cutting-edge AI topics, network with fellow developers and AI enthusiasts, and learn something new.",
     topics: ["AI", "Networking", "Developer Community", "Tech Talks"],
-    meetupLink: "",
+    meetupLink: "https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events",
   };
 
   // Use only database events for past events

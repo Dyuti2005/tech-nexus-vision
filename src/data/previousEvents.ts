@@ -53,10 +53,18 @@ export const previousEvents: PreviousEvent[] = [
     attendees: "150+",
     description: "A unique developer meetup combining coding sessions with cold pizza! Developers networked, learned, and coded together in a fun, relaxed atmosphere.",
     highlights: [
-      "Coding Sessions",
-      "Developer Networking",
-      "Tech Talks",
-      "Community Building"
+      "Real-Time Observability with Fluent Bit, OpenSearch & RAG",
+      "Agentic Workflows with Agent Mesh",
+      "Vibe Coding in Action: Building Micro-SaaS That Sells",
+      "Architecting Enterprise-Grade Real-Time Voice + RAG Applications",
+      "Hands-On Sessions & Networking"
+    ],
+    speakers: [
+      { name: "Mohamed Azarudeen", topic: "Keynote", time: "10:00 - 10:15 AM" },
+      { name: "Jeevitha G", topic: "Turning Logs into Knowledge: Real-Time Observability with Fluent Bit, OpenSearch & RAG", time: "10:15 - 10:45 AM" },
+      { name: "Giri Venkatesan", topic: "Agentic Workflows with Agent Mesh: Event-Driven Agents, Real-Time Context, and Dynamic Orchestration", time: "10:45 - 11:15 AM" },
+      { name: "Natheem Yousuf", topic: "Vibe Coding in Action: Building Micro-SaaS That Sells (Hands-On)", time: "11:15 AM - 12:15 PM" },
+      { name: "Mohamed Azarudeen", topic: "Architecting Enterprise-Grade Real-Time Voice + RAG Applications (Hands-On)", time: "1:00 - 2:00 PM" }
     ],
     image: event1,
   },
