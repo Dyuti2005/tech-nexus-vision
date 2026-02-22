@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Pencil, Trash2, Users, Upload, X, Image as ImageIcon } from 'lucide-react';
+import { Plus, Pencil, Trash2, Users, Upload, X, Image as ImageIcon, Calendar, Star } from 'lucide-react';
 
 export default function EventsManager() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -299,8 +299,78 @@ export default function EventsManager() {
     return <div className="flex items-center justify-center h-64">Loading...</div>;
   }
 
+  const upcomingEvent = events.find(e => e.is_upcoming);
+
+  const setAsUpcoming = async (eventId: string) => {
+    // First, unmark all events
+    await supabase.from('events').update({ is_upcoming: false }).eq('is_upcoming', true);
+    // Then mark selected event as upcoming
+    const { error } = await supabase.from('events').update({ is_upcoming: true }).eq('id', eventId);
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ title: 'Success', description: 'Upcoming event updated! This will reflect on the Home and Events pages.' });
+      fetchEvents();
+    }
+  };
+
+  const removeUpcoming = async () => {
+    const { error } = await supabase.from('events').update({ is_upcoming: false }).eq('is_upcoming', true);
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ title: 'Success', description: 'Upcoming event removed from homepage.' });
+      fetchEvents();
+    }
+  };
+
   return (
     <div className="space-y-6">
+      {/* Upcoming Event Banner */}
+      <Card className="border-2 border-primary/30 bg-primary/5">
+        <CardHeader className="pb-3">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+            </span>
+            <CardTitle className="text-lg">Featured Upcoming Event</CardTitle>
+          </div>
+          <p className="text-sm text-muted-foreground">This event is shown on the Home page hero and Events page. Edit it here or pick a different event below.</p>
+        </CardHeader>
+        <CardContent>
+          {upcomingEvent ? (
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <h3 className="text-xl font-bold">{upcomingEvent.title}</h3>
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1"><Calendar className="w-4 h-4" />{upcomingEvent.date_str}</span>
+                  <span>{upcomingEvent.location}{upcomingEvent.venue ? ` · ${upcomingEvent.venue}` : ''}</span>
+                </div>
+                {upcomingEvent.meetup_link && (
+                  <a href={upcomingEvent.meetup_link} target="_blank" rel="noopener noreferrer" className="text-sm text-primary underline">
+                    Registration Link ↗
+                  </a>
+                )}
+              </div>
+              <div className="flex gap-2 shrink-0">
+                <Button variant="outline" size="sm" onClick={() => openEditDialog(upcomingEvent)}>
+                  <Pencil className="w-4 h-4 mr-1" /> Edit
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => openSpeakersDialog(upcomingEvent)}>
+                  <Users className="w-4 h-4 mr-1" /> Speakers
+                </Button>
+                <Button variant="destructive" size="sm" onClick={removeUpcoming}>
+                  <X className="w-4 h-4 mr-1" /> Remove
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <p className="text-muted-foreground">No upcoming event set. Mark an event as "Upcoming" using the ⭐ button in the table below, or create a new event.</p>
+          )}
+        </CardContent>
+      </Card>
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Events Manager</h1>
@@ -412,7 +482,6 @@ export default function EventsManager() {
               <div className="space-y-2">
                 <Label>Event Image</Label>
                 <div className="space-y-3">
-                  {/* Image Preview */}
                   {imagePreview && (
                     <div className="relative w-full h-40 rounded-lg overflow-hidden border bg-muted">
                       <img 
@@ -432,7 +501,6 @@ export default function EventsManager() {
                     </div>
                   )}
 
-                  {/* Upload Button */}
                   {!imagePreview && (
                     <div 
                       className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer hover:border-primary transition-colors"
@@ -463,7 +531,6 @@ export default function EventsManager() {
                     onChange={handleFileChange}
                   />
 
-                  {/* Or use URL */}
                   <div className="flex items-center gap-2">
                     <div className="flex-1 h-px bg-border"></div>
                     <span className="text-xs text-muted-foreground">or enter URL</span>
@@ -498,7 +565,7 @@ export default function EventsManager() {
                   checked={formData.is_upcoming}
                   onCheckedChange={(checked) => setFormData({ ...formData, is_upcoming: checked })}
                 />
-                <Label htmlFor="is_upcoming">Upcoming Event</Label>
+                <Label htmlFor="is_upcoming">Upcoming Event (shown on Home &amp; Events pages)</Label>
               </div>
 
               <div className="flex justify-end gap-2">
@@ -539,6 +606,16 @@ export default function EventsManager() {
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
+                      {!event.is_upcoming && (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          title="Set as upcoming event"
+                          onClick={() => setAsUpcoming(event.id)}
+                        >
+                          <Star className="w-4 h-4 text-amber-500" />
+                        </Button>
+                      )}
                       <Button
                         variant="ghost"
                         size="icon"
