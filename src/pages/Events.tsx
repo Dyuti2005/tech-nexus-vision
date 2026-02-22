@@ -159,12 +159,12 @@ const Events = () => {
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="w-4 h-4 text-primary" />
-               <span>February 28th, 2026</span>
+               <span>{upcomingEvent.dateStr}</span>
               </div>
               <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary/50" />
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 text-secondary" />
-                <span>Yuniq, Ticel BioPark, Chennai</span>
+                <span>{upcomingEvent.location}</span>
               </div>
             </div>
           </motion.div>
@@ -223,7 +223,7 @@ const Events = () => {
                   <div className="flex flex-col items-center gap-4">
                     <CountdownTimer targetDate={upcomingEvent.date} />
                     <a
-                      href="https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events"
+                      href={upcomingEvent.meetupLink || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary-glow px-6 py-3 rounded-xl text-primary-foreground font-semibold inline-flex items-center gap-2 text-sm"

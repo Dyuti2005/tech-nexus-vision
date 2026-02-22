@@ -1,8 +1,52 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin, ExternalLink } from "lucide-react";
 import watermarkLogo from "@/assets/technexus-logo-transparent.png";
+import { supabase } from "@/integrations/supabase/client";
+
+interface UpcomingEventData {
+  title: string;
+  dateStr: string;
+  location: string;
+  meetupLink: string;
+}
+
+const defaultUpcoming: UpcomingEventData = {
+  title: "AI Native Meetup – Chennai",
+  dateStr: "February 28th, 2026",
+  location: "Yuniq, Ticel BioPark, Chennai",
+  meetupLink: "https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events",
+};
 
 const HeroSection = () => {
+  const [upcoming, setUpcoming] = useState<UpcomingEventData>(defaultUpcoming);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { data } = await supabase
+        .from("events")
+        .select("title, date_str, location, venue, meetup_link")
+        .eq("is_upcoming", true)
+        .limit(1)
+        .maybeSingle();
+      if (data) {
+        setUpcoming({
+          title: data.title,
+          dateStr: data.date_str,
+          location: data.venue ? `${data.venue}, ${data.location}` : data.location,
+          meetupLink: data.meetup_link || defaultUpcoming.meetupLink,
+        });
+      }
+    };
+    fetch();
+
+    const channel = supabase
+      .channel("hero-upcoming")
+      .on("postgres_changes", { event: "*", schema: "public", table: "events" }, () => { fetch(); })
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
       {/* Mesh Gradient Overlay */}
@@ -136,7 +180,7 @@ const HeroSection = () => {
                   backgroundClip: 'text',
                 }}
               >
-                AI Native Meetup – Chennai
+                {upcoming.title}
               </motion.h2>
 
               {/* Event Details - Centered with high contrast */}
@@ -148,12 +192,12 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>February 28th, 2026</span>
+                  <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>{upcoming.dateStr}</span>
                 </div>
                 <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>Yuniq, Ticel BioPark, Chennai</span>
+                  <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>{upcoming.location}</span>
                 </div>
               </motion.div>
 
@@ -165,7 +209,7 @@ const HeroSection = () => {
                 className="flex justify-center"
               >
                 <a
-                  href="https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events"
+                  href={upcoming.meetupLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-10 py-2.5 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"
