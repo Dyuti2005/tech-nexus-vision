@@ -5,6 +5,36 @@ import { previousEvents as fallbackEvents } from "@/data/previousEvents";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
+// Local image map for fallback (DB events without image_url)
+import event1 from "@/assets/gallery/event-1.jpeg";
+import event2 from "@/assets/gallery/event-2.jpeg";
+import event3 from "@/assets/gallery/event-3.jpeg";
+import agenticAiBengaluruCover from "@/assets/events/agentic-ai-bengaluru-cover.jpg";
+import sprintChennai1 from "@/assets/events/sprint-imagine-cup-chennai-1.png";
+import vscodeDevDays1 from "@/assets/events/vscode-dev-days-1.png";
+import agentverseBengaluru1 from "@/assets/events/agentverse-bengaluru-1.png";
+import azureBot1 from "@/assets/events/azure-bot-1.png";
+import aiChai1 from "@/assets/events/ai-chai-1.png";
+
+const localImageMap: Record<string, string> = {
+  '/assets/gallery/event-1.jpeg': event1,
+  '/assets/gallery/event-2.jpeg': event2,
+  '/assets/gallery/event-3.jpeg': event3,
+  '/assets/events/agentic-ai-bengaluru-cover.jpg': agenticAiBengaluruCover,
+  '/assets/events/sprint-imagine-cup-chennai-1.png': sprintChennai1,
+  '/assets/events/vscode-dev-days-1.png': vscodeDevDays1,
+  '/assets/events/agentverse-bengaluru-1.png': agentverseBengaluru1,
+  '/assets/events/azure-bot-1.png': azureBot1,
+  '/assets/events/ai-chai-1.png': aiChai1,
+};
+
+const resolveImage = (imageUrl?: string): string => {
+  if (!imageUrl) return event1;
+  if (localImageMap[imageUrl]) return localImageMap[imageUrl];
+  if (imageUrl.startsWith('http')) return imageUrl;
+  return event1;
+};
+
 interface EventDisplay {
   id: string;
   title: string;
@@ -46,49 +76,23 @@ const PreviousEventsSection = () => {
 
       if (error) {
         console.error('Error fetching events:', error);
+        setEvents([]);
+      } else {
+        const mapped: EventDisplay[] = (dbEvents || []).map(e => ({
+          id: e.id,
+          title: e.title,
+          date: new Date(e.date),
+          dateStr: e.date_str,
+          location: e.location,
+          attendees: e.attendees || "50+",
+          description: e.description || "",
+          image: resolveImage(e.image_url || undefined),
+        }));
+        setEvents(mapped);
       }
-
-      // Combine database events with fallback events
-      const dbEventsMapped: EventDisplay[] = (dbEvents || []).map(e => ({
-        id: e.id,
-        title: e.title,
-        date: new Date(e.date),
-        dateStr: e.date_str,
-        location: e.location,
-        attendees: e.attendees || "50+",
-        description: e.description || "",
-        image: e.image_url || "/placeholder.svg",
-      }));
-
-      const fallbackMapped: EventDisplay[] = fallbackEvents.map(e => ({
-        id: e.id,
-        title: e.title,
-        date: e.date,
-        dateStr: e.dateStr,
-        location: e.location,
-        attendees: e.attendees,
-        description: e.description,
-        image: e.image,
-      }));
-
-      // Combine and sort by date
-      const combined = [...dbEventsMapped, ...fallbackMapped]
-        .sort((a, b) => b.date.getTime() - a.date.getTime());
-
-      setEvents(combined);
     } catch (err) {
       console.error('Error:', err);
-      // Use fallback events on error
-      setEvents(fallbackEvents.map(e => ({
-        id: e.id,
-        title: e.title,
-        date: e.date,
-        dateStr: e.dateStr,
-        location: e.location,
-        attendees: e.attendees,
-        description: e.description,
-        image: e.image,
-      })));
+      setEvents([]);
     } finally {
       setLoading(false);
     }
