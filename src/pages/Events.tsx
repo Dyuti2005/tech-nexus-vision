@@ -111,13 +111,13 @@ const Events = () => {
     topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
       meetupLink: upcomingDbEvent.meetup_link,
   } : {
-    title: "AI Native Meetup – Chennai",
-    date: new Date("2026-02-28T09:30:00"),
-    dateStr: "February 28th, 2026",
-    location: "Yuniq, Ticel BioPark, Chennai",
-    description: "Join us for AI Native Meetup in Chennai! Explore cutting-edge AI topics, network with fellow developers and AI enthusiasts, and learn something new.",
-    topics: ["AI", "Networking", "Developer Community", "Tech Talks"],
-    meetupLink: "https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events",
+    title: "GitHub Copilot Dev Day : Bengaluru",
+    date: new Date("2026-03-14T09:00:00"),
+    dateStr: "Saturday, March 14, 2026",
+    location: "Microsoft Reactor Bengaluru",
+    description: "Join us for GitHub Copilot Dev Day in Bengaluru — a full-day hands-on event to master AI-powered development with GitHub Copilot.",
+    topics: ["GitHub Copilot", "AI", "Developer Tools", "Bengaluru"],
+    meetupLink: "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events",
   };
 
   // Use only database events for past events
@@ -206,8 +206,8 @@ const Events = () => {
                         <span>{upcomingEvent.location}</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <Clock className="w-4 h-4 text-primary" />
-                        <span>9:30 AM – 2:00 PM</span>
+                      <Clock className="w-4 h-4 text-primary" />
+                        <span>9:00 AM – 3:00 PM</span>
                       </div>
                     </div>
 
