@@ -12,10 +12,10 @@ interface UpcomingEventData {
 }
 
 const defaultUpcoming: UpcomingEventData = {
-  title: "AI Native Meetup – Chennai",
-  dateStr: "February 28th, 2026",
-  location: "Yuniq, Ticel BioPark, Chennai",
-  meetupLink: "https://www.meetup.com/technexus-community/events/312826807/?eventOrigin=group_upcoming_events",
+  title: "GitHub Copilot Dev Day : Bengaluru",
+  dateStr: "Saturday, March 14, 2026",
+  location: "Microsoft Reactor Bengaluru",
+  meetupLink: "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events",
 };
 
 const HeroSection = () => {
