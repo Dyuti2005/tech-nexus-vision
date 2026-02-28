@@ -60,15 +60,25 @@ interface DatabaseEvent {
   is_upcoming?: boolean;
 }
 
+const defaultUpcoming = {
+  title: "GitHub Copilot Dev Day : Bengaluru",
+  date: new Date("2026-03-14T09:00:00"),
+  dateStr: "Saturday, March 14, 2026",
+  location: "Microsoft Reactor Bengaluru",
+  description: "Join us for GitHub Copilot Dev Day in Bengaluru — a full-day hands-on event to master AI-powered development with GitHub Copilot.",
+  topics: ["GitHub Copilot", "AI", "Developer Tools", "Bengaluru"],
+  meetupLink: "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events",
+};
+
 const Events = () => {
-  const [dbEvents, setDbEvents] = useState<DatabaseEvent[]>([]);
+  const [upcomingEvent, setUpcomingEvent] = useState(defaultUpcoming);
+  const [pastEvents, setPastEvents] = useState<{ id: string; title: string; date: Date; dateStr: string; location: string; attendees: string; description: string; image: string }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchEvents();
 
-    // Subscribe to real-time updates
     const channel = supabase
       .channel('events-realtime')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'events' }, () => {
@@ -76,22 +86,51 @@ const Events = () => {
       })
       .subscribe();
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
+    return () => { supabase.removeChannel(channel); };
   }, []);
 
   const fetchEvents = async () => {
     try {
-      const { data, error } = await supabase
+      // Fetch upcoming event
+      const { data: upcomingData } = await supabase
         .from('events')
         .select('*')
+        .eq('is_upcoming', true)
+        .maybeSingle();
+
+      if (upcomingData) {
+        setUpcomingEvent({
+          title: upcomingData.title,
+          date: new Date(upcomingData.date),
+          dateStr: upcomingData.date_str,
+          location: upcomingData.venue ? `${upcomingData.venue}, ${upcomingData.location}` : upcomingData.location,
+          description: upcomingData.description || "",
+          topics: upcomingData.highlights?.length ? upcomingData.highlights : ["GitHub Copilot", "AI", "Developer Tools", "Bengaluru"],
+          meetupLink: upcomingData.meetup_link || defaultUpcoming.meetupLink,
+        });
+      }
+
+      // Fetch past events
+      const { data: pastData, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('is_upcoming', false)
         .order('date', { ascending: false });
 
       if (error) {
-        console.error('Error fetching events:', error);
+        console.error('Error fetching past events:', error);
       } else {
-        setDbEvents(data || []);
+        const mapped = (pastData || []).map(e => ({
+          id: e.id,
+          title: e.title,
+          date: new Date(e.date),
+          dateStr: e.date_str,
+          location: e.location,
+          attendees: e.attendees || "50+",
+          description: e.description || "",
+          image: getEventImage(e.image_url ?? undefined),
+        }));
+        setPastEvents(mapped);
       }
     } catch (err) {
       console.error('Error:', err);
@@ -99,39 +138,6 @@ const Events = () => {
       setLoading(false);
     }
   };
-
-  // Get upcoming event from database or use default
-  const upcomingDbEvent = dbEvents.find(e => e.is_upcoming);
-  const upcomingEvent = upcomingDbEvent ? {
-    title: upcomingDbEvent.title,
-    date: new Date(upcomingDbEvent.date),
-    dateStr: upcomingDbEvent.date_str,
-    location: upcomingDbEvent.location,
-    description: upcomingDbEvent.description || "",
-    topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
-      meetupLink: upcomingDbEvent.meetup_link,
-  } : {
-    title: "GitHub Copilot Dev Day : Bengaluru",
-    date: new Date("2026-03-14T09:00:00"),
-    dateStr: "Saturday, March 14, 2026",
-    location: "Microsoft Reactor Bengaluru",
-    description: "Join us for GitHub Copilot Dev Day in Bengaluru — a full-day hands-on event to master AI-powered development with GitHub Copilot.",
-    topics: ["GitHub Copilot", "AI", "Developer Tools", "Bengaluru"],
-    meetupLink: "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events",
-  };
-
-  // Use only database events for past events
-  const pastDbEvents = dbEvents.filter(e => !e.is_upcoming);
-  const pastEvents = pastDbEvents.map(e => ({
-    id: e.id,
-    title: e.title,
-    date: new Date(e.date),
-    dateStr: e.date_str,
-    location: e.location,
-    attendees: e.attendees || "50+",
-    description: e.description || "",
-    image: getEventImage(e.image_url),
-  })).sort((a, b) => b.date.getTime() - a.date.getTime());
 
 
   return (
@@ -252,7 +258,14 @@ const Events = () => {
             </motion.div>
 
             {/* Previous Events Grid */}
-            {pastEvents.filter(e => e.id).map((event, index) => (
+            {loading ? (
+              <div className="lg:col-span-3 flex justify-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+              </div>
+            ) : pastEvents.length === 0 ? (
+              <div className="lg:col-span-3 text-center py-12 text-muted-foreground">No previous events found.</div>
+            ) : null}
+            {!loading && pastEvents.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 30 }}
