@@ -41,7 +41,6 @@ const PreviousEventsSection = () => {
       const { data: dbEvents, error } = await supabase
         .from('events')
         .select('*')
-        .eq('is_upcoming', false)
         .order('date', { ascending: false });
 
       if (error) {
