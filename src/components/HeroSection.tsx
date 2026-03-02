@@ -136,7 +136,7 @@ const HeroSection = () => {
                   backgroundClip: 'text',
                 }}
               >
-                Code & Cold Pizza: Bengaluru Edition
+                GitHub Copilot Dev Day : Bengaluru
               </motion.h2>
 
               {/* Event Details - Centered with high contrast */}
@@ -148,12 +148,12 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>February 7th, 2026</span>
-                </div>
-                <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                  <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>Polaris School of Technology, Brookefield</span>
+                   <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>Saturday, Mar 14 · 9:00 AM – 3:00 PM</span>
+                 </div>
+                 <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
+                 <div className="flex items-center gap-2">
+                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
+                   <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>Microsoft Reactor Bengaluru</span>
                 </div>
               </motion.div>
 
@@ -165,7 +165,7 @@ const HeroSection = () => {
                 className="flex justify-center"
               >
                 <a
-                  href="https://hostwebs.site/DWu3hb"
+                  href="https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-10 py-2.5 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"

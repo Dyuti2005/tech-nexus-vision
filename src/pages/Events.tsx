@@ -111,13 +111,13 @@ const Events = () => {
     topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
     meetupLink: upcomingDbEvent.meetup_link,
   } : {
-    title: "Code & Cold Pizza: Bengaluru Edition",
-    date: new Date("2026-02-07T09:30:00"),
-    dateStr: "February 7th, 2026",
-    location: "Polaris School of Technology, Brookefield",
-    description: "Join us for Code & Cold Pizza - a unique developer meetup combining coding sessions with cold pizza! Network with fellow developers and learn something new.",
-    topics: ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
-    meetupLink: "https://hostwebs.site/DWu3hb",
+    title: "GitHub Copilot Dev Day : Bengaluru",
+    date: new Date("2026-03-14T09:00:00"),
+    dateStr: "Saturday, Mar 14 · 9:00 AM – 3:00 PM",
+    location: "Microsoft Reactor Bengaluru",
+    description: "Join us for GitHub Copilot Dev Day - an immersive hands-on experience with GitHub Copilot and AI-powered development tools at Microsoft Reactor Bengaluru.",
+    topics: ["GitHub Copilot", "AI-Powered Development", "Hands-on Workshop", "Developer Tools"],
+    meetupLink: "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events",
   };
 
   // Use only database events for past events
@@ -159,12 +159,12 @@ const Events = () => {
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="w-4 h-4 text-primary" />
-                <span>February 7th, 2026</span>
+               <span>Saturday, Mar 14 · 9:00 AM – 3:00 PM</span>
               </div>
               <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary/50" />
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 text-secondary" />
-                <span>Polaris School of Technology, Brookefield</span>
+                <span>Microsoft Reactor Bengaluru</span>
               </div>
             </div>
           </motion.div>
@@ -207,7 +207,7 @@ const Events = () => {
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
                         <Clock className="w-4 h-4 text-primary" />
-                        <span>9:00 AM onwards</span>
+                        <span>9:00 AM – 3:00 PM</span>
                       </div>
                     </div>
 
