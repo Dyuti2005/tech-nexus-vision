@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Instagram } from "lucide-react";
+import meetupLogo from "@/assets/meetup-logo.png";
 
 const socialLinks = [
   {
@@ -84,10 +85,7 @@ const FloatingSocialSidebar = () => {
                   style={{ color: social.color }}
                 />
               ) : (
-                <MeetupIcon
-                  className="w-5 h-5"
-                  style={{ color: social.color }}
-                />
+                <img src={meetupLogo} alt="Meetup" className="w-5 h-5 object-contain" />
               )}
             </motion.div>
 
