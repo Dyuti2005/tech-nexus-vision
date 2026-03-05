@@ -1,0 +1,1 @@
+UPDATE public.events SET image_url = 'https://fmjakniczovuikcbsywq.supabase.co/storage/v1/object/public/event-images/events%2Fai-in-action-cover.png' WHERE id = '533fd14f-1c5e-4721-af62-fe6a0a744747';
