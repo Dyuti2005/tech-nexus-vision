@@ -35,11 +35,11 @@ const imageMap: Record<string, string> = {
 
 const getEventImage = (imageUrl?: string): string => {
   if (!imageUrl) return event1;
-  // Check if it's a mapped path
+  // If it starts with http/https, use directly (Supabase storage or external URL)
+  if (imageUrl.startsWith('http')) return imageUrl;
+  // Check if it's a mapped local asset path
   if (imageMap[imageUrl]) return imageMap[imageUrl];
-  // If it starts with http, use as-is (external URL)
-  if (imageUrl.startsWith('http')) return event1; // Fallback for invalid URLs
-  // Otherwise return the path or fallback
+  // Otherwise fallback
   return event1;
 };
 

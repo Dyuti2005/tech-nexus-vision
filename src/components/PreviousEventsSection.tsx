@@ -56,7 +56,7 @@ const PreviousEventsSection = () => {
         location: e.location,
         attendees: e.attendees || "50+",
         description: e.description || "",
-        image: e.image_url || "/placeholder.svg",
+        image: e.image_url && e.image_url.startsWith('http') ? e.image_url : (e.image_url || "/placeholder.svg"),
       }));
 
       const fallbackMapped: EventDisplay[] = fallbackEvents.map(e => ({
