@@ -136,7 +136,7 @@ const HeroSection = () => {
                   backgroundClip: 'text',
                 }}
               >
-                GitHub Copilot Dev Day : Bengaluru
+                GitHub Copilot Dev Day : Chennai
               </motion.h2>
 
               {/* Event Details - Centered with high contrast */}
@@ -148,12 +148,12 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                   <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>Saturday, Mar 14 · 9:00 AM – 3:00 PM</span>
+                    <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>Saturday, Apr 11 · 9:00 AM – 1:00 PM</span>
                  </div>
                  <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
                  <div className="flex items-center gap-2">
-                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                   <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>Microsoft Reactor Bengaluru</span>
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
+                    <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>TBH</span>
                 </div>
               </motion.div>
 

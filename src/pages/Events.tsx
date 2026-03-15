@@ -111,11 +111,11 @@ const Events = () => {
     topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
     meetupLink: upcomingDbEvent.meetup_link,
   } : {
-    title: "GitHub Copilot Dev Day : Bengaluru",
-    date: new Date("2026-03-14T09:00:00"),
-    dateStr: "Saturday, Mar 14 · 9:00 AM – 3:00 PM",
-    location: "Microsoft Reactor Bengaluru",
-    description: "Join us for GitHub Copilot Dev Day - an immersive hands-on experience with GitHub Copilot and AI-powered development tools at Microsoft Reactor Bengaluru.",
+    title: "GitHub Copilot Dev Day : Chennai",
+    date: new Date("2026-04-11T09:00:00"),
+    dateStr: "Saturday, Apr 11 · 9:00 AM – 1:00 PM",
+    location: "TBH",
+    description: "Join us for GitHub Copilot Dev Day Chennai - an immersive hands-on experience with GitHub Copilot and AI-powered development tools.",
     topics: ["GitHub Copilot", "AI-Powered Development", "Hands-on Workshop", "Developer Tools"],
     meetupLink: "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events",
   };
@@ -159,12 +159,12 @@ const Events = () => {
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="w-4 h-4 text-primary" />
-               <span>Saturday, Mar 14 · 9:00 AM – 3:00 PM</span>
+               <span>Saturday, Apr 11 · 9:00 AM – 1:00 PM</span>
               </div>
               <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary/50" />
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 text-secondary" />
-                <span>Microsoft Reactor Bengaluru</span>
+                <span>TBH</span>
               </div>
             </div>
           </motion.div>
