@@ -136,7 +136,7 @@ const HeroSection = () => {
                   backgroundClip: 'text',
                 }}
               >
-                GitHub Copilot Dev Day : Bengaluru
+                GitHub Copilot Dev Day : Chennai
               </motion.h2>
 
               {/* Event Details - Centered with high contrast */}
