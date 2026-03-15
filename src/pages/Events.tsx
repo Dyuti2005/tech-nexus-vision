@@ -159,12 +159,12 @@ const Events = () => {
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="w-4 h-4 text-primary" />
-               <span>Saturday, Mar 14 · 9:00 AM – 3:00 PM</span>
+               <span>Saturday, Apr 11 · 9:00 AM – 1:00 PM</span>
               </div>
               <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary/50" />
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 text-secondary" />
-                <span>Microsoft Reactor Bengaluru</span>
+                <span>TBH</span>
               </div>
             </div>
           </motion.div>
