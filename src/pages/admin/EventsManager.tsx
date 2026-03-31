@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Pencil, Trash2, Users, Upload, X, Image as ImageIcon } from 'lucide-react';
+import { Plus, Pencil, Trash2, Users, Upload, X, Image as ImageIcon, Images } from 'lucide-react';
 
 export default function EventsManager() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -33,8 +33,11 @@ export default function EventsManager() {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [isGalleryUploading, setIsGalleryUploading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -49,6 +52,7 @@ export default function EventsManager() {
     image_url: '',
     meetup_link: '',
     is_upcoming: false,
+    gallery: [] as string[],
   });
 
   const fetchEvents = async () => {
@@ -69,7 +73,6 @@ export default function EventsManager() {
   useEffect(() => {
     fetchEvents();
 
-    // Subscribe to real-time updates
     const channel = supabase
       .channel('events-changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'events' }, () => {
@@ -95,13 +98,16 @@ export default function EventsManager() {
       image_url: '',
       meetup_link: '',
       is_upcoming: false,
+      gallery: [],
     });
     setSelectedEvent(null);
     setImagePreview(null);
+    setGalleryPreviews([]);
   };
 
   const openEditDialog = (event: Event) => {
     setSelectedEvent(event);
+    const gallery = event.gallery || [];
     setFormData({
       title: event.title,
       date: event.date,
@@ -114,51 +120,50 @@ export default function EventsManager() {
       image_url: event.image_url || '',
       meetup_link: event.meetup_link || '',
       is_upcoming: event.is_upcoming || false,
+      gallery,
     });
     setImagePreview(event.image_url || null);
+    setGalleryPreviews(gallery);
     setIsDialogOpen(true);
+  };
+
+  const uploadFileToStorage = async (file: File, folder: string): Promise<string | null> => {
+    if (!file.type.startsWith('image/')) {
+      toast({ title: 'Error', description: 'Please upload an image file', variant: 'destructive' });
+      return null;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: 'Error', description: 'Image must be less than 5MB', variant: 'destructive' });
+      return null;
+    }
+
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+    const filePath = `${folder}/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('event-images')
+      .upload(filePath, file);
+
+    if (uploadError) throw uploadError;
+
+    const { data: { publicUrl } } = supabase.storage
+      .from('event-images')
+      .getPublicUrl(filePath);
+
+    return publicUrl;
   };
 
   const handleImageUpload = async (file: File) => {
     if (!file) return;
-
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-      toast({ title: 'Error', description: 'Please upload an image file', variant: 'destructive' });
-      return;
-    }
-
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      toast({ title: 'Error', description: 'Image must be less than 5MB', variant: 'destructive' });
-      return;
-    }
-
     setIsUploading(true);
-
     try {
-      // Create unique filename
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-      const filePath = `events/${fileName}`;
-
-      // Upload to Supabase Storage
-      const { error: uploadError } = await supabase.storage
-        .from('event-images')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        throw uploadError;
+      const publicUrl = await uploadFileToStorage(file, 'events');
+      if (publicUrl) {
+        setFormData(prev => ({ ...prev, image_url: publicUrl }));
+        setImagePreview(publicUrl);
+        toast({ title: 'Success', description: 'Cover image uploaded' });
       }
-
-      // Get public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from('event-images')
-        .getPublicUrl(filePath);
-
-      setFormData({ ...formData, image_url: publicUrl });
-      setImagePreview(publicUrl);
-      toast({ title: 'Success', description: 'Image uploaded successfully' });
     } catch (error: any) {
       console.error('Upload error:', error);
       toast({ title: 'Error', description: error.message || 'Failed to upload image', variant: 'destructive' });
@@ -167,21 +172,49 @@ export default function EventsManager() {
     }
   };
 
+  const handleGalleryUpload = async (files: FileList) => {
+    setIsGalleryUploading(true);
+    try {
+      const uploadPromises = Array.from(files).map(file => uploadFileToStorage(file, 'gallery'));
+      const urls = await Promise.all(uploadPromises);
+      const validUrls = urls.filter(Boolean) as string[];
+
+      if (validUrls.length > 0) {
+        setFormData(prev => ({ ...prev, gallery: [...prev.gallery, ...validUrls] }));
+        setGalleryPreviews(prev => [...prev, ...validUrls]);
+        toast({ title: 'Success', description: `${validUrls.length} image(s) uploaded to gallery` });
+      }
+    } catch (error: any) {
+      console.error('Gallery upload error:', error);
+      toast({ title: 'Error', description: error.message || 'Failed to upload gallery images', variant: 'destructive' });
+    } finally {
+      setIsGalleryUploading(false);
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      handleImageUpload(file);
-    }
+    if (file) handleImageUpload(file);
+  };
+
+  const handleGalleryFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) handleGalleryUpload(files);
   };
 
   const removeImage = () => {
-    setFormData({ ...formData, image_url: '' });
+    setFormData(prev => ({ ...prev, image_url: '' }));
     setImagePreview(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  const removeGalleryImage = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      gallery: prev.gallery.filter((_, i) => i !== index),
+    }));
+    setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -198,6 +231,7 @@ export default function EventsManager() {
       image_url: formData.image_url || null,
       meetup_link: formData.meetup_link || null,
       is_upcoming: formData.is_upcoming,
+      gallery: formData.gallery.length > 0 ? formData.gallery : null,
     };
 
     if (selectedEvent) {
@@ -210,16 +244,13 @@ export default function EventsManager() {
         toast({ title: 'Error', description: error.message, variant: 'destructive' });
         return;
       }
-
       toast({ title: 'Success', description: 'Event updated successfully' });
     } else {
       const { error } = await supabase.from('events').insert([eventData]);
-
       if (error) {
         toast({ title: 'Error', description: error.message, variant: 'destructive' });
         return;
       }
-
       toast({ title: 'Success', description: 'Event created successfully' });
     }
 
@@ -229,14 +260,11 @@ export default function EventsManager() {
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this event?')) return;
-
     const { error } = await supabase.from('events').delete().eq('id', id);
-
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
       return;
     }
-
     toast({ title: 'Success', description: 'Event deleted successfully' });
   };
 
@@ -251,7 +279,6 @@ export default function EventsManager() {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
       return;
     }
-
     setSpeakers(data || []);
   };
 
@@ -265,19 +292,16 @@ export default function EventsManager() {
 
   const addSpeaker = async () => {
     if (!selectedEvent || !speakerForm.name) return;
-
     const { error } = await supabase.from('speakers').insert([{
       event_id: selectedEvent.id,
       name: speakerForm.name,
       topic: speakerForm.topic || null,
       time: speakerForm.time || null,
     }]);
-
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
       return;
     }
-
     setSpeakerForm({ name: '', topic: '', time: '' });
     fetchSpeakers(selectedEvent.id);
     toast({ title: 'Success', description: 'Speaker added' });
@@ -285,12 +309,10 @@ export default function EventsManager() {
 
   const deleteSpeaker = async (id: string) => {
     const { error } = await supabase.from('speakers').delete().eq('id', id);
-
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
       return;
     }
-
     if (selectedEvent) fetchSpeakers(selectedEvent.id);
     toast({ title: 'Success', description: 'Speaker removed' });
   };
@@ -408,17 +430,16 @@ export default function EventsManager() {
                 />
               </div>
 
-              {/* Image Upload Section */}
+              {/* Cover Image Upload */}
               <div className="space-y-2">
-                <Label>Event Image</Label>
+                <Label>Cover Image</Label>
                 <div className="space-y-3">
-                  {/* Image Preview */}
                   {imagePreview && (
                     <div className="relative w-full h-40 rounded-lg overflow-hidden border bg-muted">
-                      <img 
-                        src={imagePreview} 
-                        alt="Event preview" 
-                        className="w-full h-auto object-cover"
+                      <img
+                        src={imagePreview}
+                        alt="Event preview"
+                        className="w-full h-full object-cover"
                       />
                       <Button
                         type="button"
@@ -432,9 +453,8 @@ export default function EventsManager() {
                     </div>
                   )}
 
-                  {/* Upload Button */}
                   {!imagePreview && (
-                    <div 
+                    <div
                       className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer hover:border-primary transition-colors"
                       onClick={() => fileInputRef.current?.click()}
                     >
@@ -447,7 +467,7 @@ export default function EventsManager() {
                         ) : (
                           <>
                             <ImageIcon className="h-8 w-8 text-muted-foreground" />
-                            <p className="text-sm text-muted-foreground">Click to upload an image</p>
+                            <p className="text-sm text-muted-foreground">Click to upload a cover image</p>
                             <p className="text-xs text-muted-foreground">PNG, JPG up to 5MB</p>
                           </>
                         )}
@@ -463,7 +483,6 @@ export default function EventsManager() {
                     onChange={handleFileChange}
                   />
 
-                  {/* Or use URL */}
                   <div className="flex items-center gap-2">
                     <div className="flex-1 h-px bg-border"></div>
                     <span className="text-xs text-muted-foreground">or enter URL</span>
@@ -478,6 +497,66 @@ export default function EventsManager() {
                       setFormData({ ...formData, image_url: e.target.value });
                       setImagePreview(e.target.value || null);
                     }}
+                  />
+                </div>
+              </div>
+
+              {/* Gallery Images Upload */}
+              <div className="space-y-2">
+                <Label>Gallery Images</Label>
+                <div className="space-y-3">
+                  {/* Gallery Previews */}
+                  {galleryPreviews.length > 0 && (
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                      {galleryPreviews.map((url, index) => (
+                        <div key={index} className="relative aspect-video rounded-lg overflow-hidden border bg-muted group">
+                          <img
+                            src={url}
+                            alt={`Gallery ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                          <Button
+                            type="button"
+                            variant="destructive"
+                            size="icon"
+                            className="absolute top-1 right-1 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={() => removeGalleryImage(index)}
+                          >
+                            <X className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Gallery Upload Button */}
+                  <div
+                    className="border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:border-primary transition-colors"
+                    onClick={() => galleryInputRef.current?.click()}
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      {isGalleryUploading ? (
+                        <>
+                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                          <p className="text-sm text-muted-foreground">Uploading gallery images...</p>
+                        </>
+                      ) : (
+                        <>
+                          <Images className="h-8 w-8 text-muted-foreground" />
+                          <p className="text-sm text-muted-foreground">Click to add gallery images</p>
+                          <p className="text-xs text-muted-foreground">Select multiple images · PNG, JPG up to 5MB each</p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  <input
+                    ref={galleryInputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    className="hidden"
+                    onChange={handleGalleryFileChange}
                   />
                 </div>
               </div>
