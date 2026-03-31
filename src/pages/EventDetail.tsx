@@ -71,7 +71,7 @@ const imageMap: Record<string, string> = {
 const getEventImage = (imageUrl?: string): string => {
   if (!imageUrl) return event1;
   if (imageMap[imageUrl]) return imageMap[imageUrl];
-  if (imageUrl.startsWith('http')) return event1;
+  if (imageUrl.startsWith('http')) return imageUrl;
   return event1;
 };
 
