@@ -178,7 +178,7 @@ const HeroSection = () => {
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
                     <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>
-                      {upcomingEvent?.date_str || "Saturday, Apr 11"} · 9:00 AM – 1:00 PM
+                      {upcomingEvent?.date_str || "Saturday, Apr 11"} · 9:00 AM – 3:00 PM
                     </span>
                  </div>
                  <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
