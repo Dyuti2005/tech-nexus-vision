@@ -1,8 +1,37 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin, ExternalLink } from "lucide-react";
 import watermarkLogo from "@/assets/technexus-logo-transparent.png";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
+interface UpcomingEvent {
+  id: string;
+  title: string;
+  date_str: string;
+  location: string;
+  venue: string | null;
+  meetup_link: string | null;
+}
 
 const HeroSection = () => {
+  const [upcomingEvent, setUpcomingEvent] = useState<UpcomingEvent | null>(null);
+
+  useEffect(() => {
+    const fetchUpcomingEvent = async () => {
+      const { data, error } = await supabase
+        .from('events')
+        .select('id, title, date_str, location, venue, meetup_link')
+        .eq('is_upcoming', true)
+        .single();
+
+      if (!error && data) {
+        setUpcomingEvent(data);
+      }
+    };
+
+    fetchUpcomingEvent();
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
       {/* Mesh Gradient Overlay */}
@@ -136,7 +165,7 @@ const HeroSection = () => {
                   backgroundClip: 'text',
                 }}
               >
-                GitHub Copilot Dev Day : Chennai
+                {upcomingEvent?.title || "GitHub Copilot Dev Day : Chennai"}
               </motion.h2>
 
               {/* Event Details - Centered with high contrast */}
@@ -148,12 +177,16 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                    <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>Saturday, Apr 11 · 9:00 AM – 1:00 PM</span>
+                    <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: 'hsl(220, 20%, 25%)' }}>
+                      {upcomingEvent?.date_str || "Saturday, Apr 11"} · 9:00 AM – 1:00 PM
+                    </span>
                  </div>
                  <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
                  <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
-                    <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>TBH</span>
+                    <span className="text-sm sm:text-base md:text-lg font-medium text-center sm:text-left" style={{ color: 'hsl(220, 20%, 25%)' }}>
+                      {upcomingEvent?.venue || upcomingEvent?.location || "TBH"}
+                    </span>
                 </div>
               </motion.div>
 
@@ -165,7 +198,7 @@ const HeroSection = () => {
                 className="flex justify-center"
               >
                 <a
-                  href="https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events"
+                  href={upcomingEvent?.meetup_link || "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-10 py-2.5 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"
