@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Users, ExternalLink } from "lucide-react";
-import { previousEvents as fallbackEvents } from "@/data/previousEvents";
+
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -41,14 +41,16 @@ const PreviousEventsSection = () => {
       const { data: dbEvents, error } = await supabase
         .from('events')
         .select('*')
+        .eq('is_upcoming', false)
         .order('date', { ascending: false });
 
       if (error) {
         console.error('Error fetching events:', error);
+        setEvents([]);
+        return;
       }
 
-      // Combine database events with fallback events
-      const dbEventsMapped: EventDisplay[] = (dbEvents || []).map(e => ({
+      const mapped: EventDisplay[] = (dbEvents || []).map(e => ({
         id: e.id,
         title: e.title,
         date: new Date(e.date),
@@ -59,35 +61,10 @@ const PreviousEventsSection = () => {
         image: e.image_url && e.image_url.startsWith('http') ? e.image_url : (e.image_url || "/placeholder.svg"),
       }));
 
-      const fallbackMapped: EventDisplay[] = fallbackEvents.map(e => ({
-        id: e.id,
-        title: e.title,
-        date: e.date,
-        dateStr: e.dateStr,
-        location: e.location,
-        attendees: e.attendees,
-        description: e.description,
-        image: e.image,
-      }));
-
-      // Combine and sort by date
-      const combined = [...dbEventsMapped, ...fallbackMapped]
-        .sort((a, b) => b.date.getTime() - a.date.getTime());
-
-      setEvents(combined);
+      setEvents(mapped);
     } catch (err) {
       console.error('Error:', err);
-      // Use fallback events on error
-      setEvents(fallbackEvents.map(e => ({
-        id: e.id,
-        title: e.title,
-        date: e.date,
-        dateStr: e.dateStr,
-        location: e.location,
-        attendees: e.attendees,
-        description: e.description,
-        image: e.image,
-      })));
+      setEvents([]);
     } finally {
       setLoading(false);
     }
