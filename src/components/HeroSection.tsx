@@ -199,7 +199,7 @@ const HeroSection = () => {
                 <div className="flex items-center justify-center gap-2">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
                   <span className="text-sm sm:text-base md:text-lg font-medium text-center" style={{ color: 'hsl(220, 20%, 25%)' }}>
-                    {upcomingEvent?.venue || upcomingEvent?.location || "TBH"}
+                    {upcomingEvent?.venue || upcomingEvent?.location || "Microsoft Ferns, Bangalore"}
                   </span>
                 </div>
               </motion.div>
