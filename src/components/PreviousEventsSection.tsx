@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Users, ExternalLink } from "lucide-react";
-import { previousEvents as fallbackEvents } from "@/data/previousEvents";
+
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
