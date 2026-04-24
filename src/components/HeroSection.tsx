@@ -16,20 +16,34 @@ interface UpcomingEvent {
 const HeroSection = () => {
   const [upcomingEvent, setUpcomingEvent] = useState<UpcomingEvent | null>(null);
 
+  const fetchUpcomingEvent = async () => {
+    const { data, error } = await supabase
+      .from('events')
+      .select('id, title, date_str, location, venue, meetup_link')
+      .eq('is_upcoming', true)
+      .order('date', { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    if (!error) {
+      setUpcomingEvent(data);
+    }
+  };
+
   useEffect(() => {
-    const fetchUpcomingEvent = async () => {
-      const { data, error } = await supabase
-        .from('events')
-        .select('id, title, date_str, location, venue, meetup_link')
-        .eq('is_upcoming', true)
-        .single();
-
-      if (!error && data) {
-        setUpcomingEvent(data);
-      }
-    };
-
     fetchUpcomingEvent();
+
+    // Realtime sync: refetch whenever events change in the admin panel
+    const channel = supabase
+      .channel('hero-upcoming-event')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'events' }, () => {
+        fetchUpcomingEvent();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   return (
