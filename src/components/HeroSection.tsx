@@ -187,7 +187,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-6 sm:mb-8"
+                className="flex flex-col items-center justify-center gap-y-3 mb-6 sm:mb-8"
               >
                 <div className="flex items-center justify-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
@@ -195,7 +195,7 @@ const HeroSection = () => {
                     {upcomingEvent?.date_str || "Saturday, May 16, 2026"} · 9:30 AM – 3:00 PM
                   </span>
                 </div>
-                <div className="hidden sm:block w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(var(--primary) / 0.5)' }} />
+
                 <div className="flex items-center justify-center gap-2">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
                   <span className="text-sm sm:text-base md:text-lg font-medium text-center" style={{ color: 'hsl(220, 20%, 25%)' }}>
