@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -31,6 +31,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+
         <BrowserRouter>
           <ScrollToTop />
 
@@ -42,10 +43,10 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/sponsors" element={<Sponsors />} />
 
-            {/* Admin login (public) */}
+            {/* Admin login */}
             <Route path="/admin/login" element={<AdminLogin />} />
 
-            {/* Admin (protected) */}
+            {/* Admin protected routes */}
             <Route
               path="/admin"
               element={
@@ -54,6 +55,8 @@ const App = () => (
                 </ProtectedRoute>
               }
             >
+              <Route index element={<Navigate to="dashboard" replace />} />
+
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="events" element={<EventsManager />} />
               <Route path="content" element={<ContentManager />} />
