@@ -255,62 +255,56 @@ const Events = () => {
                   className="block w-full h-full min-w-0"
                 >
                   <div 
-                    className="relative h-full rounded-2xl overflow-hidden transition-all duration-500 w-full min-w-0
-                               backdrop-blur-xl bg-white/80 dark:bg-white/10
-                               border border-emerald-200/50 dark:border-primary/30 
-                               hover:border-emerald-400 dark:hover:border-primary/60
-                               shadow-lg hover:shadow-xl hover:shadow-emerald-500/20
-                               hover:scale-[1.02] transform-gpu"
+                    className="relative h-full rounded-2xl overflow-hidden transition-all duration-300 w-full min-w-0 bg-white border border-[#A8AAAC] hover:shadow-md hover:-translate-y-0.5 transform-gpu"
                   >
                     {/* Image */}
                     <div className="aspect-video relative overflow-hidden w-full">
                       <img
                         src={event.image}
                         alt={event.title || 'Event image'}
-                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-background dark:via-background/40" />
-                      
+
                       {/* External Link Icon */}
-                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                        <div className="p-1.5 rounded-full backdrop-blur-xl bg-emerald-500/90 border border-emerald-400">
-                          <ExternalLink className="w-3 h-3 text-white" />
+                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <div className="p-1.5 rounded-full bg-white border border-[#A8AAAC]">
+                          <ExternalLink className="w-3 h-3 text-[#0B1F1F]" />
                         </div>
                       </div>
 
                       {/* Date Badge */}
                       <div className="absolute top-3 left-3">
-                        <span className="px-2.5 py-1 rounded-full backdrop-blur-xl bg-white/90 dark:bg-background/80 border border-emerald-200/50 dark:border-primary/30 text-xs font-semibold text-slate-700 dark:text-foreground">
+                        <span className="px-2.5 py-1 rounded-full bg-white border border-[#A8AAAC] text-xs font-semibold text-[#0B1F1F]">
                           {event.dateStr ?? 'Date TBA'}
                         </span>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="relative p-4 text-center w-full min-w-0">
-                      <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent line-clamp-2 min-w-0">
+                    <div className="relative p-4 text-center w-full min-w-0 bg-white">
+                      <h3 className="text-lg font-bold mb-2 text-[#FF4B1F] line-clamp-2 min-w-0">
                         {event.title ?? 'Untitled Event'}
                       </h3>
                       
-                      <p className="text-slate-600 dark:text-muted-foreground mb-3 line-clamp-2 text-xs min-w-0 break-words">
+                      <p className="text-[#6B7280] mb-3 line-clamp-2 text-xs min-w-0 break-words">
                         {event.description ?? ''}
                       </p>
 
                       {/* Location & Attendees */}
                       <div className="flex flex-wrap justify-center gap-3 text-xs">
-                        <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
-                          <MapPin className="w-3 h-3 text-emerald-500" />
+                        <div className="flex items-center gap-1 text-[#6B7280]">
+                          <MapPin className="w-3 h-3 text-[#FF4B1F]" />
                           <span>{event.location ?? 'Location TBA'}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-slate-700 dark:text-muted-foreground">
-                          <Users className="w-3 h-3 text-cyan-500" />
+                        <div className="flex items-center gap-1 text-[#6B7280]">
+                          <Users className="w-3 h-3 text-[#FF4B1F]" />
                           <span>{event.attendees ?? '—'}</span>
                         </div>
                       </div>
 
                       {/* View Details CTA */}
-                      <div className="mt-3 pt-3 border-t border-emerald-100 dark:border-white/10">
-                        <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-primary font-semibold text-xs group-hover:gap-2 transition-all">
+                      <div className="mt-3 pt-3 border-t border-[#A8AAAC]/40">
+                        <span className="inline-flex items-center gap-1.5 text-[#0B1F1F] font-semibold text-xs group-hover:gap-2 transition-all">
                           View Details
                           <ExternalLink className="w-3 h-3" />
                         </span>
