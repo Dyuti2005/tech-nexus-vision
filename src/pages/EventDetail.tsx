@@ -275,15 +275,15 @@ const EventDetail = () => {
                 </h1>
                 <div className="flex flex-wrap gap-4 md:gap-6">
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <Calendar className="w-5 h-5 text-primary" />
+                    <Calendar className="w-5 h-5 text-[#FF4B1F]" />
                     <span className="font-medium">{event.dateStr}</span>
                   </div>
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <MapPin className="w-5 h-5 text-secondary" />
+                    <MapPin className="w-5 h-5 text-[#FF4B1F]" />
                     <span className="font-medium">{event.venue || event.location}</span>
                   </div>
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <Users className="w-5 h-5 text-primary" />
+                    <Users className="w-5 h-5 text-[#FF4B1F]" />
                     <span className="font-medium">{event.attendees} Attendees</span>
                   </div>
                 </div>
@@ -313,15 +313,15 @@ const EventDetail = () => {
                 <h2 className="text-2xl md:text-3xl font-bold mb-6">
                   Event <span className="gradient-text-reverse">Highlights</span>
                 </h2>
-                <div className="glass-card-emerald rounded-2xl p-6 md:p-8 glow-border-emerald">
+                <div className="rounded-2xl p-6 md:p-8 bg-white border border-[#A8AAAC]">
                   <div className="grid gap-4">
                     {event.highlights.map((highlight) => (
                       <div
                         key={highlight}
                         className="flex items-start gap-3"
                       >
-                        <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-foreground/90 text-lg">{highlight}</span>
+                        <CheckCircle className="w-6 h-6 text-[#FF4B1F] flex-shrink-0 mt-0.5" />
+                        <span className="text-[#0B1F1F] text-lg">{highlight}</span>
                       </div>
                     ))}
                   </div>
@@ -339,25 +339,24 @@ const EventDetail = () => {
                   {event.speakers.map((speaker, index) => (
                     <div
                       key={speaker.id || speaker.name + index}
-                      className="backdrop-blur-xl bg-white/80 dark:bg-white/10 rounded-2xl p-6 border border-emerald-200/50 dark:border-primary/30 hover:border-emerald-400 dark:hover:border-primary/50 transition-all shadow-lg"
+                      className="bg-white rounded-2xl p-6 border border-[#A8AAAC] transition-all"
                     >
                       <div className="flex flex-col md:flex-row md:items-center gap-4">
-                        {/* Time Badge */}
                         {speaker.time && (
                           <div className="flex-shrink-0">
-                            <span className="inline-block px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white text-sm font-bold">
+                            <span className="inline-block px-4 py-2 rounded-xl bg-[#FF4B1F] text-white text-sm font-bold">
                               {speaker.time}
                             </span>
                           </div>
                         )}
                         
                         <div className="flex items-center gap-4 flex-1">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                          <div className="w-12 h-12 rounded-full bg-[#0B1F1F] flex items-center justify-center flex-shrink-0">
                             <User className="w-6 h-6 text-white" />
                           </div>
                           <div className="flex-1">
-                            <h3 className="font-bold text-lg text-slate-800 dark:text-foreground">{speaker.name}</h3>
-                            <p className="text-slate-600 dark:text-muted-foreground">{speaker.topic}</p>
+                            <h3 className="font-bold text-lg text-[#0B1F1F]">{speaker.name}</h3>
+                            <p className="text-[#6B7280]">{speaker.topic}</p>
                           </div>
                         </div>
                       </div>
@@ -378,16 +377,16 @@ const EventDetail = () => {
 
             {/* CTA */}
             <div className="text-center">
-              <div className="glass-card rounded-2xl p-8 md:p-10">
-                <h3 className="text-xl md:text-2xl font-bold mb-4">
+              <div className="rounded-2xl p-8 md:p-10 bg-white border border-[#A8AAAC]">
+                <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#0B1F1F]">
                   Don't Miss Our Upcoming Events!
                 </h3>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-[#6B7280] mb-6">
                   Join our community to get notified about future events and workshops.
                 </p>
                 <Link
                   to="/events"
-                  className="btn-primary-glow px-8 py-4 rounded-2xl text-primary-foreground font-semibold inline-flex items-center gap-2"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-[#0B1F1F] text-white font-semibold hover:bg-[#0B1F1F]/90 transition-colors"
                 >
                   View All Events
                 </Link>
