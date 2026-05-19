@@ -187,15 +187,15 @@ const Events = () => {
 
                     <div className="flex flex-wrap gap-3 mb-4 text-sm">
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <Calendar className="w-4 h-4 text-primary" />
+                        <Calendar className="w-4 h-4 text-[#FF4B1F]" />
                         <span>{upcomingEvent.dateStr}</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <MapPin className="w-4 h-4 text-secondary" />
+                        <MapPin className="w-4 h-4 text-[#FF4B1F]" />
                         <span>{upcomingEvent.location}</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <Clock className="w-4 h-4 text-primary" />
+                        <Clock className="w-4 h-4 text-[#FF4B1F]" />
                         <span>9:00 AM – 3:00 PM</span>
                       </div>
                     </div>
