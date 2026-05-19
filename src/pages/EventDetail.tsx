@@ -377,16 +377,16 @@ const EventDetail = () => {
 
             {/* CTA */}
             <div className="text-center">
-              <div className="glass-card rounded-2xl p-8 md:p-10">
-                <h3 className="text-xl md:text-2xl font-bold mb-4">
+              <div className="rounded-2xl p-8 md:p-10 bg-white border border-[#A8AAAC]">
+                <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#0B1F1F]">
                   Don't Miss Our Upcoming Events!
                 </h3>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-[#6B7280] mb-6">
                   Join our community to get notified about future events and workshops.
                 </p>
                 <Link
                   to="/events"
-                  className="btn-primary-glow px-8 py-4 rounded-2xl text-primary-foreground font-semibold inline-flex items-center gap-2"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-[#0B1F1F] text-white font-semibold hover:bg-[#0B1F1F]/90 transition-colors"
                 >
                   View All Events
                 </Link>
