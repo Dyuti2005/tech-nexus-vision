@@ -313,15 +313,15 @@ const EventDetail = () => {
                 <h2 className="text-2xl md:text-3xl font-bold mb-6">
                   Event <span className="gradient-text-reverse">Highlights</span>
                 </h2>
-                <div className="glass-card-emerald rounded-2xl p-6 md:p-8 glow-border-emerald">
+                <div className="rounded-2xl p-6 md:p-8 bg-white border border-[#A8AAAC]">
                   <div className="grid gap-4">
                     {event.highlights.map((highlight) => (
                       <div
                         key={highlight}
                         className="flex items-start gap-3"
                       >
-                        <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-foreground/90 text-lg">{highlight}</span>
+                        <CheckCircle className="w-6 h-6 text-[#FF4B1F] flex-shrink-0 mt-0.5" />
+                        <span className="text-[#0B1F1F] text-lg">{highlight}</span>
                       </div>
                     ))}
                   </div>
