@@ -171,7 +171,7 @@ const Events = () => {
               animate={{ opacity: 1, scale: 1 }}
               className="lg:col-span-3"
             >
-              <div className="glass-card-emerald p-6 md:p-8 rounded-3xl glow-border-emerald">
+              <div className="bg-white border border-[#A8AAAC] p-6 md:p-8 rounded-3xl">
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-3">
