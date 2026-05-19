@@ -275,15 +275,15 @@ const EventDetail = () => {
                 </h1>
                 <div className="flex flex-wrap gap-4 md:gap-6">
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <Calendar className="w-5 h-5 text-primary" />
+                    <Calendar className="w-5 h-5 text-[#FF4B1F]" />
                     <span className="font-medium">{event.dateStr}</span>
                   </div>
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <MapPin className="w-5 h-5 text-secondary" />
+                    <MapPin className="w-5 h-5 text-[#FF4B1F]" />
                     <span className="font-medium">{event.venue || event.location}</span>
                   </div>
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <Users className="w-5 h-5 text-primary" />
+                    <Users className="w-5 h-5 text-[#FF4B1F]" />
                     <span className="font-medium">{event.attendees} Attendees</span>
                   </div>
                 </div>
