@@ -239,7 +239,7 @@ const HeroSection = () => {
                   />
                   <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                     <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className="whitespace-nowrap">Register via Meetup</span>
+                    <span className="whitespace-nowrap">Register</span>
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                   </span>
                 </a>
