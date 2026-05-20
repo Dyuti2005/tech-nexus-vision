@@ -256,7 +256,7 @@ const HeroSection = () => {
           >
             {[
               { number: "500+", label: "Hours of Content" },
-              { number: "50+", label: "Events Organised" },
+              { number: "25+", label: "Events Organised" },
               { number: "15K+", label: "Community Members" },
               { number: "2", label: "City Chapters" },
             ].map((stat, index) => (
