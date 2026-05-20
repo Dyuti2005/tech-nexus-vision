@@ -2,7 +2,29 @@ import { motion } from "framer-motion";
 import { Heart, Award, Handshake, Linkedin } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import sponsorsBanner from "@/assets/sponsors/sponsors-banner.png";
+import microsoft from "@/assets/sponsors/microsoft.png";
+import github from "@/assets/sponsors/github.png";
+import docker from "@/assets/sponsors/docker.png";
+import redis from "@/assets/sponsors/redis.png";
+import cloudera from "@/assets/sponsors/cloudera.png";
+import neon from "@/assets/sponsors/neon.png";
+import elastic from "@/assets/sponsors/elastic.png";
+import id8nxt from "@/assets/sponsors/id8nxt.png";
+import azureSociety from "@/assets/sponsors/azure-society.png";
+import polaris from "@/assets/sponsors/polaris.png";
+
+const sponsors = [
+  { name: "Microsoft", logo: microsoft },
+  { name: "GitHub", logo: github },
+  { name: "Docker", logo: docker },
+  { name: "Redis", logo: redis },
+  { name: "Cloudera", logo: cloudera },
+  { name: "Neon", logo: neon },
+  { name: "Elastic", logo: elastic },
+  { name: "ID8NXT", logo: id8nxt },
+  { name: "Azure Society of Excellence", logo: azureSociety },
+  { name: "Polaris School of Technology", logo: polaris },
+];
 
 const Sponsors = () => {
   return (
@@ -115,18 +137,29 @@ const Sponsors = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-8 md:p-12 rounded-3xl"
+            className="relative overflow-hidden group"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            }}
           >
-            <div className="flex justify-center items-center">
-              <img 
-                src={sponsorsBanner} 
-                alt="Our Sponsors - Microsoft, Neon, ID8NXT, Azure Society of Excellence, Elastic, Polaris School of Technology, Redis" 
-                className="w-full max-w-5xl h-auto object-contain"
-              />
+            <div className="flex w-max animate-sponsor-scroll group-hover:[animation-play-state:paused]">
+              {[...sponsors, ...sponsors].map((sponsor, idx) => (
+                <div
+                  key={`${sponsor.name}-${idx}`}
+                  className="mx-4 flex-shrink-0 w-48 h-28 md:w-56 md:h-32 bg-white rounded-2xl border border-[#A8AAAC] flex items-center justify-center p-6"
+                >
+                  <img
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
