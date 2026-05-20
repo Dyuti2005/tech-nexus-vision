@@ -284,7 +284,7 @@ export default function ContentManager() {
                     id="events"
                     value={communityStats.events}
                     onChange={(e) => setCommunityStats({ ...communityStats, events: e.target.value })}
-                    placeholder="50+"
+                    placeholder="25+"
                   />
                 </div>
                 <div className="space-y-2">

@@ -128,7 +128,7 @@ const Events = () => {
     date: new Date(e.date),
     dateStr: e.date_str,
     location: e.location,
-    attendees: e.attendees || "50+",
+    attendees: e.attendees || "25+",
     description: e.description || "",
     image: getEventImage(e.image_url),
   })).sort((a, b) => b.date.getTime() - a.date.getTime());

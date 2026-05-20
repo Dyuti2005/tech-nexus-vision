@@ -56,7 +56,7 @@ const PreviousEventsSection = () => {
         date: new Date(e.date),
         dateStr: e.date_str,
         location: e.location,
-        attendees: e.attendees || "50+",
+        attendees: e.attendees || "25+",
         description: e.description || "",
         image: e.image_url && e.image_url.startsWith('http') ? e.image_url : (e.image_url || "/placeholder.svg"),
       }));

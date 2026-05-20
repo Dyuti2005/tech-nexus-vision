@@ -166,7 +166,7 @@ const EventDetail = () => {
         dateStr: dbEvent.date_str,
         location: dbEvent.location,
         venue: dbEvent.venue || undefined,
-        attendees: dbEvent.attendees || "50+",
+        attendees: dbEvent.attendees || "25+",
         description: dbEvent.description || "",
         highlights: dbEvent.highlights || [],
         image: getEventImage(dbEvent.image_url),
