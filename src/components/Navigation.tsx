@@ -52,7 +52,9 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map(link => <Link key={link.name} to={link.href} className={`relative text-sm font-medium transition-colors animated-underline ${location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-foreground"}`}>
+            {navLinks.map(link => link.external ? <a key={link.name} href={link.href} target="_blank" rel="noopener noreferrer" className="relative text-sm font-medium transition-colors animated-underline text-foreground/80 hover:text-foreground">
+                {link.name}
+              </a> : <Link key={link.name} to={link.href} className={`relative text-sm font-medium transition-colors animated-underline ${location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-foreground"}`}>
                 {link.name}
               </Link>)}
           </nav>
