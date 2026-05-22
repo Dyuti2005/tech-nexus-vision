@@ -15,6 +15,10 @@ const navLinks = [{
 }, {
   name: "Sponsors",
   href: "/sponsors"
+}, {
+  name: "NexusCon",
+  href: "https://www.nexuscon.in/",
+  external: true
 }];
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
