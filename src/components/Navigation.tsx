@@ -15,6 +15,10 @@ const navLinks = [{
 }, {
   name: "Sponsors",
   href: "/sponsors"
+}, {
+  name: "NexusCon",
+  href: "https://www.nexuscon.in/",
+  external: true
 }];
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -48,7 +52,9 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map(link => <Link key={link.name} to={link.href} className={`relative text-sm font-medium transition-colors animated-underline ${location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-foreground"}`}>
+            {navLinks.map(link => link.external ? <a key={link.name} href={link.href} target="_blank" rel="noopener noreferrer" className="relative text-sm font-medium transition-colors animated-underline text-foreground/80 hover:text-foreground">
+                {link.name}
+              </a> : <Link key={link.name} to={link.href} className={`relative text-sm font-medium transition-colors animated-underline ${location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-foreground"}`}>
                 {link.name}
               </Link>)}
           </nav>
@@ -113,9 +119,11 @@ const Navigation = () => {
               }} transition={{
                 delay: index * 0.1
               }}>
-                      <Link to={link.href} className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors ${location.pathname === link.href ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}>
-                        {link.name}
-                      </Link>
+                      {link.external ? <a href={link.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 rounded-xl text-lg font-medium transition-colors text-foreground/80 hover:bg-muted">
+                          {link.name}
+                        </a> : <Link to={link.href} className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors ${location.pathname === link.href ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}>
+                          {link.name}
+                        </Link>}
                     </motion.div>)}
                 </nav>
 
