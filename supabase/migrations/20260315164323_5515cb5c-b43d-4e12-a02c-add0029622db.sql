@@ -1,0 +1,1 @@
+UPDATE events SET is_upcoming = false WHERE id = '2842ef3a-1bc3-4f00-95e4-9f279dceee10';
