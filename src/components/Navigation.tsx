@@ -119,9 +119,11 @@ const Navigation = () => {
               }} transition={{
                 delay: index * 0.1
               }}>
-                      <Link to={link.href} className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors ${location.pathname === link.href ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}>
-                        {link.name}
-                      </Link>
+                      {link.external ? <a href={link.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 rounded-xl text-lg font-medium transition-colors text-foreground/80 hover:bg-muted">
+                          {link.name}
+                        </a> : <Link to={link.href} className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors ${location.pathname === link.href ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}>
+                          {link.name}
+                        </Link>}
                     </motion.div>)}
                 </nav>
 
