@@ -41,7 +41,7 @@ const Navigation = () => {
     }} transition={{
       duration: 0.6,
       ease: "easeOut"
-    }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 min-h-[96px] ${isScrolled ? "glass-card py-3 shadow-lg" : "bg-transparent py-3"}`}>
+    }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 min-h-[72px] ${isScrolled ? "glass-card py-1 shadow-lg" : "bg-transparent py-1"}`}>
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
