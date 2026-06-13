@@ -41,8 +41,8 @@ const Navigation = () => {
     }} transition={{
       duration: 0.6,
       ease: "easeOut"
-    }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass-card shadow-lg" : "bg-transparent"}`}>
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between leading-none">
+    }} className={`fixed top-0 left-0 right-0 z-50 h-[70px] overflow-visible transition-all duration-300 ${isScrolled ? "glass-card shadow-lg" : "bg-transparent"}`}>
+        <div className="container mx-auto flex h-full items-center justify-between px-4 sm:px-6 leading-none">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
             <img alt="TechNexus Community" className="h-14 w-auto md:h-24 lg:h-28 object-contain flex-shrink-0 bg-transparent p-0 shadow-none" style={{
