@@ -50,14 +50,14 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
       </p>
 
       {/* Author */}
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-muted ring-2 ring-primary/20">
-          <img
-            src={testimonial.image}
-            alt={testimonial.name}
-            className="w-full h-auto object-cover"
-          />
-        </div>
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-muted ring-2 ring-primary/20 flex-shrink-0">
+            <img
+              src={testimonial.image}
+              alt={testimonial.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
         <div>
           <h4 className="font-bold text-sm md:text-base">{testimonial.name}</h4>
           <p className="text-xs md:text-sm text-muted-foreground">{testimonial.role}</p>

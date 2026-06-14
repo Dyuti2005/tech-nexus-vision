@@ -262,7 +262,7 @@ const Events = () => {
                       <img
                         src={event.image}
                         alt={event.title || 'Event image'}
-                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
 
                       {/* External Link Icon */}
