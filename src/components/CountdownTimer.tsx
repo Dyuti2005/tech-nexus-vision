@@ -55,7 +55,7 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   // Hydration fix: only render once mounted on client
   if (!mounted) {
     return (
-      <div className="flex gap-3 md:gap-4">
+      <div className="flex gap-2 sm:gap-3 md:gap-4">
         {[0, 1, 2, 3].map((i) => (
           <div key={i} className="countdown-box animate-pulse">
             <span className="countdown-number text-primary">--</span>
@@ -94,7 +94,7 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   ];
 
   return (
-    <div className="flex gap-3 md:gap-4">
+    <div className="flex gap-2 sm:gap-3 md:gap-4">
       {timeUnits.map((unit, index) => (
         <motion.div
           key={unit.label}
