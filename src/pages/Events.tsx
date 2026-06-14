@@ -171,31 +171,31 @@ const Events = () => {
               animate={{ opacity: 1, scale: 1 }}
               className="lg:col-span-3"
             >
-              <div className="bg-white border border-[#A8AAAC] p-6 md:p-8 rounded-3xl">
+              <div className="bg-white border border-[#A8AAAC] p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl">
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="relative flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
                       </span>
-                      <span className="text-sm font-semibold text-primary uppercase tracking-wider">Upcoming Event</span>
+                      <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">Upcoming Event</span>
                     </div>
 
-                    <h2 className="text-2xl md:text-3xl font-bold mb-3">{upcomingEvent.title}</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 break-words">{upcomingEvent.title}</h2>
                     <p className="text-muted-foreground mb-4 text-sm md:text-base">{upcomingEvent.description}</p>
 
-                    <div className="flex flex-wrap gap-3 mb-4 text-sm">
+                    <div className="flex flex-wrap gap-x-3 gap-y-2 mb-4 text-xs sm:text-sm">
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <Calendar className="w-4 h-4 text-[#FF4B1F]" />
+                        <Calendar className="w-4 h-4 text-[#FF4B1F] shrink-0" />
                         <span>{upcomingEvent.dateStr}</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <MapPin className="w-4 h-4 text-[#FF4B1F]" />
+                        <MapPin className="w-4 h-4 text-[#FF4B1F] shrink-0" />
                         <span>{upcomingEvent.location}</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <Clock className="w-4 h-4 text-[#FF4B1F]" />
+                        <Clock className="w-4 h-4 text-[#FF4B1F] shrink-0" />
                         <span>9:00 AM – 3:00 PM</span>
                       </div>
                     </div>
@@ -209,13 +209,13 @@ const Events = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center gap-4">
+                  <div className="flex flex-col items-center gap-4 w-full lg:w-auto">
                     <CountdownTimer targetDate={upcomingEvent.date} />
                     <a
                       href={upcomingEvent.meetupLink || "https://hostwebs.site/DWu3hb"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary-glow px-6 py-3 rounded-xl text-primary-foreground font-semibold inline-flex items-center gap-2 text-sm"
+                      className="btn-primary-glow w-full sm:w-auto px-6 py-3 rounded-xl text-primary-foreground font-semibold inline-flex items-center justify-center gap-2 text-sm"
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span>Register via Meetup</span>
@@ -262,7 +262,7 @@ const Events = () => {
                       <img
                         src={event.image}
                         alt={event.title || 'Event image'}
-                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
 
                       {/* External Link Icon */}
