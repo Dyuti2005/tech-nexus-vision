@@ -113,6 +113,11 @@
     @apply border-border;
   }
 
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
@@ -120,6 +125,11 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -225,11 +235,11 @@
 
   /* Countdown Timer */
   .countdown-box {
-    @apply glass-card-emerald flex flex-col items-center justify-center p-4 min-w-[80px];
+    @apply glass-card-emerald flex flex-col items-center justify-center p-2 sm:p-4 min-w-[58px] sm:min-w-[80px];
   }
 
   .countdown-number {
-    @apply text-3xl md:text-4xl font-black gradient-text;
+    @apply text-2xl sm:text-3xl md:text-4xl font-black gradient-text;
   }
 
   .countdown-label {
