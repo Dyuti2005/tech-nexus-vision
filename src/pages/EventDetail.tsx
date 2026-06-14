@@ -241,11 +241,11 @@ const EventDetail = () => {
         <div className="absolute inset-0 mesh-gradient opacity-50" />
         
         {/* Hero Image - Instant render */}
-        <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+        <div className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] overflow-hidden">
           <img
             src={event.image}
             alt={event.title}
-            className="w-full h-auto object-cover"
+            className="w-full h-full object-cover"
             loading="eager"
             decoding="sync"
             fetchPriority="high"
@@ -253,37 +253,37 @@ const EventDetail = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
           
           {/* Back Button */}
-          <div className="absolute top-8 left-4 md:left-8 z-20">
+          <div className="absolute top-20 left-3 sm:top-24 sm:left-6 md:left-8 z-20">
             <Link
               to="/events"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-xl bg-background/30 border border-white/10 text-foreground hover:bg-background/50 transition-all"
+              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full backdrop-blur-xl bg-background/40 border border-white/10 text-foreground hover:bg-background/60 transition-all text-sm"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Back to Events</span>
+              <span>Back</span>
             </Link>
           </div>
           
           {/* Event Title Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-12">
             <div className="container mx-auto">
               <div>
-                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-sm text-primary text-sm font-semibold uppercase tracking-wider mb-4 border border-primary/30">
+                <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary/20 backdrop-blur-sm text-primary text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2 sm:mb-4 border border-primary/30">
                   Past Event
                 </span>
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tight mb-3 sm:mb-4 break-words">
                   {event.title}
                 </h1>
-                <div className="flex flex-wrap gap-4 md:gap-6">
+                <div className="flex flex-wrap gap-x-4 gap-y-2 sm:gap-4 md:gap-6 text-sm sm:text-base">
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <Calendar className="w-5 h-5 text-[#FF4B1F]" />
+                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF4B1F] shrink-0" />
                     <span className="font-medium">{event.dateStr}</span>
                   </div>
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <MapPin className="w-5 h-5 text-[#FF4B1F]" />
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF4B1F] shrink-0" />
                     <span className="font-medium">{event.venue || event.location}</span>
                   </div>
                   <div className="flex items-center gap-2 text-foreground/80">
-                    <Users className="w-5 h-5 text-[#FF4B1F]" />
+                    <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF4B1F] shrink-0" />
                     <span className="font-medium">{event.attendees} Attendees</span>
                   </div>
                 </div>
@@ -294,7 +294,7 @@ const EventDetail = () => {
       </section>
 
       {/* Event Details */}
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Description */}
