@@ -192,7 +192,7 @@ const HeroSection = () => {
                 <div className="flex items-center justify-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
                   <span className="text-sm sm:text-base md:text-lg font-medium text-center" style={{ color: 'hsl(220, 20%, 25%)' }}>
-                    {upcomingEvent?.date_str || "Sunday, June 21, 2026"} · 9:30 AM – 3:00 PM
+                    {upcomingEvent?.date_str || "Sunday, June 28, 2026"} · 9:30 AM – 3:00 PM
                   </span>
                 </div>
 
