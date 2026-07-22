@@ -179,7 +179,7 @@ const HeroSection = () => {
                   backgroundClip: 'text',
                 }}
               >
-                {upcomingEvent?.title || "Microsoft Build //localhost: Bengaluru"}
+                {upcomingEvent?.title || "Agentic Development Lifecycle"}
               </motion.h2>
 
               {/* Event Details - Centered with high contrast */}
@@ -192,7 +192,7 @@ const HeroSection = () => {
                 <div className="flex items-center justify-center gap-2">
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" style={{ color: 'hsl(var(--secondary))' }} />
                   <span className="text-sm sm:text-base md:text-lg font-medium text-center" style={{ color: 'hsl(220, 20%, 25%)' }}>
-                    {upcomingEvent?.date_str || "Sunday, June 28, 2026"} · 9:30 AM – 3:00 PM
+                    {upcomingEvent?.date_str || "Saturday, August 1, 2026"} · 9:30 AM – 3:00 PM
                   </span>
                 </div>
 
@@ -212,7 +212,7 @@ const HeroSection = () => {
                 className="flex justify-center"
               >
                 <a
-                  href={upcomingEvent?.meetup_link || "https://www.meetup.com/technexus-community/events/314932058/?eventOrigin=group_upcoming_events"}
+                  href={upcomingEvent?.meetup_link || "https://www.meetup.com/technexus-community/"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-10 py-2.5 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl text-white font-bold text-sm sm:text-base md:text-lg group overflow-hidden"
