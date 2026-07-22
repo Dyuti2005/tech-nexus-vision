@@ -111,13 +111,13 @@ const Events = () => {
     topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
     meetupLink: upcomingDbEvent.meetup_link,
   } : {
-    title: "GitHub Copilot Dev Day : Chennai",
-    date: new Date("2026-04-11T09:00:00"),
-    dateStr: "Saturday, Apr 11 · 9:00 AM – 1:00 PM",
-    location: "TBH",
-    description: "Join us for GitHub Copilot Dev Day Chennai - an immersive hands-on experience with GitHub Copilot and AI-powered development tools.",
-    topics: ["GitHub Copilot", "AI-Powered Development", "Hands-on Workshop", "Developer Tools"],
-    meetupLink: "https://www.meetup.com/technexus-community/events/313323986/?eventOrigin=group_upcoming_events",
+    title: "Agentic Development Lifecycle",
+    date: new Date("2026-08-01T09:30:00"),
+    dateStr: "Saturday, August 1, 2026 · 9:30 AM – 3:00 PM",
+    location: "Microsoft Ferns, Bengaluru",
+    description: "Join us for an immersive session on the Agentic Development Lifecycle — exploring AI agents, autonomous workflows, and the future of intelligent software development.",
+    topics: ["AI Agents", "Autonomous Development", "Intelligent Workflows", "Developer Community"],
+    meetupLink: "https://www.meetup.com/technexus-community/",
   };
 
   // Use only database events for past events
