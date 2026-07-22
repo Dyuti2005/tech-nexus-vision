@@ -117,7 +117,7 @@ const Events = () => {
     location: "Microsoft Ferns, Bengaluru",
     description: "Join us for an immersive session on the Agentic Development Lifecycle — exploring AI agents, autonomous workflows, and the future of intelligent software development.",
     topics: ["AI Agents", "Autonomous Development", "Intelligent Workflows", "Developer Community"],
-    meetupLink: "https://www.meetup.com/technexus-community/",
+    meetupLink: "https://www.meetup.com/technexus-community/events/315583064/?eventOrigin=group_upcoming_events",
   };
 
   // Use only database events for past events
