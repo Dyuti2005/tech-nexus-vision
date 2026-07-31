@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-border">
+        <div className="pt-4 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} TechNexus Community. All rights reserved.
