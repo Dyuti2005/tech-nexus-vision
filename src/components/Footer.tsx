@@ -29,13 +29,13 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="relative pt-16 pb-8 overflow-hidden bg-muted/30">
+    <footer className="relative pt-8 pb-6 overflow-hidden bg-muted/30">
       {/* Top Border Gradient */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-10">
         {/* Main Footer Content - 3 Column Layout */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 mb-8 sm:mb-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 mb-6">
           {/* LEFT: Logo */}
           <div className="flex-shrink-0">
             <Link to="/">
