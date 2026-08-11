@@ -1,0 +1,1 @@
+UPDATE events SET title = 'Beyond the Hype: What''s Actually Working in AI', date_str = 'Saturday, August 22, 2026 · 9:00 AM – 1:30 PM' WHERE is_upcoming = true;
