@@ -111,9 +111,9 @@ const Events = () => {
     topics: upcomingDbEvent.highlights || ["Coding Sessions", "Networking", "Developer Community", "Tech Talks"],
     meetupLink: upcomingDbEvent.meetup_link,
   } : {
-    title: "Beyond The Hype",
-    date: new Date("2026-08-22T09:30:00"),
-    dateStr: "Saturday, August 22, 2026 · 9:30 AM – 3:00 PM",
+    title: "Beyond the Hype: What's Actually Working in AI",
+    date: new Date("2026-08-22T09:00:00"),
+    dateStr: "Saturday, August 22, 2026 · 9:00 AM – 1:30 PM",
     location: "Microsoft, Chennai",
     description: "What's actually working in AI",
     topics: ["AI", "Developer Community", "Tech Talks", "Networking"],
