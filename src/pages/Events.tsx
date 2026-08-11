@@ -117,7 +117,7 @@ const Events = () => {
     location: "Microsoft, Chennai",
     description: "What's actually working in AI",
     topics: ["AI", "Developer Community", "Tech Talks", "Networking"],
-    meetupLink: "https://www.meetup.com/technexus-community/events/",
+    meetupLink: "https://www.meetup.com/technexus-community/events/315833402/?eventOrigin=group_upcoming_events",
   };
 
   // Use only database events for past events
